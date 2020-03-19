@@ -29,6 +29,7 @@ module.exports = {
 		]
 	},
 	devServer: {
-		contentBase: path.resolve('./public')
+		contentBase: path.resolve('./public'),
+		historyApiFallback: true
 	}
 }
