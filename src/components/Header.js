@@ -5,12 +5,24 @@ const Header = () => {
 	return (
 		<header className="main-head">
 			<nav className="main-head__nav">
-				<NavLink to="/">
-					<h1>Crypto Traker</h1>
-				</NavLink>
-				<NavLink to="/overview">Overwiew</NavLink>
-				<NavLink to="/login">Login</NavLink>
-				<NavLink to="/register">Register</NavLink>
+				<ul className="main-head__left">
+					<li>
+						<NavLink to="/">
+							<h1>Crypto Traker</h1>
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/overview">Overwiew</NavLink>
+					</li>
+				</ul>
+				<ul className="main-head__right">
+					<li>
+						<NavLink to="/login">Login</NavLink>
+					</li>
+					<li>
+						<NavLink to="/register">Register</NavLink>
+					</li>
+				</ul>
 			</nav>
 		</header>
 	)

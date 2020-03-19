@@ -1,0 +1,30 @@
+ul {
+	list-style: none;
+}
+
+a:visited {
+	color: white;
+}
+
+.main-head {
+	background: $dark-blue;
+}
+
+.main-head__nav,
+.main-head__left,
+.main-head__right {
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+.main-head__nav {
+	width: 90%;
+	min-height: 10vh;
+	margin: auto;
+	justify-content: space-between;
+}
+
+.main-head__nav li:last-child {
+	margin-left: 3rem;
+}
