@@ -1,0 +1,25 @@
+@mixin flex($direction, $align, $justify) {
+	display: flex;
+	text-align: center;
+	flex-direction: $direction;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin bp-large {
+	@media screen and (min-width: 1000px) {
+		@content;
+	}
+}
+
+@mixin bp-medium {
+	@media screen and (max-width: 1000px) {
+		@content;
+	}
+}
+
+@mixin bp-small {
+	@media screen and (max-width: 700px) {
+		@content;
+	}
+}

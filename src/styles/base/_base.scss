@@ -6,21 +6,47 @@
 
 html {
 	font-size: 62.5%;
+	@include bp-medium {
+		font-size: 45%;
+	}
+	@include bp-small {
+		font-size: 35%;
+	}
 }
 
 body {
 	font-family: Nunito, Arial, sans-serif;
-	font-size: $m-size;
 }
 
 button {
 	cursor: pointer;
+	border: none;
 }
 
 button:disabled {
 	cursor: default;
 }
 
+li,
+button,
+label,
+input,
+a,
+p {
+	font-size: $m-size;
+	font-weight: 300;
+}
+
 a {
 	text-decoration: none;
+}
+
+h1 {
+	font-size: $l-size;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: $xl-size;
+	font-weight: 400;
 }
