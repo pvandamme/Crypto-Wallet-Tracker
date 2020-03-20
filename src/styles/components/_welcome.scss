@@ -2,8 +2,6 @@
 	min-height: 90vh;
 	background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)),
 		url('../../public/images/welcome.png');
-	@include bp-small {
-	}
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
