@@ -1,9 +1,15 @@
-export default (state = [], action) => {
+const defaultState = {
+	topCoins: [],
+	globalData: []
+}
+
+export default (state = defaultState, action) => {
 	switch (action.type) {
-		case 'ADD_TOP_COINS':
+		case 'ADD_OVERVIEW_DATA':
 			return {
 				...state,
-				topCoins: action.data
+				topCoins: action.payload.topCoins,
+				globalData: action.payload.globalData
 			}
 		default:
 			return state
