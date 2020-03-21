@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Loading from './Loading'
 
 export default class Overview extends Component {
 	state = {
@@ -8,28 +9,17 @@ export default class Overview extends Component {
 
 	async componentDidMount() {
 		const options = {
-			url:
-				'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-			method: 'GET',
-			header: {
-				'X-CMC_PRO_API_KEY': '8a928122-419b-4555-84ef-a73a731a753a'
-			},
-			proxy: {
-				host: '51.79.52.62',
-				port: 3128,
-				auth: {
-					username: 'mikeymike',
-					password: 'rapunz3l'
-				}
-			}
+			url: 'https://api.coingecko.com/api/v3/coins/list',
+			method: 'get'
 		}
 		const response = await axios(options)
-		console.log(response)
+		console.log(response.data)
+		this.setState({ loading: false })
 	}
 	render() {
 		return (
-			<div>
-				{this.state.loading ? <p>Loading...</p> : <p>Fetched !</p>}
+			<div className="overview">
+				{this.state.loading ? <Loading /> : <p>LJKFHGBAWLKF</p>}
 			</div>
 		)
 	}
