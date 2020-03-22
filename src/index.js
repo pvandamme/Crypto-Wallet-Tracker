@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom'
 import AppRouter from './routers/AppRouter'
 import { Provider } from 'react-redux'
 import './styles/styles.scss'
-import configureStore from './store/configureStore'
-
-const store = configureStore()
+import store from './state/store'
 
 store.subscribe(() => {
 	const state = store.getState()

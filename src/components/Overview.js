@@ -1,44 +1,23 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import Loading from './Loading'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { addOverviewData } from '../actions/marketDataAction'
+import {
+	getMarketPending,
+	getMarketData,
+	getMarketError
+} from '../state/selectors/marketSelectors'
+import { fetchMarket } from '../state/actions/marketActions'
 
 class Overview extends Component {
-	state = {
-		loading: true,
-		error: false
-	}
-	async componentDidMount() {
-		const url = 'https://api.coingecko.com/api/v3'
-		const optionsOne = {
-			url: url + '/coins/markets',
-			params: {
-				vs_currency: 'usd',
-				price_change_percentage: '1h,24h,7d'
-			},
-			method: 'get'
-		}
-		const optionsTwo = {
-			url: url + '/global',
-			method: 'get'
-		}
-		const requestOne = axios(optionsOne)
-		const requestTwo = axios(optionsTwo)
-
-		try {
-			const responses = await axios.all([requestOne, requestTwo])
-			this.setState({ loading: false })
-			this.props.addOverviewData(responses)
-		} catch (e) {
-			this.setState({ error: true, loading: false })
-		}
+	componentDidMount() {
+		this.props.fetchMarket()
 	}
 	render() {
-		if (this.state.loading) {
+		const { marketData, error, pending } = this.props
+		if (pending) {
 			return <Loading />
-		} else if (this.state.error) {
+		} else if (error) {
 			return <p>An error occur, please reload !</p>
 		} else {
 			return <p>Fetched !</p>
@@ -48,13 +27,14 @@ class Overview extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		topCoins: state.topCoins,
-		globalData: state.globalData
+		pending: getMarketPending(state),
+		marketData: getMarketData(state),
+		error: getMarketError(state)
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ addOverviewData }, dispatch)
+	return bindActionCreators({ fetchMarket }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overview)
