@@ -4,16 +4,17 @@ import {
 	getMarketSuccess
 } from '../../state/selectors/marketSelectors'
 import { connect } from 'react-redux'
-import { formatNumber } from '../../helpers/helpers'
 
 const GlobalMarket = (props) => {
 	const { globalData } = props
-	const totalMarketCap = formatNumber(globalData.total_market_cap.usd)
 
 	return (
 		<section className="globaMarketWrapper">
 			<ul>
-				<li>Market Cap: ${totalMarketCap}</li>
+				<li>Market Cap: ${globalData.totalMarketCap}</li>
+				<li>24h Vol: ${globalData.totalVolume}</li>
+				<li>BTC Dominance: {globalData.btcDominance}%</li>
+				<li>Cryptocurrencies: {globalData.cryptocurrencies}</li>
 			</ul>
 		</section>
 	)
