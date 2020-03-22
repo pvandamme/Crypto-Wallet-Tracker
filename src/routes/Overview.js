@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loading from './Loading'
+import Loading from '../components/Loading'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {

@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import App from '../components/Welcome'
-import Login from '../components/Login'
-import Overview from '../components/Overview'
-import Register from '../components/Register'
-import NotFoundPage from '../components/NotFoundPage'
+import Home from '../routes/Home'
+import Login from '../routes/Login'
+import Overview from '../routes/Overview'
+import Register from '../routes/Register'
+import NotFoundPage from '../routes/NotFoundPage'
 import Header from '../components/Header'
 
 const AppRouter = () => (
@@ -12,7 +12,7 @@ const AppRouter = () => (
 		<div>
 			<Header />
 			<Switch>
-				<Route path="/" component={App} exact={true} />
+				<Route path="/" component={Home} exact={true} />
 				<Route path="/overview" component={Overview} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
