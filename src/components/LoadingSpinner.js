@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loading = () => {
+export default () => {
 	return (
 		<div className="center-loading">
 			<div className="lds-roller">
@@ -16,5 +16,3 @@ const Loading = () => {
 		</div>
 	)
 }
-
-export default Loading

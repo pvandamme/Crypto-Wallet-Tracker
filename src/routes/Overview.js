@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loading from '../components/Loading'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
@@ -16,7 +16,7 @@ class Overview extends Component {
 	render() {
 		const { marketData, error, pending } = this.props
 		if (pending) {
-			return <Loading />
+			return <LoadingSpinner />
 		} else if (error) {
 			return <p>An error occur, please reload !</p>
 		} else {
