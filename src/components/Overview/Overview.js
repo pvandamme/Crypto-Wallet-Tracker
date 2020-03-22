@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import LoadingSpinner from '../components/LoadingSpinner'
+import LoadingSpinner from '../Shared/LoadingSpinner'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
 	getMarketPending,
 	getMarketData,
 	getMarketError
-} from '../state/selectors/marketSelectors'
-import { fetchMarket } from '../state/actions/marketActions'
+} from '../../state/selectors/marketSelectors'
+import { fetchMarket } from '../../state/actions/marketActions'
 
 class Overview extends Component {
 	componentDidMount() {
 		this.props.fetchMarket()
 	}
 	render() {
-		const { marketData, error, pending } = this.props
+		const { error, pending } = this.props
 		if (pending) {
 			return <LoadingSpinner />
 		} else if (error) {
