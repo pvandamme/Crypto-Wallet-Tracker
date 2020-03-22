@@ -9,6 +9,7 @@ import {
 	getMarketSuccess
 } from '../../state/selectors/marketSelectors'
 import { fetchMarket } from '../../state/actions/marketActions'
+import TopCoinsList from './TopCoinsList'
 
 class Overview extends Component {
 	componentDidMount() {
@@ -22,7 +23,12 @@ class Overview extends Component {
 		} else if (error) {
 			return <p>An error occur, please reload !</p> // TODO - Error component
 		} else if (success) {
-			return <GlobalMarket />
+			return (
+				<main>
+					<GlobalMarket />
+					<TopCoinsList />
+				</main>
+			)
 		}
 
 		return null
