@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
 	getMarketPending,
-	getMarketData,
 	getMarketError
 } from '../../state/selectors/marketSelectors'
 import { fetchMarket } from '../../state/actions/marketActions'
@@ -28,7 +27,6 @@ class Overview extends Component {
 const mapStateToProps = (state) => {
 	return {
 		pending: getMarketPending(state),
-		marketData: getMarketData(state),
 		error: getMarketError(state)
 	}
 }
