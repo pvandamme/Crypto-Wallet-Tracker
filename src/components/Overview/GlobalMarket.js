@@ -9,13 +9,22 @@ const GlobalMarket = (props) => {
 	const { globalData } = props
 
 	return (
-		<section className="globaMarketWrapper">
-			<ul>
-				<li>Market Cap: ${globalData.totalMarketCap}</li>
-				<li>24h Vol: ${globalData.totalVolume}</li>
-				<li>BTC Dominance: {globalData.btcDominance}%</li>
-				<li>Cryptocurrencies: {globalData.cryptocurrencies}</li>
+		<section className="global-market">
+			<ul className="global-market__list">
+				<li>
+					Market Cap: <span>${globalData.totalMarketCap}</span>
+				</li>
+				<li>
+					24h Vol: <span>${globalData.totalVolume}</span>
+				</li>
+				<li>
+					BTC Dominance: <span>{globalData.btcDominance}%</span>
+				</li>
+				<li>
+					Cryptocurrencies: <span>{globalData.cryptocurrencies}</span>
+				</li>
 			</ul>
+			<hr className="Global-market__line" />
 		</section>
 	)
 }

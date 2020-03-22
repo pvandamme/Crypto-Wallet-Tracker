@@ -1,3 +1,22 @@
 .overview {
 	height: 90vh;
 }
+
+.global-market__list {
+	padding-top: 3rem;
+	width: 90%;
+	margin: auto;
+	@include flex(row, center, space-between);
+	list-style: disc;
+	span {
+		color: $blue;
+	}
+	li {
+		font-size: $s-size;
+	}
+}
+
+.global-market__line {
+	margin-top: 3rem;
+	color: rgba($color: #000000, $alpha: 0.5);
+}
