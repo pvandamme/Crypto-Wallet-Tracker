@@ -6,13 +6,14 @@ import {
 
 const defaultState = {
 	pending: false,
-	marketData: [],
-	error: false
+	error: false,
+	success: false,
+	marketData: []
 }
 
 export default (state = defaultState, action) => {
 	switch (action.type) {
-		case 'FETCH_MARKET_BEGIN':
+		case FETCH_MARKET_BEGIN:
 			return {
 				...state,
 				pending: true
@@ -21,6 +22,7 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				pending: false,
+				success: true,
 				marketData: action.payload
 			}
 		case FETCH_MARKET_FAILURE:

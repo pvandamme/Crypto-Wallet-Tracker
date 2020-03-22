@@ -38,16 +38,16 @@ export const fetchMarket = () => {
 			const fetchTopCoins = CoinGeckoClient.coins.markets({
 				vs_currency: 'usd'
 			})
-			const [global, topCoins] = await Promise.all([
+			const [globalData, topCoins] = await Promise.all([
 				fetchGlobal,
 				fetchTopCoins
 			])
-			if (!global.success || !topCoins.success) {
+			if (!globalData.success || !topCoins.success) {
 				throw new Error()
 			}
 			dispatch(
 				fetchMarketSuccess({
-					global: global.data.data,
+					globalData: globalData.data.data,
 					topCoins: topCoins.data
 				})
 			)
