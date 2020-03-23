@@ -11,10 +11,10 @@ const Coin = ({ coin }) => {
 				</div>
 			</li>
 			<li>
-				<p>{formatNumber(coin.mkCap)}</p>
+				<p>${formatNumber(coin.mkCap)}</p>
 			</li>
 			<li>
-				<p>{coin.price}</p>
+				<p>${formatNumber(coin.price)}</p>
 			</li>
 			<li>
 				<p className={coin.priceChange < 0 ? 'red' : 'green'}>
