@@ -29,15 +29,22 @@
 .top-coins__grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 8rem;
+	grid-template-rows: 6rem;
 	align-items: center;
 	border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
 }
 
 .top-coins__name {
 	display: flex;
+	align-items: center;
 	img {
 		height: 3rem;
 		padding-right: 0.5rem;
+	}
+}
+
+.top-coins__legend {
+	li {
+		font-weight: 500;
 	}
 }

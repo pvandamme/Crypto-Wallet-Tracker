@@ -9,7 +9,7 @@ const TopCoinsList = (props) => {
 	return (
 		<div className="top-coins">
 			<h3>Market Overview</h3>
-			<ul className="top-coins__grid">
+			<ul className="top-coins__grid top-coins__legend">
 				<li># Name</li>
 				<li># Market Cap</li>
 				<li># Price</li>
