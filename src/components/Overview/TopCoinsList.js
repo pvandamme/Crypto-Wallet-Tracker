@@ -11,8 +11,9 @@ const TopCoinsList = (props) => {
 			<h3>Market Overview</h3>
 			<ul className="top-coins__grid">
 				<li># Name</li>
-				<li># Price</li>
 				<li># Market Cap</li>
+				<li># Price</li>
+				<li># Change (24h)</li>
 			</ul>
 			<div>{list}</div>
 		</div>

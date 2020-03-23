@@ -1,20 +1,25 @@
 import React from 'react'
-import { formatNumber } from '../../helpers/helpers'
+import { roundNumber, formatNumber } from '../../helpers/helpers'
 
-const Coin = (props) => {
+const Coin = ({ coin }) => {
 	return (
 		<ul className="top-coins__grid">
 			<li>
 				<div className="top-coins__name">
-					<img src={props.coin.image} alt="icon" />
-					<p>{props.coin.name}</p>
+					<img src={coin.icon} alt="icon" />
+					<p>{coin.name}</p>
 				</div>
 			</li>
 			<li>
-				<p>{props.coin.current_price}</p>
+				<p>{formatNumber(coin.mkCap)}</p>
 			</li>
 			<li>
-				<p>{formatNumber(props.coin.market_cap)}</p>
+				<p>{coin.price}</p>
+			</li>
+			<li>
+				<p className={coin.priceChange < 0 ? 'red' : 'green'}>
+					{roundNumber(coin.priceChange, 2)}%
+				</p>
 			</li>
 		</ul>
 	)

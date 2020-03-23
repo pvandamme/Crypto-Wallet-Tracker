@@ -3,4 +3,5 @@ export const formatNumber = (n) => {
 	return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export const roundNumber = (n) => Math.floor(n * 10) / 10
+export const roundNumber = (n, round) =>
+	Math.floor(n * 10 * round) / (10 * round)
