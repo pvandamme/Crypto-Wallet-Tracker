@@ -19,10 +19,17 @@
 	}
 }
 
-.top-coins {
-	h3 {
-		padding-top: 4rem;
-		padding-bottom: 1.5rem;
+.top-coins__title {
+	margin-top: 4rem;
+	margin-bottom: 1.5rem;
+	@include flex(row, center, flex-start);
+	button {
+		background-color: white;
+		margin: 1rem;
+		margin-top: 1.3rem;
+		.i {
+			color: $dark-blue;
+		}
 	}
 }
 

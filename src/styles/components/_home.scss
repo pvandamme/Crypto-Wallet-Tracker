@@ -7,6 +7,20 @@
 	background-position: center;
 	color: white;
 	@include flex(column, center, flex-start);
+	h2 {
+		padding: 4rem;
+	}
+	button {
+		background-color: $blue;
+		color: white;
+		font-size: 2rem;
+		&:hover {
+			background-color: darken($color: $blue, $amount: 10%);
+			transition: 0.3s;
+		}
+		padding: 1.5rem 5rem;
+		margin: 4rem;
+	}
 }
 
 .hero-text {
@@ -15,20 +29,5 @@
 	margin-top: 7rem;
 	@include bp-small {
 		width: 100%;
-	}
-}
-
-h2 {
-	padding: 4rem;
-}
-
-button {
-	background-color: $blue;
-	color: white;
-	padding: 1.5rem 5rem;
-	margin: 4rem;
-	&:hover {
-		background-color: darken($color: $blue, $amount: 10%);
-		transition: 0.3s;
 	}
 }
