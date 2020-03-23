@@ -24,7 +24,6 @@ const GlobalMarket = (props) => {
 					Cryptocurrencies: <span>{globalData.cryptocurrencies}</span>
 				</li>
 			</ul>
-			<hr className="global-market__line" />
 		</section>
 	)
 }

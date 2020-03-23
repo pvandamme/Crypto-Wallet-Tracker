@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import LoadingSpinner from '../Shared/LoadingSpinner'
-import GlobalMarket from './GlobalMarket'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
@@ -9,7 +8,7 @@ import {
 	getMarketSuccess
 } from '../../state/selectors/marketSelectors'
 import { fetchMarket } from '../../state/actions/marketActions'
-import TopCoinsList from './TopCoinsList'
+import OverviewPage from './OverviewPage'
 
 class Overview extends Component {
 	componentDidMount() {
@@ -23,12 +22,7 @@ class Overview extends Component {
 		} else if (error) {
 			return <p>An error occur, please reload !</p> // TODO - Error component
 		} else if (success) {
-			return (
-				<main>
-					<GlobalMarket />
-					<TopCoinsList />
-				</main>
-			)
+			return <OverviewPage />
 		}
 
 		return null

@@ -45,7 +45,8 @@ a {
 	text-decoration: none;
 }
 
-h1 {
+h1,
+h3 {
 	font-size: $l-size;
 	font-weight: 700;
 }
@@ -53,4 +54,9 @@ h1 {
 h2 {
 	font-size: $xl-size;
 	font-weight: 400;
+}
+
+main {
+	width: 90%;
+	margin: auto;
 }

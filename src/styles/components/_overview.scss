@@ -3,26 +3,41 @@
 }
 
 .global-market__list {
-	padding-top: 3rem;
-	width: 90%;
-	margin: auto;
+	padding: 3rem 0;
 	@include flex(row, center, space-between);
+	border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
 	list-style: disc;
 	span {
 		color: $blue;
 	}
 	li {
 		font-size: $s-size;
+		@include bp-small {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 }
 
-.global-market__line {
-	margin-top: 3rem;
-	color: rgba($color: #000000, $alpha: 0.5);
+.top-coins {
+	h3 {
+		padding-top: 4rem;
+		padding-bottom: 1.5rem;
+	}
 }
 
-.top-coins__list {
-	width: 90%;
-	margin: auto;
-	padding-top: 3rem;
+.top-coins__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 8rem;
+	align-items: center;
+	border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+}
+
+.top-coins__name {
+	display: flex;
+	img {
+		height: 3rem;
+		padding-right: 0.5rem;
+	}
 }
