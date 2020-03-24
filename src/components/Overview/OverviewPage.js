@@ -1,8 +1,8 @@
 import React from 'react'
 import GlobalMarket from './GlobalMarket'
 import TopCoinsList from './TopCoinsList'
-import Title from './Title'
-import Filters from './Filters'
+import TopSection from './TopSection'
+import FilterBy from './FilterBy'
 import Pagination from './Pagination'
 
 const OverviewPage = () => {
@@ -10,8 +10,8 @@ const OverviewPage = () => {
 		<main>
 			<GlobalMarket />
 			<Pagination />
-			<Title />
-			<Filters />
+			<TopSection />
+			<FilterBy />
 			<TopCoinsList />
 		</main>
 	)

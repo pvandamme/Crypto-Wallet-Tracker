@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-	display: getDisplay(state)
+	return { display: getDisplay(state) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination)
