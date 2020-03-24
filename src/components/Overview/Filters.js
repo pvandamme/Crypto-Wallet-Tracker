@@ -7,14 +7,18 @@ const Filters = ({ updateFilters }) => {
 	const handleClick = (filter) => updateFilters(filter)
 	return (
 		<ul className="top-coins__grid top-coins__legend">
-			<li onClick={() => handleClick('name')}># Name</li>
-			<li onClick={() => handleClick('mc')}># Market Cap</li>
-			<li
-				className="top-coins__center"
-				onClick={() => handleClick('price')}>
-				# Price
+			<li>
+				<p onClick={() => handleClick('name')}># Name</p>
 			</li>
-			<li onClick={() => handleClick('change')}># Change (24h)</li>
+			<li>
+				<p onClick={() => handleClick('mc')}># Market Cap</p>
+			</li>
+			<li className="top-coins__center">
+				<p onClick={() => handleClick('price')}># Price</p>
+			</li>
+			<li>
+				<p onClick={() => handleClick('change')}># Change (24h)</p>{' '}
+			</li>
 		</ul>
 	)
 }

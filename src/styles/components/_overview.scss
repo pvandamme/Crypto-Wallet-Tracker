@@ -51,7 +51,8 @@
 }
 
 .top-coins__legend {
-	li {
+	p {
+		display: inline;
 		font-weight: 500;
 		cursor: pointer;
 	}
