@@ -4,7 +4,7 @@ const defaultState = {
 	filterBy: 'mc',
 	asc: false,
 	pagination: 0,
-	display: 10
+	display: 20
 }
 
 export default (state = defaultState, action) => {

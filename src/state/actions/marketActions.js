@@ -36,7 +36,8 @@ export const fetchMarket = () => {
 		try {
 			const fetchGlobal = CoinGeckoClient.global()
 			const fetchTopCoins = CoinGeckoClient.coins.markets({
-				vs_currency: 'usd'
+				vs_currency: 'usd',
+				per_page: 250
 			})
 			const [globalData, topCoins] = await Promise.all([
 				fetchGlobal,

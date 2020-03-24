@@ -3,15 +3,16 @@ import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updatePagination } from '../../state/actions/filtersTopActions'
+import { getDisplay } from '../../state/selectors/filtersSelector'
 
-const Pagination = ({ updatePagination }) => {
+const Pagination = ({ updatePagination, display }) => {
 	const handleChange = (n) => {
 		updatePagination(n.selected)
 	}
 	return (
 		<ReactPaginate
 			containerClassName="pagination"
-			pageCount={10}
+			pageCount={250 / display}
 			pageRangeDisplayed={3}
 			marginPagesDisplayed={1}
 			pageClassName="pagination__element"
@@ -25,4 +26,8 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ updatePagination }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Pagination)
+const mapStateToProps = (state) => {
+	display: getDisplay(state)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination)
