@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTopCoins } from '../../state/selectors/marketSelectors'
 import Coin from './Coin'
-import Title from './Title'
 
 const TopCoinsList = (props) => {
 	const { topCoins } = props

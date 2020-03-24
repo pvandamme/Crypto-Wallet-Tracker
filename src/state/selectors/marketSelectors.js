@@ -1,15 +1,15 @@
 import { formatNumber, roundNumber } from '../../helpers/helpers'
 
-export const getMarketData = (state) => state.marketData
+export const getMarketData = (state) => state.market.Data
 
-export const getMarketSuccess = (state) => state.success
+export const getMarketSuccess = (state) => state.market.success
 
-export const getMarketPending = (state) => state.pending
+export const getMarketPending = (state) => state.market.pending
 
-export const getMarketError = (state) => state.error
+export const getMarketError = (state) => state.market.error
 
 export const getGlobal = (state) => {
-	const data = state.marketData.globalData
+	const data = state.market.marketData.globalData
 	return {
 		totalMarketCap: formatNumber(data.total_market_cap.usd),
 		totalVolume: formatNumber(data.total_volume.usd),
@@ -19,7 +19,7 @@ export const getGlobal = (state) => {
 }
 
 export const getTopCoins = (state) => {
-	return state.marketData.topCoins.map((coin) => {
+	return state.market.marketData.topCoins.map((coin) => {
 		return {
 			id: coin.id,
 			name: coin.name,
