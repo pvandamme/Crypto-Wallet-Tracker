@@ -18,8 +18,8 @@ export const getGlobal = (state) => {
 	}
 }
 
-export const getTopCoins = (state) => {
-	let sorted = state.market.marketData.topCoins.sort((a, b) => {
+const applyFilterBy = (state) =>
+	state.market.marketData.topCoins.sort((a, b) => {
 		const filterBy = state.filtersTop.filterBy
 		switch (filterBy) {
 			case 'name':
@@ -37,9 +37,18 @@ export const getTopCoins = (state) => {
 				break
 		}
 	})
-	if (state.filtersTop.asc) {
-		sorted = sorted.reverse()
-	}
+
+const sliceTopCoin = (top, { display, pagination }) => {
+	return top.slice(pagination * display, display * (pagination + 1))
+}
+
+export const getTopCoins = (state) => {
+	let sorted = applyFilterBy(state)
+
+	sorted = state.filtersTop.asc
+		? sliceTopCoin(sorted.reverse(), state.filtersTop)
+		: sliceTopCoin(sorted, state.filtersTop)
+
 	return sorted.map((coin) => {
 		return {
 			id: coin.id,

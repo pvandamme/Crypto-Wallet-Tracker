@@ -1,4 +1,4 @@
-import { UPDATE_FILTER_BY, UPDATE_ASC } from '../actionTypes'
+import { UPDATE_FILTER_BY, UPDATE_ASC, UPDATE_PAGINATION } from '../actionTypes'
 
 // Action Creators
 
@@ -13,6 +13,13 @@ export const updateAsc = (asc) => {
 	return {
 		type: UPDATE_ASC,
 		payload: asc
+	}
+}
+
+export const updatePagination = (pagination) => {
+	return {
+		type: UPDATE_PAGINATION,
+		payload: pagination
 	}
 }
 

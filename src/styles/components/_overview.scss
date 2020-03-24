@@ -63,3 +63,35 @@
 		margin-left: 1rem;
 	}
 }
+
+.pagination {
+	@include flex(row, center, center);
+	width: 50%;
+	margin: auto;
+	li {
+		margin-top: 2rem;
+		padding: 0.5rem 1rem;
+		a {
+			color: black;
+			padding: 0.3rem;
+			cursor: pointer;
+		}
+	}
+}
+
+.pagination__element {
+	&:hover {
+		background-color: rgba($color: $blue, $alpha: 0.2);
+		transition: 0.2s;
+	}
+}
+
+.pagination__active {
+	background-color: $blue;
+	&:hover {
+		background-color: $blue;
+	}
+	a {
+		color: white !important;
+	}
+}
