@@ -1,10 +1,10 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { setFilter } from '../../state/actions/filterTopActions'
+import { updateFilters } from '../../state/actions/filtersTopActions'
 import { connect } from 'react-redux'
 
-const Filters = ({ setFilter }) => {
-	const handleClick = (filter) => setFilter(filter)
+const Filters = ({ updateFilters }) => {
+	const handleClick = (filter) => updateFilters(filter)
 	return (
 		<ul className="top-coins__grid top-coins__legend">
 			<li onClick={() => handleClick('name')}># Name</li>
@@ -20,7 +20,7 @@ const Filters = ({ setFilter }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ setFilter }, dispatch)
+	return bindActionCreators({ updateFilters }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Filters)

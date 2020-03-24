@@ -6,8 +6,5 @@ export const FETCH_MARKET_FAILURE = 'FETCH_MARKET_FAILURE'
 
 // filterTop types
 
-export const FILTER_BY_NAME = 'FILTER_BY_NAME'
-export const FILTER_BY_MC = 'FILTER_BY_MC'
-export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
-export const FILTER_BY_CHANGE = 'FILTER_BY_CHANGE'
-export const RESET_FILTER = 'RESET_FILTER'
+export const UPDATE_FILTER_BY = 'UPDATE_FILTER'
+export const UPDATE_ASC = 'UPDATE_ASC'

@@ -19,7 +19,28 @@ export const getGlobal = (state) => {
 }
 
 export const getTopCoins = (state) => {
-	return state.market.marketData.topCoins.map((coin) => {
+	let sorted = state.market.marketData.topCoins.sort((a, b) => {
+		const filterBy = state.filtersTop.filterBy
+		switch (filterBy) {
+			case 'name':
+				return a.name > b.name ? 1 : 0
+			case 'mc':
+				return a.market_cap > b.market_cap ? 0 : 1
+			case 'price':
+				return a.current_price > b.current_price ? 1 : 0
+			case 'change':
+				return a.price_change_percentage_24h >
+					b.price_change_percentage_24h
+					? 1
+					: 0
+			default:
+				break
+		}
+	})
+	if (state.filtersTop.asc) {
+		sorted = sorted.reverse()
+	}
+	return sorted.map((coin) => {
 		return {
 			id: coin.id,
 			name: coin.name,

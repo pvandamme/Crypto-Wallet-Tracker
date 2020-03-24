@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import market from './marketReducer'
-import filterTop from './filterTopReducer'
+import filtersTop from './filtersTopReducer'
 
 export default combineReducers({
 	market,
-	filterTop
+	filtersTop
 })
