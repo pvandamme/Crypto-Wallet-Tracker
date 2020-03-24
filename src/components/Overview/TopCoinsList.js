@@ -19,7 +19,7 @@ const TopCoinsList = (props) => {
 			<ul className="top-coins__grid top-coins__legend">
 				<li># Name</li>
 				<li># Market Cap</li>
-				<li># Price</li>
+				<li className="top-coins__center"># Price</li>
 				<li># Change (24h)</li>
 			</ul>
 			<div>{list}</div>

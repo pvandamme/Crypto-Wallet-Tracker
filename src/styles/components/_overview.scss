@@ -55,3 +55,9 @@
 		font-weight: 500;
 	}
 }
+
+.top-coins__center {
+	@include bp-small {
+		margin-left: 1rem;
+	}
+}
