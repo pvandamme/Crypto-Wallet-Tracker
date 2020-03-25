@@ -2,7 +2,8 @@ import {
 	UPDATE_FILTER_BY,
 	UPDATE_ASC,
 	UPDATE_PAGINATION,
-	UPDATE_DISPLAY
+	UPDATE_DISPLAY,
+	UPDATE_INPUT_FILTER
 } from '../actionTypes'
 
 // Action Creators
@@ -32,6 +33,13 @@ export const updateDisplay = (display) => {
 	return {
 		type: UPDATE_DISPLAY,
 		payload: display
+	}
+}
+
+export const updateInputFilter = (inputFilter) => {
+	return {
+		type: UPDATE_INPUT_FILTER,
+		payload: inputFilter.target.value.toLowerCase().trim()
 	}
 }
 

@@ -2,14 +2,16 @@ import {
 	UPDATE_FILTER_BY,
 	UPDATE_ASC,
 	UPDATE_PAGINATION,
-	UPDATE_DISPLAY
+	UPDATE_DISPLAY,
+	UPDATE_INPUT_FILTER
 } from '../actionTypes'
 
 const defaultState = {
 	filterBy: 'mc',
 	asc: false,
 	pagination: 0,
-	display: 10
+	display: { value: 10, label: 10 },
+	inputFilter: ''
 }
 
 export default (state = defaultState, action) => {
@@ -22,6 +24,8 @@ export default (state = defaultState, action) => {
 			return { ...state, pagination: action.payload }
 		case UPDATE_DISPLAY:
 			return { ...state, display: action.payload, pagination: 0 }
+		case UPDATE_INPUT_FILTER:
+			return { ...state, inputFilter: action.payload }
 		default:
 			return state
 	}

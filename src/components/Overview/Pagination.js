@@ -7,16 +7,17 @@ import {
 	getDisplay,
 	getPagination
 } from '../../state/selectors/filtersSelector'
+import { getSortedByInputFilter } from '../../state/selectors/filtersSelector'
 
-const Pagination = ({ pagination, updatePagination, display }) => {
+const Pagination = ({ sorted, pagination, updatePagination, display }) => {
 	const handleChange = (n) => {
 		updatePagination(n.selected)
 	}
 	return (
 		<ReactPaginate
 			containerClassName="pagination"
-			pageCount={250 / display}
-			forcePage={pagination} // TODO - RESET
+			pageCount={sorted.length / display.value}
+			forcePage={pagination}
 			pageRangeDisplayed={3}
 			marginPagesDisplayed={1}
 			pageClassName="pagination__element"
@@ -31,7 +32,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-	return { display: getDisplay(state), pagination: getPagination(state) }
+	return {
+		sorted: getSortedByInputFilter(state),
+		display: getDisplay(state),
+		pagination: getPagination(state)
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination)

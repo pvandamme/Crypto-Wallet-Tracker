@@ -1,4 +1,5 @@
 import { formatNumber, roundNumber } from '../../helpers/helpers'
+import { getInputFilter, getSortedByInputFilter } from './filtersSelector'
 
 export const getMarketData = (state) => state.market.Data
 
@@ -18,8 +19,8 @@ export const getGlobal = (state) => {
 	}
 }
 
-const applyFilterBy = (state) =>
-	state.market.marketData.topCoins.sort((a, b) => {
+const applyFilterBy = (sorted, state) =>
+	sorted.sort((a, b) => {
 		const filterBy = state.filtersTop.filterBy
 		switch (filterBy) {
 			case 'name':
@@ -39,17 +40,20 @@ const applyFilterBy = (state) =>
 	})
 
 const sliceTopCoin = (top, { display, pagination }) => {
-	return top.slice(pagination * display, display * (pagination + 1))
+	return top.slice(
+		pagination * display.value,
+		display.value * (pagination + 1)
+	)
 }
 
 export const getTopCoins = (state) => {
-	let sorted = applyFilterBy(state)
-
+	let sorted = getSortedByInputFilter(state)
+	sorted = applyFilterBy(sorted, state)
 	sorted = state.filtersTop.asc
 		? sliceTopCoin(sorted.reverse(), state.filtersTop)
 		: sliceTopCoin(sorted, state.filtersTop)
 
-	return sorted.map((coin) => {
+	const test = sorted.map((coin) => {
 		return {
 			id: coin.id,
 			name: coin.name,
@@ -59,4 +63,5 @@ export const getTopCoins = (state) => {
 			priceChange: coin.price_change_percentage_24h
 		}
 	})
+	return test
 }
