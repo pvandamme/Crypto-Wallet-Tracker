@@ -54,8 +54,20 @@
 	p {
 		display: inline;
 		font-weight: 500;
-		cursor: pointer;
+		padding-right: 0.5rem;
 	}
+}
+
+.top-coins__sort-icon {
+	@include flex(row, center, flex-start);
+	cursor: pointer;
+	i {
+		color: rgba($color: #000000, $alpha: 0.3);
+	}
+}
+
+.top-coins__active {
+	color: black !important;
 }
 
 .top-coins__center {
@@ -67,7 +79,7 @@
 .pagination {
 	@include flex(row, center, center);
 	width: 50%;
-	margin: auto;
+	margin: 2rem auto;
 	li {
 		margin-top: 2rem;
 		padding: 0.5rem 1rem;

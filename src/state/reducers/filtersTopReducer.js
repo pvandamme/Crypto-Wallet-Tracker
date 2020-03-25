@@ -21,7 +21,7 @@ export default (state = defaultState, action) => {
 		case UPDATE_PAGINATION:
 			return { ...state, pagination: action.payload }
 		case UPDATE_DISPLAY:
-			return { ...state, display: action.payload }
+			return { ...state, display: action.payload, pagination: 0 }
 		default:
 			return state
 	}

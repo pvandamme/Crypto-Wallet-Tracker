@@ -9,10 +9,10 @@ const OverviewPage = () => {
 	return (
 		<main>
 			<GlobalMarket />
-			<Pagination />
 			<TopSection />
 			<FilterBy />
 			<TopCoinsList />
+			<Pagination />
 		</main>
 	)
 }

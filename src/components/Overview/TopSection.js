@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { fetchMarket } from '../../state/actions/marketActions'
 import { updateDisplay } from '../../state/actions/filtersTopActions'
 
-const TopSection = ({ updateDisplay }) => {
+const TopSection = ({ updateDisplay, fetchMarket }) => {
 	return (
 		<div className="top-coins__title">
 			<h3>Market Overview</h3>
-			<button onClick={() => props.fetchMarket()}>
+			<button onClick={() => fetchMarket()}>
 				<i className="fas fa-sync-alt i"></i>
 			</button>
 			<select
