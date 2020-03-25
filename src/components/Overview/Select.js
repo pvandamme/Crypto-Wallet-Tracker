@@ -14,13 +14,23 @@ const options = [
 const App = ({ updateDisplay, display }) => {
 	const value = { value: display.value, label: `Per page: ${display.value}` }
 
+	const customTheme = (theme) => ({
+		...theme,
+		colors: {
+			...theme.colors,
+			primary: '#3d5af1',
+			borderWidth: 1
+		}
+	})
 	const customStyles = {
-		control: (base) => ({
-			...base,
-			minHeight: 0
-		}),
-		indicatorSeparator: (base) => ({
-			...base,
+		control: (provided, state) => {
+			return {
+				...provided,
+				minHeight: 0
+			}
+		},
+		indicatorSeparator: (provided, state) => ({
+			...provided,
 			marginTop: 4,
 			marginBottom: 4
 		})
@@ -32,6 +42,7 @@ const App = ({ updateDisplay, display }) => {
 			onChange={updateDisplay}
 			options={options}
 			value={value}
+			theme={customTheme}
 			styles={customStyles}
 			className="react-select-container"
 			classNamePrefix="react-select"

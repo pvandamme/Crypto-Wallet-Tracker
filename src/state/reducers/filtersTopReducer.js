@@ -25,7 +25,7 @@ export default (state = defaultState, action) => {
 		case UPDATE_DISPLAY:
 			return { ...state, display: action.payload, pagination: 0 }
 		case UPDATE_INPUT_FILTER:
-			return { ...state, inputFilter: action.payload }
+			return { ...state, inputFilter: action.payload, pagination: 0 }
 		default:
 			return state
 	}

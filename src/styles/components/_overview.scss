@@ -152,6 +152,10 @@
 	&:hover {
 		border-color: hsl(0, 0%, 70%);
 	}
+	&:focus {
+		border-width: 2.5px;
+		border-color: $blue;
+	}
 	&::placeholder {
 		font-size: $s-size;
 	}
