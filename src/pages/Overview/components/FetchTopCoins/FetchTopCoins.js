@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LoadingSpinner from 'components/Shared/LoadingSpinner'
+import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
