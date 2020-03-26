@@ -7,7 +7,7 @@ import {
 	getDisplay,
 	getPagination
 } from '../../state/selectors/topCoinsFiltersSelectors'
-import { getSortedByInputFilter } from '../../state/selectors/topCoinsFiltersSelectors'
+import { getSortedByInputFilter } from '../../state/selectors/marketSelectors'
 
 const Pagination = ({ sorted, pagination, updatePagination, display }) => {
 	const handleChange = (n) => {

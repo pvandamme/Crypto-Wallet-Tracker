@@ -1,8 +1,5 @@
 import { formatNumber, roundNumber } from '../../helpers/helpers'
-import {
-	getInputFilter,
-	getSortedByInputFilter
-} from './topCoinsFiltersSelectors'
+import { getInputFilter, getFilterBy } from './topCoinsFiltersSelectors'
 
 export const getMarketData = (state) => state.market.Data
 
@@ -22,9 +19,33 @@ export const getGlobal = (state) => {
 	}
 }
 
+export const getTopCoins = (state) => {
+	let sorted = getSortedByInputFilter(state)
+	sorted = applyFilterBy(sorted, state)
+	sorted = state.topCoinsFilters.asc
+		? sliceTopCoin(sorted.reverse(), state.topCoinsFilters)
+		: sliceTopCoin(sorted, state.topCoinsFilters)
+
+	return sorted.map((coin) => ({
+		id: coin.id,
+		name: coin.name,
+		mkCap: coin.market_cap,
+		icon: coin.image,
+		price: coin.current_price,
+		priceChange: coin.price_change_percentage_24h
+	}))
+}
+
+export const getSortedByInputFilter = (state) => {
+	const inputFilter = getInputFilter(state)
+	return state.market.marketData.topCoins.filter((coin) =>
+		coin.name.toLowerCase().includes(inputFilter)
+	)
+}
+
 const applyFilterBy = (sorted, state) =>
 	sorted.sort((a, b) => {
-		const filterBy = state.topCoinsFilters.filterBy
+		const filterBy = getFilterBy(state)
 		switch (filterBy) {
 			case 'name':
 				return a.name > b.name ? 1 : 0
@@ -47,24 +68,4 @@ const sliceTopCoin = (top, { display, pagination }) => {
 		pagination * display.value,
 		display.value * (pagination + 1)
 	)
-}
-
-export const getTopCoins = (state) => {
-	let sorted = getSortedByInputFilter(state)
-	sorted = applyFilterBy(sorted, state)
-	sorted = state.topCoinsFilters.asc
-		? sliceTopCoin(sorted.reverse(), state.topCoinsFilters)
-		: sliceTopCoin(sorted, state.topCoinsFilters)
-
-	const test = sorted.map((coin) => {
-		return {
-			id: coin.id,
-			name: coin.name,
-			mkCap: coin.market_cap,
-			icon: coin.image,
-			price: coin.current_price,
-			priceChange: coin.price_change_percentage_24h
-		}
-	})
-	return test
 }

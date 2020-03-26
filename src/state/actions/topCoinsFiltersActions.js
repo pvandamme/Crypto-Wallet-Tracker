@@ -48,7 +48,7 @@ export const updateInputFilter = (inputFilter) => {
 export const updateFilters = (newFilterBy) => {
 	return (dispatch, getState) => {
 		const {
-			filtersTop: { filterBy, asc }
+			topCoinsFilters: { filterBy, asc }
 		} = getState()
 		filterBy === newFilterBy
 			? dispatch(updateAsc(!asc))
