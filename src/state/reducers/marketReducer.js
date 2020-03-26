@@ -8,7 +8,7 @@ const defaultState = {
 	pending: false,
 	error: false,
 	success: false,
-	marketData: [] // TODO - remplir et remove success flag
+	marketData: {}
 }
 
 export default (state = defaultState, action) => {
@@ -16,7 +16,8 @@ export default (state = defaultState, action) => {
 		case FETCH_MARKET_BEGIN:
 			return {
 				...state,
-				pending: true
+				pending: true,
+				success: false
 			}
 		case FETCH_MARKET_SUCCESS:
 			return {

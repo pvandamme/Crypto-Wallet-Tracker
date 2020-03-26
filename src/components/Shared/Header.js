@@ -8,7 +8,7 @@ const Header = () => {
 				<ul className="main-head__left">
 					<li>
 						<NavLink to="/">
-							<h1>Crypto Traker</h1>
+							<h1>Crypto Tracker</h1>
 						</NavLink>
 					</li>
 					<li>

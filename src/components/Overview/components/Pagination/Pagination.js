@@ -2,12 +2,12 @@ import React from 'react'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updatePagination } from '../../state/actions/topCoinsFiltersActions'
+import { updatePagination } from 'state/actions/topCoinsFiltersActions'
 import {
 	getDisplay,
 	getPagination
-} from '../../state/selectors/topCoinsFiltersSelectors'
-import { getSortedByInputFilter } from '../../state/selectors/marketSelectors'
+} from 'state/selectors/topCoinsFiltersSelectors'
+import { getSortedByInputFilter } from 'state/selectors/marketSelectors'
 
 const Pagination = ({ sorted, pagination, updatePagination, display }) => {
 	const handleChange = (n) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateInputFilter } from '../../state/actions/topCoinsFiltersActions'
+import { updateInputFilter } from 'state/actions/topCoinsFiltersActions'
 
 const TopSectionFilters = ({ updateInputFilter }) => {
 	return (
@@ -11,7 +11,7 @@ const TopSectionFilters = ({ updateInputFilter }) => {
 				onChange={(e) => updateInputFilter(e)}
 				type="text"
 				id="search"
-				placeholder="Bictoin.."
+				placeholder="Bitcoin.."
 				className="top-section__input"
 			/>
 		</div>

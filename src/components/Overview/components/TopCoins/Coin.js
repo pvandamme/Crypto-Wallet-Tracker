@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { roundNumber, formatNumber } from '../../helpers/helpers'
+import { roundNumber, formatNumber } from 'helpers/helpers'
 import { Spring } from 'react-spring/renderprops'
 
 class Coin extends Component {

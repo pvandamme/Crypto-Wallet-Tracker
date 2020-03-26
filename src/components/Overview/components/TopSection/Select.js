@@ -1,9 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
-import { updateDisplay } from '../../state/actions/topCoinsFiltersActions'
+import { updateDisplay } from 'state/actions/topCoinsFiltersActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getDisplay } from '../../state/selectors/topCoinsFiltersSelectors'
+import { getDisplay } from 'state/selectors/topCoinsFiltersSelectors'
 
 const options = [
 	{ value: 5, label: 5 },

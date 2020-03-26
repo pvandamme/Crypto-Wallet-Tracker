@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchMarket } from '../../state/actions/marketActions'
+import { fetchMarket } from 'state/actions/marketActions'
 import Select from './Select'
 import TopSectionFilters from './TopSectionFilters'
 

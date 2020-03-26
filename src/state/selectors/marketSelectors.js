@@ -1,4 +1,4 @@
-import { formatNumber, roundNumber } from '../../helpers/helpers'
+import { formatNumber, roundNumber } from 'helpers/helpers'
 import { getInputFilter, getFilterBy } from './topCoinsFiltersSelectors'
 
 export const getMarketData = (state) => state.market.Data

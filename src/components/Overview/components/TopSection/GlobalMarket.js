@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-	getGlobal,
-	getMarketSuccess
-} from '../../state/selectors/marketSelectors'
+import { getGlobal, getMarketSuccess } from 'state/selectors/marketSelectors'
 import { connect } from 'react-redux'
 
 const GlobalMarket = (props) => {
