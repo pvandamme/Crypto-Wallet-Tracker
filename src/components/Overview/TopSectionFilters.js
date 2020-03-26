@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateInputFilter } from '../../state/actions/filtersTopActions'
+import { updateInputFilter } from '../../state/actions/topCoinsFiltersActions'
 
 const TopSectionFilters = ({ updateInputFilter }) => {
 	return (

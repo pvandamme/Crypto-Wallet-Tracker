@@ -1,5 +1,8 @@
 import { formatNumber, roundNumber } from '../../helpers/helpers'
-import { getInputFilter, getSortedByInputFilter } from './filtersSelector'
+import {
+	getInputFilter,
+	getSortedByInputFilter
+} from './topCoinsFiltersSelectors'
 
 export const getMarketData = (state) => state.market.Data
 
@@ -21,7 +24,7 @@ export const getGlobal = (state) => {
 
 const applyFilterBy = (sorted, state) =>
 	sorted.sort((a, b) => {
-		const filterBy = state.filtersTop.filterBy
+		const filterBy = state.topCoinsFilters.filterBy
 		switch (filterBy) {
 			case 'name':
 				return a.name > b.name ? 1 : 0
@@ -49,9 +52,9 @@ const sliceTopCoin = (top, { display, pagination }) => {
 export const getTopCoins = (state) => {
 	let sorted = getSortedByInputFilter(state)
 	sorted = applyFilterBy(sorted, state)
-	sorted = state.filtersTop.asc
-		? sliceTopCoin(sorted.reverse(), state.filtersTop)
-		: sliceTopCoin(sorted, state.filtersTop)
+	sorted = state.topCoinsFilters.asc
+		? sliceTopCoin(sorted.reverse(), state.topCoinsFilters)
+		: sliceTopCoin(sorted, state.topCoinsFilters)
 
 	const test = sorted.map((coin) => {
 		return {

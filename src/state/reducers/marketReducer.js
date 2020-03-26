@@ -8,7 +8,7 @@ const defaultState = {
 	pending: false,
 	error: false,
 	success: false,
-	marketData: []
+	marketData: [] // TODO - remplir et remove success flag
 }
 
 export default (state = defaultState, action) => {

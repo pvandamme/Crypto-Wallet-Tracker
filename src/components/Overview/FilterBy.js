@@ -1,8 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { updateFilters } from '../../state/actions/filtersTopActions'
+import { updateFilters } from '../../state/actions/topCoinsFiltersActions'
 import { connect } from 'react-redux'
-import { getFilterBy } from '../../state/selectors/filtersSelector'
+import { getFilterBy } from '../../state/selectors/topCoinsFiltersSelectors'
 
 const FilterBy = ({ updateFilters, filterBy }) => {
 	const handleClick = (filter) => updateFilters(filter)
