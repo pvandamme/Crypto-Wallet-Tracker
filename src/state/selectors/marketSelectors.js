@@ -43,16 +43,16 @@ export const getSortedByInputFilter = (state) => {
 	)
 }
 
-const applyFilterBy = (sorted, state) =>
-	sorted.sort((a, b) => {
-		const filterBy = getFilterBy(state)
+const applyFilterBy = (sorted, state) => {
+	const filterBy = getFilterBy(state)
+	return sorted.sort((a, b) => {
 		switch (filterBy) {
 			case 'name':
-				return a.name > b.name ? 1 : 0
+				return a.name > b.name ? 1 : -1
 			case 'mc':
-				return a.market_cap > b.market_cap ? 0 : 1
+				return a.market_cap > b.market_cap ? -1 : 1
 			case 'price':
-				return a.current_price > b.current_price ? 1 : 0
+				return a.current_price > b.current_price ? 1 : -1
 			case 'change':
 				return a.price_change_percentage_24h >
 					b.price_change_percentage_24h
@@ -62,6 +62,7 @@ const applyFilterBy = (sorted, state) =>
 				break
 		}
 	})
+}
 
 const sliceTopCoin = (top, { display, pagination }) => {
 	return top.slice(

@@ -8,14 +8,18 @@ const Filter = ({ tag, filter, updateFilters, filterBy }) => {
 	const handleClick = (filter) => updateFilters(filter)
 
 	return (
-		<li
-			onClick={() => handleClick(filter)}
-			className="top-coins__sort-icon">
-			<p>{tag}</p>
-			<i
-				className={`fas fa-sort ${
-					filterBy === filter ? 'top-coins__active' : ''
-				}`}></i>
+		<li>
+			<div
+				onClick={() => handleClick(filter)}
+				className={`top-coins__sort-icon ${
+					filter === 'price' ? 'top-coins__center' : ''
+				} `}>
+				<p>{tag}</p>
+				<i
+					className={`fas fa-sort ${
+						filterBy === filter ? 'top-coins__active' : ''
+					}`}></i>
+			</div>
 		</li>
 	)
 }

@@ -68,6 +68,7 @@
 	i {
 		color: rgba($color: #000000, $alpha: 0.3);
 	}
+	display: inline-block;
 }
 
 .top-coins__active {
@@ -91,6 +92,9 @@
 			color: black;
 			padding: 0.3rem;
 			cursor: pointer;
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 }
