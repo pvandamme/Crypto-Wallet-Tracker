@@ -37,3 +37,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FetchTopCoins)
+
+// TODO - Enfaite cest dl'a merde go remove
