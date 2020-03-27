@@ -45,6 +45,10 @@
 	border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
 }
 
+.top-coins__link {
+	color: black;
+}
+
 .top-coins__name {
 	display: flex;
 	align-items: center;
@@ -78,6 +82,15 @@
 .top-coins__center {
 	@include bp-small {
 		margin-left: 1rem;
+	}
+}
+
+.top-coins__coin {
+	&:hover {
+		cursor: pointer;
+		border-bottom: 2px solid rgba($color: #000000, $alpha: 0.3);
+		border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
+		background-color: rgba($color: #f9f9f9, $alpha: 1);
 	}
 }
 
@@ -167,8 +180,4 @@
 
 .top-section__filter {
 	margin-bottom: 1rem;
-}
-
-.slow {
-	transition: 3s;
 }

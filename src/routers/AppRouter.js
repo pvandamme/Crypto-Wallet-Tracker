@@ -6,6 +6,7 @@ import Overview from 'pages/Overview/Overview'
 import Register from 'pages/Register/Register'
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage'
 import Header from 'pages/Shared/Header'
+import Asset from 'pages/Asset/Asset'
 
 const AppRouter = () => (
 	<BrowserRouter>
@@ -16,6 +17,7 @@ const AppRouter = () => (
 				<Route path="/overview" component={Overview} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
+				<Route path="/asset" component={Asset} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>

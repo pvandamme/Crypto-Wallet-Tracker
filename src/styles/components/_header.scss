@@ -1,12 +1,3 @@
-a {
-	font-size: 2rem;
-	color: white;
-}
-
-a:visited {
-	color: white;
-}
-
 .main-head {
 	background: $dark-blue;
 }
@@ -17,6 +8,13 @@ a:visited {
 	color: white;
 	display: flex;
 	align-items: center;
+	a {
+		font-size: 2rem;
+		color: white;
+	}
+	a:visited {
+		color: white;
+	}
 }
 
 .main-head__nav {
