@@ -4,7 +4,6 @@ import { getAssetData } from 'state/selectors/assetSelectors'
 import { formatNumber, roundNumber } from 'helpers/helpers'
 
 const AssetTopSection = ({ asset, priceChange, price }) => {
-	console.log(asset)
 	return (
 		<main className="asset">
 			<div className="asset__top-section">
@@ -28,7 +27,7 @@ const mapStateToProps = (state) => {
 	const asset = getAssetData(state)
 	return {
 		asset,
-		priceChange: asset.market_data.price_change_24h,
+		priceChange: asset.market_data.price_change_percentage_24h,
 		price: asset.market_data.current_price.usd
 	}
 }

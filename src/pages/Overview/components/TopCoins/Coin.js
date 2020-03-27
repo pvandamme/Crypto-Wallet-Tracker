@@ -7,9 +7,7 @@ class Coin extends Component {
 		const { coin } = this.props
 
 		return (
-			<Link
-				to={`/asset/${coin.name.toLowerCase()}`}
-				className="top-coins__link">
+			<Link to={`/asset/${coin.id}`} className="top-coins__link">
 				<ul className="top-coins__grid top-coins__coin">
 					<li>
 						<div className="top-coins__name">

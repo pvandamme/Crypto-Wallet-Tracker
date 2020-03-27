@@ -7,7 +7,7 @@ import {
 const defaultState = {
 	pending: false,
 	error: false,
-	success: true,
+	success: false,
 	assetData: {
 		id: 'ethereum',
 		symbol: 'eth',

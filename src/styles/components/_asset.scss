@@ -8,6 +8,9 @@
 
 .asset__title {
 	@include flex(row, center, flex-start);
+	h3 {
+		margin-left: 0.7rem;
+	}
 	p {
 		color: grey;
 		margin-left: 0.7rem;
@@ -22,4 +25,10 @@
 		font-size: $l-size;
 		padding-right: 1rem;
 	}
+}
+
+.asset__chart {
+	margin-top: 5rem;
+	position: relative;
+	min-height: 50vh;
 }
