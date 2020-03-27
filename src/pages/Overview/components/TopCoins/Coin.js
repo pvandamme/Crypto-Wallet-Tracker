@@ -3,20 +3,14 @@ import { roundNumber, formatNumber } from 'helpers/helpers'
 import { Link } from 'react-router-dom'
 
 class Coin extends Component {
-	state = {
-		details: false
-	}
-	handleChange = () => {
-		this.setState({ details: !this.state.details })
-	}
 	render() {
 		const { coin } = this.props
 
 		return (
-			<Link to="/asset" className="top-coins__link">
-				<ul
-					className="top-coins__grid top-coins__coin"
-					onClick={() => this.handleChange()}>
+			<Link
+				to={`/asset/${coin.name.toLowerCase()}`}
+				className="top-coins__link">
+				<ul className="top-coins__grid top-coins__coin">
 					<li>
 						<div className="top-coins__name">
 							<img src={coin.icon} alt="icon" />

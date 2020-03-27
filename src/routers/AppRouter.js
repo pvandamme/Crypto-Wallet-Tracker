@@ -17,7 +17,7 @@ const AppRouter = () => (
 				<Route path="/overview" component={Overview} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
-				<Route path="/asset" component={Asset} />
+				<Route path="/asset/:coin" component={Asset} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
