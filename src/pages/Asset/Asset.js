@@ -8,11 +8,12 @@ import {
 	getAssetSuccess
 } from 'state/selectors/assetSelectors'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
+import AssetPage from './components/AssetPage'
 
 class Asset extends Component {
 	componentDidMount() {
 		const { fetchAsset, coin } = this.props
-		fetchAsset(coin)
+		//fetchAsset(coin)
 	}
 	render() {
 		const { coin, error, pending, success } = this.props
@@ -22,7 +23,7 @@ class Asset extends Component {
 		} else if (error) {
 			return <p>An error Occur</p> // TODO - Split error component
 		} else if (success) {
-			return <p>{coin}</p>
+			return <AssetPage />
 		}
 
 		return null

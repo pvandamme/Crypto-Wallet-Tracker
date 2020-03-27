@@ -34,7 +34,9 @@ export const fetchAsset = (asset) => {
 	return async (dispatch) => {
 		dispatch(fetchAssetBegin())
 		try {
-			const assetData = await CoinGeckoClient.coins.fetch(asset, {})
+			const assetData = await CoinGeckoClient.coins.fetch(asset, {
+				localization: false
+			})
 			if (!assetData.success) {
 				throw new Error()
 			}

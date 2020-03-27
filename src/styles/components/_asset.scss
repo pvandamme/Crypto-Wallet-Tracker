@@ -1,0 +1,25 @@
+.asset {
+	margin-top: 3rem;
+}
+
+.asset__top-section {
+	@include flex(row, center, space-between);
+}
+
+.asset__title {
+	@include flex(row, center, flex-start);
+	p {
+		color: grey;
+		margin-left: 0.7rem;
+		margin-top: 0.5rem;
+		font-weight: 700;
+	}
+}
+
+.asset__price {
+	@include flex(row, center, flext-start);
+	p:first-child {
+		font-size: $l-size;
+		padding-right: 1rem;
+	}
+}
