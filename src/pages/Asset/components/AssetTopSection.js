@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getAssetData } from 'state/selectors/assetSelectors'
-import { formatNumber, roundNumber } from 'helpers/helpers'
 
 const AssetTopSection = ({ asset }) => {
 	return (
@@ -13,9 +12,9 @@ const AssetTopSection = ({ asset }) => {
 					<p>({asset.symbol})</p>
 				</div>
 				<div className="asset__price">
-					<p className="">${formatNumber(asset.price)}</p>
+					<p className="">${asset.price}</p>
 					<p className={asset.priceChange < 0 ? 'red' : 'green'}>
-						({roundNumber(asset.priceChange, 2)}%)
+						({asset.priceChange}%)
 					</p>
 				</div>
 			</div>

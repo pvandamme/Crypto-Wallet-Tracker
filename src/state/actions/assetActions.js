@@ -13,12 +13,12 @@ export const fetchAssetBegin = () => {
 	}
 }
 
-export const fetchAssetSuccess = (assetData, chart) => {
+export const fetchAssetSuccess = (assetData, charts) => {
 	return {
 		type: FETCH_ASSET_SUCCESS,
 		payload: {
 			assetData,
-			chart
+			charts
 		}
 	}
 }
@@ -40,18 +40,41 @@ export const fetchAsset = (asset) => {
 			const fetchAsset = CoinGeckoClient.coins.fetch(asset, {
 				localization: false
 			})
-			const fetchChart = CoinGeckoClient.coins.fetchMarketChart(asset)
-			const [assetData, chart] = await Promise.all([
+			const fetchWeekly = fetchChart(CoinGeckoClient, asset, 7)
+			const fetchMonthly = fetchChart(CoinGeckoClient, asset, 30)
+			const fetchDaily = fetchChart(CoinGeckoClient, asset, 1)
+			const fetchYearly = fetchChart(CoinGeckoClient, asset, 365)
+
+			const data = await Promise.all([
 				fetchAsset,
-				fetchChart
+				fetchWeekly,
+				fetchMonthly,
+				fetchDaily,
+				fetchYearly
 			])
-			if (!assetData.success || !chart.success) {
-				throw new Error()
-			}
-			dispatch(fetchAssetSuccess(assetData.data, chart.data))
+
+			data.map((elem) => {
+				if (!elem.success) throw new Error()
+			})
+
+			dispatch(
+				fetchAssetSuccess(data[0].data, {
+					weeklyChart: data[1].data,
+					monthlyChart: data[2].data,
+					dailyChart: data[3].data,
+					yearlyChart: data[4].data
+				})
+			)
 		} catch (e) {
-			console.log(e)
 			dispatch(fetchAssetFailure())
 		}
 	}
+}
+
+// Helper functions
+
+const fetchChart = (client, asset, days) => {
+	return client.coins.fetchMarketChart(asset, {
+		days
+	})
 }

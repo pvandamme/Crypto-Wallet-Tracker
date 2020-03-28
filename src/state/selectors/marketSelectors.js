@@ -1,4 +1,4 @@
-import { formatNumber, roundNumber } from 'helpers/helpers'
+import { formatNumber, roundNumber, cutNumber } from 'helpers/helpers'
 import { getInputFilter, getFilterBy } from './topCoinsFiltersSelectors'
 
 export const getMarketData = (state) => state.market.Data
@@ -31,8 +31,8 @@ export const getTopCoins = (state) => {
 		name: coin.name,
 		mkCap: coin.market_cap,
 		icon: coin.image,
-		price: coin.current_price,
-		priceChange: coin.price_change_percentage_24h
+		price: cutNumber(coin.current_price),
+		priceChange: coin.price_change_percentage_24h // TODO - round etc
 	}))
 }
 

@@ -9,7 +9,8 @@ const defaultState = {
 	error: false,
 	success: false,
 	assetData: {},
-	chart: {}
+	charts: {},
+	show: 'weekly'
 }
 
 export default (state = defaultState, action) => {
@@ -26,7 +27,7 @@ export default (state = defaultState, action) => {
 				pending: false,
 				success: true,
 				assetData: action.payload.assetData,
-				chart: action.payload.chart
+				charts: action.payload.charts
 			}
 		case FETCH_ASSET_FAILURE:
 			return {

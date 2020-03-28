@@ -16,9 +16,7 @@ class Coin extends Component {
 						</div>
 					</li>
 					<li>${formatNumber(coin.mkCap)}</li>
-					<li className="top-coins__center">
-						${formatNumber(coin.price)}
-					</li>
+					<li className="top-coins__center">${coin.price}</li>
 					<li className={coin.priceChange < 0 ? 'red' : 'green'}>
 						{roundNumber(coin.priceChange, 2)}%
 					</li>
