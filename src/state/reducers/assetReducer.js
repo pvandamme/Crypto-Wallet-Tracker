@@ -1,7 +1,8 @@
 import {
 	FETCH_ASSET_BEGIN,
 	FETCH_ASSET_FAILURE,
-	FETCH_ASSET_SUCCESS
+	FETCH_ASSET_SUCCESS,
+	UPDATE_TIMEFRAME
 } from '../actionTypes'
 
 const defaultState = {
@@ -10,7 +11,7 @@ const defaultState = {
 	success: false,
 	assetData: {},
 	charts: {},
-	show: 'weekly'
+	timeFrame: 'monthly'
 }
 
 export default (state = defaultState, action) => {
@@ -34,6 +35,11 @@ export default (state = defaultState, action) => {
 				...state,
 				pending: false,
 				error: true
+			}
+		case UPDATE_TIMEFRAME:
+			return {
+				...state,
+				timeFrame: action.payload
 			}
 		default:
 			return state

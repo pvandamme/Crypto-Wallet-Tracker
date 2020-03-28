@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getFilterBy } from 'state/selectors/topCoinsFiltersSelectors'
 
 const Filter = ({ tag, filter, updateFilters, filterBy }) => {
-	const handleClick = (filter) => updateFilters(filter)
+	const handleClick = (filter) => updateFilters(filter) // TODO - Remove ?
 
 	return (
 		<li>

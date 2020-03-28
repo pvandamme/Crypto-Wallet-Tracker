@@ -1,23 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Line } from 'react-chartjs-2'
-import { getAssetCharts } from 'state/selectors/assetSelectors'
+import { getAssetChart } from 'state/selectors/assetSelectors'
 import { cutChartNumber } from 'helpers/helpers'
 
-const AssetChart = ({ charts }) => {
-	const labels = charts.map((elem) => {
+const AssetChart = ({ chart }) => {
+	const labels = chart.map((elem) => {
 		const date = new Date(elem[0]).toUTCString()
 		return date.slice(0, 12) + date.slice(17, 22)
 	})
 
-	const chart = charts.map((elem) => cutChartNumber(elem[1]))
+	const data = chart.map((elem) => cutChartNumber(elem[1]))
 
 	const chartData = {
 		labels: labels,
 		datasets: [
 			{
 				label: 'Price',
-				data: chart,
+				data,
 				backgroundColor: 'rgba(61, 91, 241, 0.3)',
 				pointRadius: 0,
 				lineTension: 0
@@ -54,7 +54,7 @@ const AssetChart = ({ charts }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		charts: getAssetCharts(state)
+		chart: getAssetChart(state)
 	}
 }
 

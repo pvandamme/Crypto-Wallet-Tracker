@@ -2,7 +2,8 @@ import CoinGecko from 'coingecko-api'
 import {
 	FETCH_ASSET_BEGIN,
 	FETCH_ASSET_FAILURE,
-	FETCH_ASSET_SUCCESS
+	FETCH_ASSET_SUCCESS,
+	UPDATE_TIMEFRAME
 } from '../actionTypes'
 
 // Action creators
@@ -26,6 +27,13 @@ export const fetchAssetSuccess = (assetData, charts) => {
 export const fetchAssetFailure = () => {
 	return {
 		type: FETCH_ASSET_FAILURE
+	}
+}
+
+export const updateTimeFrame = (timeFrame) => {
+	return {
+		type: UPDATE_TIMEFRAME,
+		payload: timeFrame
 	}
 }
 

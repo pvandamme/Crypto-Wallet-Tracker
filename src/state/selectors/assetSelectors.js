@@ -20,4 +20,20 @@ export const getAssetData = (state) => {
 	}
 }
 
-export const getAssetCharts = (state) => state.asset.charts.monthlyChart.prices
+export const getAssetChart = (state) => {
+	console.log(state.asset.timeFrame)
+	switch (
+		state.asset.timeFrame // TODO - Wallah c moche f un effor bg
+	) {
+		case 'monthly':
+			return state.asset.charts.monthlyChart.prices
+		case 'daily':
+			return state.asset.charts.dailyChart.prices
+		case 'weekly':
+			return state.asset.charts.weeklyChart.prices
+		case 'yearly':
+			return state.asset.charts.yearlyChart.prices
+		default:
+			break
+	}
+}

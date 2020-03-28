@@ -16,7 +16,7 @@ class Asset extends Component {
 		fetchAsset(coin)
 	}
 	render() {
-		const { coin, error, pending, success } = this.props
+		const { error, pending, success } = this.props
 
 		if (pending) {
 			return <LoadingSpinner />
