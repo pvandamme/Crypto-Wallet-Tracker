@@ -57,7 +57,7 @@ const applyFilterBy = (sorted, state) => {
 				return a.price_change_percentage_24h >
 					b.price_change_percentage_24h
 					? 1
-					: 0
+					: -1
 			default:
 				break
 		}

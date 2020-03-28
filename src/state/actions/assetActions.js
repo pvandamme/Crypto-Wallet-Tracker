@@ -13,10 +13,13 @@ export const fetchAssetBegin = () => {
 	}
 }
 
-export const fetchAssetSuccess = (assetData) => {
+export const fetchAssetSuccess = (assetData, chart) => {
 	return {
 		type: FETCH_ASSET_SUCCESS,
-		payload: assetData
+		payload: {
+			assetData,
+			chart
+		}
 	}
 }
 
@@ -34,15 +37,20 @@ export const fetchAsset = (asset) => {
 	return async (dispatch) => {
 		dispatch(fetchAssetBegin())
 		try {
-			const assetData = await CoinGeckoClient.coins.fetch(asset, {
-				localization: false,
-				sparkline: true
+			const fetchAsset = CoinGeckoClient.coins.fetch(asset, {
+				localization: false
 			})
-			if (!assetData.success) {
+			const fetchChart = CoinGeckoClient.coins.fetchMarketChart(asset)
+			const [assetData, chart] = await Promise.all([
+				fetchAsset,
+				fetchChart
+			])
+			if (!assetData.success || !chart.success) {
 				throw new Error()
 			}
-			dispatch(fetchAssetSuccess(assetData.data))
+			dispatch(fetchAssetSuccess(assetData.data, chart.data))
 		} catch (e) {
+			console.log(e)
 			dispatch(fetchAssetFailure())
 		}
 	}

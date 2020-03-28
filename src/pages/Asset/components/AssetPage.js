@@ -6,7 +6,6 @@ const AssetPage = () => {
 	return (
 		<main className="asset">
 			<AssetTopSection />
-			<AssetChart />
 		</main>
 	)
 }

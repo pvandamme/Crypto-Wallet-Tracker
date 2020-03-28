@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import { getAssetData } from 'state/selectors/assetSelectors'
 import { formatNumber, roundNumber } from 'helpers/helpers'
 
-const AssetTopSection = ({ asset, priceChange, price }) => {
+const AssetTopSection = ({ asset }) => {
 	return (
 		<main className="asset">
 			<div className="asset__top-section">
 				<div className="asset__title">
-					<img src={asset.image.small} alt="icon" />
+					<img src={asset.icon} alt="icon" />
 					<h3>{asset.name}</h3>
-					<p>({asset.symbol.toUpperCase()})</p>
+					<p>({asset.symbol})</p>
 				</div>
 				<div className="asset__price">
-					<p className="">${formatNumber(price)}</p>
-					<p className={priceChange < 0 ? 'red' : 'green'}>
-						({roundNumber(priceChange, 2)}%)
+					<p className="">${formatNumber(asset.price)}</p>
+					<p className={asset.priceChange < 0 ? 'red' : 'green'}>
+						({roundNumber(asset.priceChange, 2)}%)
 					</p>
 				</div>
 			</div>
@@ -24,11 +24,8 @@ const AssetTopSection = ({ asset, priceChange, price }) => {
 }
 
 const mapStateToProps = (state) => {
-	const asset = getAssetData(state)
 	return {
-		asset,
-		priceChange: asset.market_data.price_change_percentage_24h,
-		price: asset.market_data.current_price.usd
+		asset: getAssetData(state)
 	}
 }
 

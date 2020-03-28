@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getAssetSparkline } from 'state/selectors/assetSelectors'
 import { Line } from 'react-chartjs-2'
 
 const AssetChart = ({ sparkline }) => {
@@ -24,12 +23,34 @@ const AssetChart = ({ sparkline }) => {
 				label: 'Price',
 				data: sparkline.price,
 				backgroundColor: 'rgba(61, 91, 241, 0.3)',
-				maintainAspectRatio: false
+				pointRadius: 0,
+				lineTension: 0
 			}
 		]
 	}
 	const chartOptions = {
-		maintainAspectRatio: false
+		maintainAspectRatio: false,
+		tooltips: {
+			mode: 'index',
+			intersect: false
+		},
+		scales: {
+			xAxes: [
+				{
+					gridLines: {
+						color: 'rgba(0, 0, 0, 0)'
+					}
+				}
+			],
+			yAxes: [
+				{
+					ticks: {
+						suggestedMin: 5500
+					},
+					gridLines: {}
+				}
+			]
+		}
 	}
 	return (
 		<div className="asset__chart">
