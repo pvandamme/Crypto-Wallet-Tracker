@@ -17,7 +17,12 @@ const defaultState = {
 export default (state = defaultState, action) => {
 	switch (action.type) {
 		case UPDATE_FILTER_BY:
-			return { ...state, asc: false, filterBy: action.payload }
+			return {
+				...state,
+				asc: false,
+				filterBy: action.payload,
+				pagination: 0
+			}
 		case UPDATE_ASC:
 			return { ...state, asc: action.payload }
 		case UPDATE_PAGINATION:
