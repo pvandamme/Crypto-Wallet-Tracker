@@ -28,7 +28,26 @@
 }
 
 .asset__chart {
-	margin-top: 5rem;
 	position: relative;
 	min-height: 70vh;
+}
+
+.select-tf__focus {
+	background-color: rgba($color: $blue, $alpha: 1) !important;
+	color: white;
+}
+
+.select-tf {
+	margin-left: 6rem;
+	margin-top: 5rem;
+	button {
+		border: 1px solid black;
+		margin-left: 1rem;
+		padding: 0.3rem;
+		background-color: white;
+		&:hover {
+			background-color: rgba($color: $blue, $alpha: 1);
+			color: white;
+		}
+	}
 }

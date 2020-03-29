@@ -11,7 +11,7 @@ const defaultState = {
 	success: false,
 	assetData: {},
 	charts: {},
-	timeFrame: 'monthly'
+	timeFrame: 'daily'
 }
 
 export default (state = defaultState, action) => {

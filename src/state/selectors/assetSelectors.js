@@ -21,7 +21,6 @@ export const getAssetData = (state) => {
 }
 
 export const getAssetChart = (state) => {
-	console.log(state.asset.timeFrame)
 	switch (
 		state.asset.timeFrame // TODO - Wallah c moche f un effor bg
 	) {

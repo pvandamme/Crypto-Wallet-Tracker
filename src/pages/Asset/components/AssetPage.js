@@ -1,7 +1,7 @@
 import React from 'react'
 import AssetTopSection from './AssetTopSection'
 import AssetChart from './AssetChart'
-import SelectTimeframe from './SelectTimeframe'
+import SelectTimeframe from './SelectTimeFrame/SelectTimeFrame'
 
 const AssetPage = () => {
 	return (
