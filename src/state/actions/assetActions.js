@@ -44,6 +44,7 @@ export const fetchAsset = (asset) => {
 
 	return async (dispatch) => {
 		dispatch(fetchAssetBegin())
+		dispatch(updateTimeFrame('daily'))
 		try {
 			const fetchAsset = CoinGeckoClient.coins.fetch(asset, {
 				localization: false

@@ -3,37 +3,33 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateTimeFrame } from 'state/actions/assetActions'
 import SelectButton from './SelectButton'
+import { getTimeFrame } from 'state/selectors/assetSelectors'
 
-class SelectTimeFrame extends Component {
-	state = {
-		focus: 'daily'
-	}
+const SelectTimeFrame = ({ updateTimeFrame, focus }) => {
+	const timeFrames = ['Daily', 'Weekly', 'Monthly', 'Yearly']
 
-	handleClick = (timeFrame) => {
-		this.setState({ focus: timeFrame })
-		this.props.updateTimeFrame(timeFrame)
-	}
-
-	render() {
-		const timeFrames = ['Daily', 'Weekly', 'Monthly', 'Yearly']
-
-		return (
-			<div className="select-tf">
-				{timeFrames.map((timeFrame, i) => (
-					<SelectButton
-						focus={this.state.focus}
-						timeFrame={timeFrame}
-						handleClick={this.handleClick}
-						key={i}
-					/>
-				))}
-			</div>
-		)
-	}
+	return (
+		<div className="select-tf">
+			{timeFrames.map((timeFrame, i) => (
+				<SelectButton
+					focus={focus}
+					timeFrame={timeFrame}
+					handleClick={updateTimeFrame}
+					key={i}
+				/>
+			))}
+		</div>
+	)
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ updateTimeFrame }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(SelectTimeFrame)
+const mapStateToProps = (state) => {
+	return {
+		focus: getTimeFrame(state)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectTimeFrame)

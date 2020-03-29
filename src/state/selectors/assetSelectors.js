@@ -36,3 +36,5 @@ export const getAssetChart = (state) => {
 			break
 	}
 }
+
+export const getTimeFrame = (state) => state.asset.timeFrame
