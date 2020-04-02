@@ -62,7 +62,7 @@ module.exports = (env) => {
 				filename: 'styles.css'
 			})
 		],
-		devtool: prod ? 'source-map' : 'cheap-module-eval-source-map',
+		devtool: 'eval-cheap-source-map',
 		devServer: {
 			headers: {
 				'Access-Control-Allow-Origin': '*',
