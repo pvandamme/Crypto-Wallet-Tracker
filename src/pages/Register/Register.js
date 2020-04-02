@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { auth } from 'firebaseConfig/firebase'
-import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { registerUser } from 'state/actions/authActions/registerActions'
 
 class Register extends Component {
 	state = {
@@ -15,11 +16,7 @@ class Register extends Component {
 	}
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		await auth.createUserWithEmailAndPassword(
-			this.state.email,
-			this.state.password
-		)
-		this.props.history.push('/')
+		this.props.registerUser(this.state.email, this.state.password)
 	}
 	render() {
 		return (
@@ -60,4 +57,8 @@ class Register extends Component {
 	}
 }
 
-export default Register
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators({ registerUser }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Register)

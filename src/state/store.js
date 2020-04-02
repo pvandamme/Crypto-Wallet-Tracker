@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux'
 import rootReducer from './reducers/rootReducer'
 import thunk from 'redux-thunk'
-import { verifyAuth } from './actions/authActions'
+import { verifyAuth } from './actions/authActions/verifyActions'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

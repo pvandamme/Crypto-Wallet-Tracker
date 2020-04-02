@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { loginUser } from 'state/actions/authActions'
+import { loginUser } from 'state/actions/authActions/loginActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
