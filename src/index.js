@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './routers/AppRouter'
 import { Provider } from 'react-redux'
-import store from './state/store'
+import configureStore from './state/store'
 import './styles/styles.scss'
-import firebase from 'firebaseConfig/firebase'
+
+const store = configureStore()
 
 store.subscribe(() => {
 	const state = store.getState()
@@ -12,15 +13,6 @@ store.subscribe(() => {
 })
 
 class Index extends Component {
-	componentDidMount() {
-		firebase.auth().onAuthStateChanged(function(user) {
-			if (user) {
-				console.log(user)
-			} else {
-				console.log('no user')
-			}
-		})
-	}
 	render() {
 		return (
 			<Provider store={store}>
