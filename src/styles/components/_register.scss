@@ -1,0 +1,49 @@
+.form-wrapper {
+	width: 40rem;
+	margin: auto;
+	background-color: $dark-blue;
+	border-radius: 5px;
+	box-shadow: 0 4px 10px 4px rgba($dark-blue, 0.5);
+	@include flex(column, center, center);
+	margin-top: 5rem;
+	h3 {
+		color: white;
+		padding: 3rem;
+		font-weight: 400;
+	}
+	input {
+		padding: 0.6em;
+		margin-bottom: 2rem;
+		border: 1px solid #a0b3b0;
+		width: 60%;
+		&:focus {
+			border-color: $blue;
+		}
+	}
+	button {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+		padding: 1rem 2rem;
+		width: 11rem;
+		background-color: $blue;
+		color: white;
+		&:hover {
+			background-color: darken($color: $blue, $amount: 10%);
+			transition: 0.3s;
+		}
+	}
+	a {
+		margin-bottom: 2.5rem;
+		&:visited {
+			color: white;
+		}
+	}
+	p {
+		color: red;
+		margin-bottom: 2rem;
+	}
+}
+
+.form__reset-margin {
+	margin: 0 !important;
+}
