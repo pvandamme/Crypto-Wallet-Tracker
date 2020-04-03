@@ -7,12 +7,13 @@ import { Link, Redirect } from 'react-router-dom'
 import {
 	getRegisterBegin,
 	getRegisterError,
-	getIsAuthenticated
+	getIsAuthenticated,
 } from 'state/selectors/authSelectors'
 
 const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 	const { register, handleSubmit, errors } = useForm()
-	const onSubmit = (data) => registerUser(data.email, data.password)
+	const onSubmit = (data) =>
+		registerUser(data.firstName, data.lastName, data.email, data.password)
 
 	if (auth) {
 		return <Redirect to="/" />
@@ -43,7 +44,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					name="email"
 					ref={register({
 						required: true,
-						pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+						pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 					})}
 				/>
 				{errors.email && errors.email.type === 'required' && (
@@ -58,7 +59,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					name="password"
 					ref={register({
 						pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
-						required: true
+						required: true,
 					})}
 				/>
 				{errors.password && errors.password.type === 'required' && (
@@ -71,7 +72,9 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					</p>
 				)}
 				{registerError ? <p>{registerError}</p> : ''}
-				<button type="submit">
+				<button
+					type="submit"
+					className={registerBegin ? 'form__flex' : ''}>
 					{registerBegin ? (
 						<i className="fa fa-spinner fa-spin"></i>
 					) : (
@@ -93,7 +96,7 @@ const mapStateToProps = (state) => {
 	return {
 		registerBegin: getRegisterBegin(state),
 		registerError: getRegisterError(state),
-		auth: getIsAuthenticated(state)
+		auth: getIsAuthenticated(state),
 	}
 }
 

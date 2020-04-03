@@ -7,7 +7,7 @@ import { loginUser } from 'state/actions/authActions/loginActions'
 import {
 	getIsAuthenticated,
 	getLoginBegin,
-	getLoginError
+	getLoginError,
 } from 'state/selectors/authSelectors'
 
 const Register = ({ auth, loginError, loginBegin, loginUser }) => {
@@ -29,7 +29,7 @@ const Register = ({ auth, loginError, loginBegin, loginUser }) => {
 					name="email"
 					ref={register({
 						required: true,
-						pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+						pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 					})}
 				/>
 				{errors.email && errors.email.type === 'required' && (
@@ -43,14 +43,16 @@ const Register = ({ auth, loginError, loginBegin, loginUser }) => {
 					placeholder="Password"
 					name="password"
 					ref={register({
-						required: true
+						required: true,
 					})}
 				/>
 				{errors.password && errors.password.type === 'required' && (
 					<p>Password is required !</p>
 				)}
 				{loginError ? <p>{loginError}</p> : ''}
-				<button type="submit">
+				<button
+					type="submit"
+					className={loginBegin ? 'form__flex' : ''}>
 					{loginBegin ? (
 						<i className="fa fa-spinner fa-spin"></i>
 					) : (
@@ -72,7 +74,7 @@ const mapStateToProps = (state) => {
 	return {
 		loginBegin: getLoginBegin(state),
 		loginError: getLoginError(state),
-		auth: getIsAuthenticated(state)
+		auth: getIsAuthenticated(state),
 	}
 }
 
