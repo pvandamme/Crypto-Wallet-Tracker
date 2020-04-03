@@ -12,14 +12,12 @@ store.subscribe(() => {
 	console.log(state)
 })
 
-class Index extends Component {
-	render() {
-		return (
-			<Provider store={store}>
-				<AppRouter />
-			</Provider>
-		)
-	}
+const Index = () => {
+	return (
+		<Provider store={store}>
+			<AppRouter />
+		</Provider>
+	)
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'))

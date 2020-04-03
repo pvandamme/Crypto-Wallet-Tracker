@@ -7,21 +7,36 @@ import Register from 'pages/Register/Register'
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage'
 import Header from 'pages/Shared/Header/Header'
 import Asset from 'pages/Asset/Asset'
+import { connect } from 'react-redux'
+import { getVerifyStatus } from 'state/selectors/authSelectors'
+import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 
-const AppRouter = () => (
-	<BrowserRouter>
-		<div>
-			<Header />
-			<Switch>
-				<Route path="/" component={Home} exact={true} />
-				<Route path="/overview" component={Overview} />
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Route path="/asset/:coin" component={Asset} />
-				<Route component={NotFoundPage} />
-			</Switch>
-		</div>
-	</BrowserRouter>
-)
+const AppRouter = ({ verify }) => {
+	if (!verify) {
+		return (
+			<BrowserRouter>
+				<div>
+					<Header />
+					<Switch>
+						<Route path="/" component={Home} exact={true} />
+						<Route path="/overview" component={Overview} />
+						<Route path="/login" component={Login} />
+						<Route path="/register" component={Register} />
+						<Route path="/asset/:coin" component={Asset} />
+						<Route component={NotFoundPage} />
+					</Switch>
+				</div>
+			</BrowserRouter>
+		)
+	} else {
+		return <LoadingSpinner />
+	}
+}
 
-export default AppRouter
+const mapStateToProps = (state) => {
+	return {
+		verify: getVerifyStatus(state)
+	}
+}
+
+export default connect(mapStateToProps)(AppRouter)
