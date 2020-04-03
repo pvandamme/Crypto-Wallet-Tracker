@@ -4,7 +4,7 @@
 	background-color: $dark-blue;
 	border-radius: 5px;
 	box-shadow: 0 4px 10px 4px rgba($dark-blue, 0.5);
-	@include flex(column, center, center);
+	@include flex(column, center, flex-start);
 	margin-top: 5rem;
 	h3 {
 		color: white;
@@ -48,6 +48,6 @@
 	}
 }
 
-.form__reset-margin {
-	margin: 0 !important;
+.form__height {
+	height: 45rem;
 }

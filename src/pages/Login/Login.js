@@ -19,7 +19,7 @@ const Register = ({ auth, loginError, loginBegin, loginUser }) => {
 	} else {
 		return (
 			<form
-				className="form-wrapper"
+				className="form-wrapper form__height"
 				autoComplete="off"
 				onSubmit={handleSubmit(onSubmit)}>
 				<h3>Login</h3>
@@ -47,7 +47,7 @@ const Register = ({ auth, loginError, loginBegin, loginUser }) => {
 					})}
 				/>
 				{errors.password && errors.password.type === 'required' && (
-					<p className="form__reset-margin">Password is required !</p>
+					<p>Password is required !</p>
 				)}
 				{loginError ? <p>{loginError}</p> : ''}
 				<button type="submit">

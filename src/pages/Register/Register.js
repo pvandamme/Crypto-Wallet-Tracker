@@ -62,7 +62,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					})}
 				/>
 				{errors.password && errors.password.type === 'required' && (
-					<p className="form__reset-margin">Password is required !</p>
+					<p>Password is required !</p>
 				)}
 				{errors.password && errors.password.type === 'pattern' && (
 					<p>

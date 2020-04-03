@@ -1,7 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getIsAuthenticated } from 'state/selectors/authSelectors'
+import AuthHead from './AuthHead'
+import NoAuthHead from './NoAuthHead'
 
-const Header = () => {
+const Header = ({ auth }) => {
 	return (
 		<header className="main-head">
 			<nav className="main-head__nav">
@@ -15,17 +19,16 @@ const Header = () => {
 						<NavLink to="/overview">Overview</NavLink>
 					</li>
 				</ul>
-				<ul className="main-head__right">
-					<li>
-						<NavLink to="/login">Login</NavLink>
-					</li>
-					<li>
-						<NavLink to="/register">Register</NavLink>
-					</li>
-				</ul>
+				{auth ? <AuthHead /> : <NoAuthHead />}
 			</nav>
 		</header>
 	)
 }
 
-export default Header
+const mapStateToProps = (state) => {
+	return {
+		auth: getIsAuthenticated(state)
+	}
+}
+
+export default connect(mapStateToProps)(Header)

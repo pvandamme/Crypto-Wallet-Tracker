@@ -5,7 +5,7 @@ import Login from 'pages/Login/Login'
 import Overview from 'pages/Overview/Overview'
 import Register from 'pages/Register/Register'
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage'
-import Header from 'pages/Shared/Header'
+import Header from 'pages/Shared/Header/Header'
 import Asset from 'pages/Asset/Asset'
 
 const AppRouter = () => (

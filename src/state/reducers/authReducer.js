@@ -3,7 +3,6 @@ import {
 	FETCH_LOGIN_FAILURE,
 	FETCH_LOGIN_SUCCESS,
 	FETCH_LOGOUT_BEGIN,
-	FETCH_LOGOUT_FAILURE,
 	FETCH_LOGOUT_SUCCESS,
 	FETCH_REGISTER_BEGIN,
 	FETCH_REGISTER_SUCCESS,
@@ -18,7 +17,6 @@ const defaultState = {
 	loginBegin: false,
 	loginError: false,
 	loginOutBegin: false,
-	logoutError: false,
 	verifyBegin: false,
 	isAuthenticated: false,
 	user: {}
@@ -78,12 +76,6 @@ export default (state = defaultState, action) => {
 				loginOutBegin: false,
 				isAuthenticated: false,
 				user: {}
-			}
-		case FETCH_LOGOUT_FAILURE:
-			return {
-				...state,
-				loginOutBegin: false,
-				loginOutError: true
 			}
 		case FETCH_VERIFY_BEGIN:
 			return {

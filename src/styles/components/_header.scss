@@ -11,9 +11,12 @@
 	a {
 		font-size: 2rem;
 		color: white;
-	}
-	a:visited {
-		color: white;
+		&:visited {
+			color: white;
+		}
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
 

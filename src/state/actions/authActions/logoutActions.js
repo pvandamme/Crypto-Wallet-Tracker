@@ -1,9 +1,5 @@
 import { auth } from 'firebaseConfig/firebase'
-import {
-	FETCH_LOGOUT_BEGIN,
-	FETCH_LOGOUT_FAILURE,
-	FETCH_LOGOUT_SUCCESS
-} from '../../actionTypes'
+import { FETCH_LOGOUT_BEGIN, FETCH_LOGOUT_SUCCESS } from '../../actionTypes'
 
 // Action creators
 
@@ -19,12 +15,6 @@ const fetchLogoutSuccess = () => {
 	}
 }
 
-const fetchLogoutFailure = () => {
-	return {
-		type: FETCH_LOGOUT_FAILURE
-	}
-}
-
 // Thunk
 
 export const logoutUser = () => {
@@ -35,7 +25,7 @@ export const logoutUser = () => {
 				dispatch(fetchLogoutSuccess())
 			})
 			.catch((error) => {
-				dispatch(fetchLogoutFailure())
+				console.log(error)
 			})
 	}
 }
