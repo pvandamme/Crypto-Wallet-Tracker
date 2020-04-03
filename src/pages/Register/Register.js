@@ -34,7 +34,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					type="text"
 					placeholder="Last name"
 					name="lastName"
-					ref={register({ required: true, maxLength: 100 })}
+					ref={register({ required: true, maxLength: 80 })}
 				/>
 				{errors.lastName && <p>Last Name is required !</p>}
 				<input

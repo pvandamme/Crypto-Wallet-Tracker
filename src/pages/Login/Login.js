@@ -1,48 +1,65 @@
-import React, { Component } from 'react'
-import { loginUser } from 'state/actions/authActions/loginActions'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link, Redirect } from 'react-router-dom'
+import { loginUser } from 'state/actions/authActions/loginActions'
+import {
+	getIsAuthenticated,
+	getLoginBegin,
+	getLoginError
+} from 'state/selectors/authSelectors'
 
-class Login extends Component {
-	state = {
-		email: '',
-		password: ''
-	}
-	handleChange = (e) => {
-		this.setState({
-			[e.target.id]: e.target.value
-		})
-	}
-	handleSubmit = (e) => {
-		e.preventDefault()
-		this.props.loginUser(this.state.email, this.state.password)
-	}
-	render() {
+const Register = ({ auth, loginError, loginBegin, loginUser }) => {
+	const { register, handleSubmit, errors } = useForm()
+	const onSubmit = (data) => loginUser(data.email, data.password)
+
+	if (auth) {
+		return <Redirect to="/" />
+	} else {
 		return (
-			<div className="">
-				<form className="" onSubmit={this.handleSubmit}>
-					<h5 className="">Sign In</h5>
-					<div className="">
-						<label htmlFor="email">Email</label>
-						<input
-							type="email"
-							id="email"
-							onChange={this.handleChange}
-						/>
-					</div>
-					<div className="">
-						<label htmlFor="password">Password</label>
-						<input
-							type="password"
-							id="password"
-							onChange={this.handleChange}
-						/>
-					</div>
-					<div className="">
-						<button className="">Login</button>
-					</div>
-				</form>
-			</div>
+			<form
+				className="form-wrapper"
+				autoComplete="off"
+				onSubmit={handleSubmit(onSubmit)}>
+				<h3>Login</h3>
+				<input
+					type="text"
+					placeholder="Email"
+					name="email"
+					ref={register({
+						required: true,
+						pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+					})}
+				/>
+				{errors.email && errors.email.type === 'required' && (
+					<p>Email is required !</p>
+				)}
+				{errors.email && errors.email.type === 'pattern' && (
+					<p>Please enter a valid email !</p>
+				)}
+				<input
+					type="password"
+					placeholder="Password"
+					name="password"
+					ref={register({
+						required: true
+					})}
+				/>
+				{errors.password && errors.password.type === 'required' && (
+					<p className="form__reset-margin">Password is required !</p>
+				)}
+				{loginError ? <p>{loginError}</p> : ''}
+				<button type="submit">
+					{loginBegin ? (
+						<i className="fa fa-spinner fa-spin"></i>
+					) : (
+						''
+					)}
+					{loginBegin ? 'Loading' : 'Login'}
+				</button>
+				<Link to="/register">Don't have an account ?</Link>
+			</form>
 		)
 	}
 }
@@ -51,4 +68,12 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ loginUser }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapStateToProps = (state) => {
+	return {
+		loginBegin: getLoginBegin(state),
+		loginError: getLoginError(state),
+		auth: getIsAuthenticated(state)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

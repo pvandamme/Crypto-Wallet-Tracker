@@ -64,7 +64,7 @@ export default (state = defaultState, action) => {
 				...state,
 				loginBegin: false,
 				isAuthenticated: false,
-				loginError: true
+				loginError: action.error
 			}
 		case FETCH_LOGOUT_BEGIN:
 			return {
