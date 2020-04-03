@@ -5,22 +5,47 @@ import {
 	FETCH_LOGOUT_BEGIN,
 	FETCH_LOGOUT_FAILURE,
 	FETCH_LOGOUT_SUCCESS,
+	FETCH_REGISTER_BEGIN,
+	FETCH_REGISTER_SUCCESS,
+	FETCH_REGISTER_FAILURE,
 	FETCH_VERIFY_BEGIN,
 	FETCH_VERIFY_SUCCESS
 } from '../actionTypes'
 
 const defaultState = {
+	registerBegin: false,
+	registerError: '',
 	loginBegin: false,
-	loginOutBegin: false,
-	verifyBegin: false,
 	loginError: false,
+	loginOutBegin: false,
 	logoutError: false,
+	verifyBegin: false,
 	isAuthenticated: false,
 	user: {}
 }
 
 export default (state = defaultState, action) => {
 	switch (action.type) {
+		case FETCH_REGISTER_BEGIN:
+			return {
+				...state,
+				registerBegin: true,
+				registerError: false
+			}
+		case FETCH_REGISTER_SUCCESS:
+			return {
+				...state,
+				registerBegin: false,
+				isAuthenticated: true,
+				user: action.user
+			}
+		case FETCH_REGISTER_FAILURE:
+			return {
+				...state,
+				registerBegin: false,
+				isAuthenticated: false,
+				registerError: action.error
+			}
 		case FETCH_LOGIN_BEGIN:
 			return {
 				...state,
