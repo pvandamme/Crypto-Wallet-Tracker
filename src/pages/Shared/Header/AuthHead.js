@@ -2,10 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logoutUser } from 'state/actions/authActions/logoutActions'
+import { NavLink } from 'react-router-dom'
 
 const Logout = ({ logoutUser }) => {
 	return (
 		<ul className="main-head__right">
+			<li>
+				<NavLink to="/dashboard">Dashboard</NavLink>
+			</li>
 			<li>
 				<a onClick={() => logoutUser()}>Logout</a>
 			</li>
