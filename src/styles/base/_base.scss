@@ -27,6 +27,13 @@ button:disabled {
 	cursor: default;
 }
 
+input,
+button {
+	&:focus {
+		outline: none;
+	}
+}
+
 ul {
 	list-style: none;
 }

@@ -3,9 +3,9 @@
 	margin: auto;
 	background-color: $dark-blue;
 	border-radius: 5px;
+	margin-top: 5rem;
 	box-shadow: 0 4px 10px 4px rgba($dark-blue, 0.5);
 	@include flex(column, center, flex-start);
-	margin-top: 5rem;
 	h3 {
 		color: white;
 		padding: 3rem;
@@ -39,7 +39,7 @@
 		}
 	}
 	p {
-		color: red;
+		color: rgb(253, 28, 28);
 		margin-bottom: 2rem;
 	}
 	i {
