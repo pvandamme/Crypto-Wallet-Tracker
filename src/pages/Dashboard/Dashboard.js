@@ -24,7 +24,11 @@ class Dashboard extends Component {
 		} else if (error) {
 			return <p>Error</p> // TODO - Error component
 		} else if (success) {
-			return <AddTransaction />
+			return (
+				<div>
+					<AddTransaction />
+				</div>
+			)
 		}
 
 		return null

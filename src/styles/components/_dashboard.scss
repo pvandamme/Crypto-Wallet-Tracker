@@ -1,7 +1,8 @@
 .dashboard__modal {
 	width: 50rem;
 	margin: auto;
-	background-color: rgba($color: $blue, $alpha: 0.5);
+	background-color: rgba($color: $dark-blue, $alpha: 1);
+	border-radius: 5px;
 	position: fixed;
 	top: 30%;
 	left: 50%;
@@ -12,19 +13,102 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	box-shadow: 0 4px 10px 4px rgba($dark-blue, 0.5);
+	h4 {
+		padding-top: 2rem;
+		color: white;
+	}
+	p {
+		color: white;
+	}
+	&:focus {
+		outline: none;
+	}
 }
 
 .dashboard__modal-form {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	width: 80%;
+}
+
+.form-error {
+	p {
+		color: red;
+		margin-top: 2rem;
+		text-align: center;
+	}
 }
 
 .select-asset {
 	font-size: $m-size;
+	width: 100%;
 }
 
 .icon {
 	width: 2rem;
 	margin-right: 0.2rem;
+}
+
+.modal-label {
+	@include flex(column, center, center);
+	p {
+		margin-bottom: 1rem;
+	}
+	width: 40%;
+}
+
+.dashboard__modal-data {
+	@include flex(row, center, space-between);
+	margin-top: 2rem;
+}
+
+.dashboard__modal-input,
+.date-picker {
+	border-radius: 4px;
+	border: 1px solid hsl(0, 0%, 100%);
+	height: 4rem;
+	padding: 2px 8px;
+}
+
+.add-button {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	width: 100%;
+	border-radius: 4px;
+	border: 1px solid black;
+	height: 4rem;
+	padding: 2px 8px;
+	background-color: rgba($color: $blue, $alpha: 1);
+	color: white;
+	&:hover {
+		background-color: darken($color: $blue, $amount: 10%);
+		transition: 0.3s;
+	}
+}
+
+.react-datepicker {
+	font-size: 1rem;
+}
+
+.react-datepicker {
+	font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+	font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+	padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+	top: 13px !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+	margin: 0.5rem !important;
 }

@@ -24,22 +24,31 @@ const SingleValue = ({ children, ...props }) => {
 	)
 }
 
-const SelectAsset = ({ topCoins }) => {
+const SelectAsset = ({ topCoins, setValue, register }) => {
 	const customStyle = {
+		control: (styles) => ({
+			...styles,
+		}),
 		singleValue: (styles) => ({
 			...styles,
 			alignItems: 'center',
 			display: 'flex',
 		}),
 	}
+
 	return (
-		<Select
-			components={{ SingleValue }}
-			className="select-asset"
-			options={getOptions(topCoins)}
-			topCoins={topCoins}
-			styles={customStyle}
-		/>
+		<label className="modal-label">
+			<p>Select Asset :</p>
+			<Select
+				onChange={(e) => setValue('asset', e.value)}
+				components={{ SingleValue }}
+				className="select-asset"
+				options={getOptions(topCoins)}
+				topCoins={topCoins}
+				styles={customStyle}
+				ref={register({ name: 'asset', required: true })}
+			/>
+		</label>
 	)
 }
 
