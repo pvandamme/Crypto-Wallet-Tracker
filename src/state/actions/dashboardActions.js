@@ -40,8 +40,8 @@ const setUnsubFunction = (unsub) => {
 
 export const setTransactionsListener = (uid) => {
 	return (dispatch, getState) => {
-		dispatch(fetchTransactionsBegin())
-		dispatch(fetchMarket())
+		if (!getState().dashboard.success) dispatch(fetchTransactionsBegin())
+		if (!getState().market.success) dispatch(fetchMarket())
 		const unsub = firestore
 			.collection('users/' + uid + '/transactions')
 			.onSnapshot(

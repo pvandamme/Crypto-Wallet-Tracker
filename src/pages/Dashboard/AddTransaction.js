@@ -16,7 +16,7 @@ const AddTransaction = () => {
 		<div>
 			<button onClick={() => setIsOpen(true)}>Open Modal</button>
 			<Modal
-				isOpen={true}
+				isOpen={isOpen}
 				className="dashboard__modal"
 				contentLabel="Add transaction">
 				<h4>Add transaction</h4>

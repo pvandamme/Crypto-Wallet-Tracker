@@ -6,11 +6,6 @@ import { setTransactionsListener } from 'state/actions/dashboardActions'
 import AddTransaction from './AddTransaction'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import {
-	getMarketPending,
-	getMarketError,
-	getMarketSuccess,
-} from 'state/selectors/marketSelectors'
-import {
 	getDashboardPending,
 	getDashboardSuccess,
 	getDashboardError,
