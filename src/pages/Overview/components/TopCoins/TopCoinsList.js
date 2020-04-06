@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTopCoins } from 'state/selectors/marketSelectors'
+import { getFilterTopCoins } from 'state/selectors/marketSelectors'
 import Coin from './Coin'
 
 const TopCoinsList = (props) => {
@@ -11,7 +11,7 @@ const TopCoinsList = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		topCoins: getTopCoins(state)
+		topCoins: getFilterTopCoins(state),
 	}
 }
 

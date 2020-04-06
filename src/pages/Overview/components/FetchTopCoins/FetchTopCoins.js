@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
 	getMarketPending,
-	getMarketError
+	getMarketError,
 } from 'state/selectors/marketSelectors'
 import { fetchMarket } from 'state/actions/marketActions'
 
@@ -28,7 +28,7 @@ class FetchTopCoins extends Component {
 const mapStateToProps = (state) => {
 	return {
 		pending: getMarketPending(state),
-		error: getMarketError(state)
+		error: getMarketError(state),
 	}
 }
 

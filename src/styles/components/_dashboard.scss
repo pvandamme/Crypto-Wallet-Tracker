@@ -1,0 +1,21 @@
+.dashboard__modal {
+	width: 50rem;
+	margin: auto;
+	background-color: rgba($color: $blue, $alpha: 0.5);
+	position: fixed;
+	top: 30%;
+	left: 50%;
+	right: auto;
+	bottom: auto;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.dashboard__modal-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}

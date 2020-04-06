@@ -3,14 +3,18 @@ import { connect } from 'react-redux'
 import { getAuthUid } from 'state/selectors/authSelectors'
 import { bindActionCreators } from 'redux'
 import { setTransactionsListener } from 'state/actions/dashboardActions'
-import { firestore } from 'firebaseConfig/firebase'
-
-const handleClick = (uid) => {
-	firestore.collection('users/' + uid + '/transactions').add({
-		asset: 'EWZZZZZZZZZZ',
-		amount: 548,
-	})
-}
+import AddTransaction from './AddTransaction'
+import LoadingSpinner from 'pages/Shared/LoadingSpinner'
+import {
+	getMarketPending,
+	getMarketError,
+	getMarketSuccess,
+} from 'state/selectors/marketSelectors'
+import {
+	getDashboardPending,
+	getDashboardSuccess,
+	getDashboardError,
+} from 'state/selectors/dashboardSelectors'
 
 class Dashboard extends Component {
 	componentDidMount() {
@@ -18,17 +22,26 @@ class Dashboard extends Component {
 		setTransactionsListener(uid)
 	}
 	render() {
-		return (
-			<button onClick={() => handleClick(this.props.uid)}>
-				Click me !
-			</button>
-		)
+		const { pending, error, success } = this.props
+
+		if (pending) {
+			return <LoadingSpinner />
+		} else if (error) {
+			return <p>Error</p> // TODO - Error component
+		} else if (success) {
+			return <AddTransaction />
+		}
+
+		return null
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
 		uid: getAuthUid(state),
+		pending: getDashboardPending(state),
+		success: getDashboardSuccess(state),
+		error: getDashboardError(state),
 	}
 }
 

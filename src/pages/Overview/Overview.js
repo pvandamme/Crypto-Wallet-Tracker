@@ -24,7 +24,7 @@ const Overview = ({ success }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		success: getMarketSuccess(state)
+		success: getMarketSuccess(state),
 	}
 }
 

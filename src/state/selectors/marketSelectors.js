@@ -15,25 +15,20 @@ export const getGlobal = (state) => {
 		totalMarketCap: formatNumber(data.total_market_cap.usd),
 		totalVolume: formatNumber(data.total_volume.usd),
 		btcDominance: roundNumber(data.market_cap_percentage.btc, 1),
-		cryptocurrencies: data.active_cryptocurrencies
+		cryptocurrencies: data.active_cryptocurrencies,
 	}
 }
 
-export const getTopCoins = (state) => {
+export const getTopCoins = (state) =>
+	formatTopCoins(state.market.marketData.topCoins)
+
+export const getFilterTopCoins = (state) => {
 	let sorted = getSortedByInputFilter(state)
 	sorted = applyFilterBy(sorted, state)
 	sorted = state.topCoinsFilters.asc
 		? sliceTopCoin(sorted.reverse(), state.topCoinsFilters)
 		: sliceTopCoin(sorted, state.topCoinsFilters)
-
-	return sorted.map((coin) => ({
-		id: coin.id,
-		name: coin.name,
-		mkCap: coin.market_cap,
-		icon: coin.image,
-		price: cutNumber(coin.current_price),
-		priceChange: coin.price_change_percentage_24h // TODO - round etc
-	}))
+	return formatTopCoins(sorted)
 }
 
 export const getSortedByInputFilter = (state) => {
@@ -41,6 +36,17 @@ export const getSortedByInputFilter = (state) => {
 	return state.market.marketData.topCoins.filter((coin) =>
 		coin.name.toLowerCase().includes(inputFilter)
 	)
+}
+
+const formatTopCoins = (coins) => {
+	return coins.map((coin) => ({
+		id: coin.id,
+		name: coin.name,
+		mkCap: coin.market_cap,
+		icon: coin.image,
+		price: cutNumber(coin.current_price),
+		priceChange: coin.price_change_percentage_24h, // TODO - round etc
+	}))
 }
 
 const applyFilterBy = (sorted, state) => {

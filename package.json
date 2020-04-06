@@ -47,6 +47,7 @@
 		"react-chartjs-2": "^2.9.0",
 		"react-dom": "^16.13.0",
 		"react-hook-form": "^5.2.0",
+		"react-modal": "^3.11.2",
 		"react-paginate": "^6.3.2",
 		"react-redux": "^7.2.0",
 		"react-redux-firebase": "^3.3.0",

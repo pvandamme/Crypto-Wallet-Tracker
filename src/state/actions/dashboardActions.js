@@ -5,6 +5,8 @@ import {
 	FETCH_TRANSACTIONS_SUCCESS,
 	SET_UNSUB_FUNCTION,
 } from 'state/actionTypes'
+import { fetchMarket } from './marketActions'
+import { getMarketSuccess } from 'state/selectors/marketSelectors'
 
 /*  Action creators */
 
@@ -39,6 +41,7 @@ const setUnsubFunction = (unsub) => {
 export const setTransactionsListener = (uid) => {
 	return (dispatch, getState) => {
 		dispatch(fetchTransactionsBegin())
+		dispatch(fetchMarket())
 		const unsub = firestore
 			.collection('users/' + uid + '/transactions')
 			.onSnapshot(
