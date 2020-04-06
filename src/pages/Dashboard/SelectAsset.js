@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 import { connect } from 'react-redux'
 import { getTopCoins } from 'state/selectors/marketSelectors'
 
@@ -12,14 +12,35 @@ const getOptions = (topCoins) => {
 	})
 }
 
-const options = [
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' },
-]
+const SingleValue = ({ children, ...props }) => {
+	const name = props.getValue()[0].value
+	const topCoins = props.selectProps.topCoins
+	const coin = topCoins.find((coin) => coin.id === name)
+	return (
+		<components.SingleValue {...props}>
+			<img src={coin.icon} alt="test" className="icon" />
+			{children}
+		</components.SingleValue>
+	)
+}
 
 const SelectAsset = ({ topCoins }) => {
-	return <Select options={getOptions(topCoins)} />
+	const customStyle = {
+		singleValue: (styles) => ({
+			...styles,
+			alignItems: 'center',
+			display: 'flex',
+		}),
+	}
+	return (
+		<Select
+			components={{ SingleValue }}
+			className="select-asset"
+			options={getOptions(topCoins)}
+			topCoins={topCoins}
+			styles={customStyle}
+		/>
+	)
 }
 
 const mapStateToProps = (state) => {
