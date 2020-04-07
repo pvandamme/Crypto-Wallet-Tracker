@@ -4,9 +4,9 @@ import {
 	FETCH_TRANSACTIONS_FAILURE,
 	FETCH_TRANSACTIONS_SUCCESS,
 	SET_UNSUB_FUNCTION,
+	SET_SELECTED_COIN,
 } from 'state/actionTypes'
 import { fetchMarket } from './marketActions'
-import { getMarketSuccess } from 'state/selectors/marketSelectors'
 
 /*  Action creators */
 
@@ -36,7 +36,23 @@ const setUnsubFunction = (unsub) => {
 	}
 }
 
+export const setSelectedCoin = (selectedCoin) => {
+	return {
+		type: SET_SELECTED_COIN,
+		selectedCoin,
+	}
+}
+
 /* Thunk */
+
+export const saveSelectedCoin = (coin) => {
+	return (dispatch, getState) => {
+		const match = getState().market.marketData.topCoins.find(
+			(elem) => elem.id === coin
+		)
+		dispatch(setSelectedCoin(match))
+	}
+}
 
 export const setTransactionsListener = (uid) => {
 	return (dispatch, getState) => {

@@ -2,6 +2,9 @@ import React from 'react'
 import Select, { components } from 'react-select'
 import { connect } from 'react-redux'
 import { getTopCoins } from 'state/selectors/marketSelectors'
+import { saveSelectedCoin } from 'state/actions/dashboardActions'
+import { bindActionCreators } from 'redux'
+import { getSelectedCoin } from 'state/selectors/dashboardSelectors'
 
 const getOptions = (topCoins) => {
 	return topCoins.map((coin) => {
@@ -13,18 +16,21 @@ const getOptions = (topCoins) => {
 }
 
 const SingleValue = ({ children, ...props }) => {
-	const name = props.getValue()[0].value
-	const topCoins = props.selectProps.topCoins
-	const coin = topCoins.find((coin) => coin.id === name)
 	return (
 		<components.SingleValue {...props}>
-			<img src={coin.icon} alt="test" className="icon" />
+			<img src={props.selectProps.selectedCoin.image} className="icon" />
 			{children}
 		</components.SingleValue>
 	)
 }
 
-const SelectAsset = ({ topCoins, setValue, register }) => {
+const SelectAsset = ({
+	saveSelectedCoin,
+	selectedCoin,
+	topCoins,
+	setValue,
+	register,
+}) => {
 	const customStyle = {
 		control: (styles) => ({
 			...styles,
@@ -36,15 +42,20 @@ const SelectAsset = ({ topCoins, setValue, register }) => {
 		}),
 	}
 
+	const handleChange = (e) => {
+		setValue('asset', e.value)
+		saveSelectedCoin(e.value)
+	}
+
 	return (
 		<label className="modal-label">
 			<p>Select Asset :</p>
 			<Select
-				onChange={(e) => setValue('asset', e.value)}
+				onChange={(e) => handleChange(e)}
 				components={{ SingleValue }}
 				className="select-asset"
 				options={getOptions(topCoins)}
-				topCoins={topCoins}
+				selectedCoin={selectedCoin}
 				styles={customStyle}
 				ref={register({ name: 'asset', required: true })}
 			/>
@@ -55,7 +66,12 @@ const SelectAsset = ({ topCoins, setValue, register }) => {
 const mapStateToProps = (state) => {
 	return {
 		topCoins: getTopCoins(state),
+		selectedCoin: getSelectedCoin(state),
 	}
 }
 
-export default connect(mapStateToProps)(SelectAsset)
+const mapDispatchToPros = (dispatch) => {
+	return bindActionCreators({ saveSelectedCoin }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToPros)(SelectAsset)

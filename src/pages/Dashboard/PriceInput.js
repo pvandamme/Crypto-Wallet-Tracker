@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { getSelectedCoin } from 'state/selectors/dashboardSelectors'
 
-const PriceInput = ({ register, name }) => {
+const PriceInput = ({ selectedCoin, register, name }) => {
 	return (
 		<label className="modal-label">
 			{name === 'Amount' ? (
@@ -16,9 +18,20 @@ const PriceInput = ({ register, name }) => {
 					required: true,
 					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
 				})}
+				defaultValue={
+					selectedCoin && name === 'Price'
+						? selectedCoin.current_price
+						: null
+				}
 			/>
 		</label>
 	)
 }
 
-export default PriceInput
+const mapStateToProps = (state) => {
+	return {
+		selectedCoin: getSelectedCoin(state),
+	}
+}
+
+export default connect(mapStateToProps)(PriceInput)

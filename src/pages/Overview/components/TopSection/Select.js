@@ -8,7 +8,7 @@ import { getDisplay } from 'state/selectors/topCoinsFiltersSelectors'
 const options = [
 	{ value: 5, label: 5 },
 	{ value: 10, label: 10 },
-	{ value: 25, label: 25 }
+	{ value: 25, label: 25 },
 ]
 
 const App = ({ updateDisplay, display }) => {
@@ -19,21 +19,21 @@ const App = ({ updateDisplay, display }) => {
 		colors: {
 			...theme.colors,
 			primary: '#3d5af1',
-			borderWidth: 1
-		}
+			borderWidth: 1,
+		},
 	})
 	const customStyles = {
 		control: (provided, state) => {
 			return {
 				...provided,
-				minHeight: 0
+				minHeight: 0,
 			}
 		},
 		indicatorSeparator: (provided, state) => ({
 			...provided,
 			marginTop: 4,
-			marginBottom: 4
-		})
+			marginBottom: 4,
+		}),
 	}
 
 	return (

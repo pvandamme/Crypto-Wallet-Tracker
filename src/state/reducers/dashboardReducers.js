@@ -3,6 +3,7 @@ import {
 	FETCH_TRANSACTIONS_FAILURE,
 	FETCH_TRANSACTIONS_SUCCESS,
 	SET_UNSUB_FUNCTION,
+	SET_SELECTED_COIN,
 } from 'state/actionTypes'
 
 const defaultState = {
@@ -11,6 +12,7 @@ const defaultState = {
 	success: false,
 	transactions: [],
 	unsub: null,
+	selectedCoin: {},
 }
 
 export default (state = defaultState, action) => {
@@ -37,6 +39,11 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				unsub: action.unsub,
+			}
+		case SET_SELECTED_COIN:
+			return {
+				...state,
+				selectedCoin: action.selectedCoin,
 			}
 		default:
 			return state

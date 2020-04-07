@@ -8,3 +8,8 @@ export const getDashboardSuccess = (state) =>
 
 export const getDashboardError = (state) =>
 	state.dashboard.error || state.market.error
+
+export const getSelectedCoin = (state) => {
+	const coin = state.dashboard.selectedCoin
+	return coin ? coin : null
+}
