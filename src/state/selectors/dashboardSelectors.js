@@ -28,21 +28,59 @@ const getTotalInvested = ({ transactions }) => {
 	return total
 }
 
+const getCoinPrice = (coin, topCoins) => {
+	return topCoins.find((elem) => elem.id === coin.data.asset).current_price
+}
+
 const getPortfolioValue = (transactions, topCoins) => {
 	let total = 0
 
 	transactions.forEach((transaction) => {
-		const match = topCoins.find(
-			(coin) => coin.id === transaction.data.asset
-		)
-		total += match.current_price * transaction.data.amount
+		const match = getCoinPrice(transaction, topCoins)
+		total += match * transaction.data.amount
 	})
 
 	return total
 }
 
+export const getChartData = ({ dashboard, market }) => {
+	const { transactions } = dashboard
+	if (transactions) {
+	}
+	let labels = []
+	let data = []
+	console.log(labels)
+	transactions.forEach((transaction) => {
+		labels.push(
+			transaction.data.asset.charAt(0).toUpperCase() +
+				transaction.data.asset.slice(1)
+		)
+		data.push(
+			(
+				getCoinPrice(transaction, market.marketData.topCoins) *
+				transaction.data.amount
+			).toFixed(2)
+		)
+	})
+	const backgroundColor = new Array(Math.ceil(transactions.length / 7))
+		.fill([
+			'rgba(255, 99, 132, 0.6)',
+			'rgba(54, 162, 235, 0.6)',
+			'rgba(255, 206, 86, 0.6)',
+			'rgba(75, 192, 192, 0.6)',
+			'rgba(153, 102, 255, 0.6)',
+			'rgba(255, 159, 64, 0.6)',
+		])
+		.flat()
+	return {
+		labels,
+		data,
+		backgroundColor,
+	}
+}
+
 export const getDashboardData = (state) => {
-	const dashboard = state.dashboard
+	const { dashboard } = state
 	const totalInvested = getTotalInvested(dashboard).toFixed(2)
 	const value = getPortfolioValue(
 		dashboard.transactions,

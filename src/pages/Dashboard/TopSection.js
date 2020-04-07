@@ -37,7 +37,6 @@ const TopSection = ({ data }) => {
 }
 
 const mapStateToPros = (state) => {
-	console.log(getDashboardData(state))
 	return {
 		data: getDashboardData(state),
 	}

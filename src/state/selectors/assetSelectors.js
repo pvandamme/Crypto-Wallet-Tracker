@@ -16,7 +16,7 @@ export const getAssetData = (state) => {
 			asset.market_data.price_change_percentage_24h,
 			2
 		),
-		price: cutNumber(asset.market_data.current_price.usd)
+		price: cutNumber(asset.market_data.current_price.usd),
 	}
 }
 

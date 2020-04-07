@@ -4,7 +4,6 @@ import { getAuthUid } from 'state/selectors/authSelectors'
 import { bindActionCreators } from 'redux'
 import { setTransactionsListener } from 'state/actions/dashboardActions'
 import TopSection from './TopSection'
-import Holding from './Holding'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import {
 	getDashboardPending,
@@ -12,11 +11,12 @@ import {
 	getDashboardError,
 } from 'state/selectors/dashboardSelectors'
 import AddTransaction from './AddTransaction'
+import HoldChart from './HoldChart'
 
 class Dashboard extends Component {
 	componentDidMount() {
-		const { uid, setTransactionsListener } = this.props
-		setTransactionsListener(uid)
+		const { uid, setTransactionsListener, success } = this.props
+		if (!success) setTransactionsListener(uid)
 	}
 	render() {
 		const { pending, error, success } = this.props
@@ -31,6 +31,7 @@ class Dashboard extends Component {
 					<main className="dashboard">
 						<TopSection />
 						<AddTransaction />
+						<HoldChart />
 					</main>
 				</div>
 			)
