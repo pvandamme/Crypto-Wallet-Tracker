@@ -14,26 +14,26 @@ import Dashboard from 'pages/Dashboard/Dashboard'
 import ProtectedRoutes from './ProtectedRoutes'
 
 const AppRouter = ({ verify }) => {
-	//if (!verify) {
-	return (
-		<BrowserRouter>
-			<div>
-				<Header />
-				<Switch>
-					<Route path="/" component={Home} exact={true} />
-					<Route path="/overview" component={Overview} />
-					<Route path="/login" component={Login} />
-					<Route path="/register" component={Register} />
-					<Route path="/asset/:coin" component={Asset} />
-					<Route path="/dashboard" component={Dashboard} />
-					<Route component={NotFoundPage} />
-				</Switch>
-			</div>
-		</BrowserRouter>
-	)
-	//} else {
-	//	return <LoadingSpinner />
-	//}
+	if (!verify) {
+		return (
+			<BrowserRouter>
+				<div>
+					<Header />
+					<Switch>
+						<Route path="/" component={Home} exact={true} />
+						<Route path="/overview" component={Overview} />
+						<Route path="/login" component={Login} />
+						<Route path="/register" component={Register} />
+						<Route path="/asset/:coin" component={Asset} />
+						<Route path="/dashboard" component={Dashboard} />
+						<Route component={NotFoundPage} />
+					</Switch>
+				</div>
+			</BrowserRouter>
+		)
+	} else {
+		return <LoadingSpinner />
+	}
 }
 
 const mapStateToProps = (state) => {

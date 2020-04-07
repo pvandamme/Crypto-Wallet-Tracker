@@ -11,6 +11,7 @@ import {
 	getDashboardSuccess,
 	getDashboardError,
 } from 'state/selectors/dashboardSelectors'
+import AddTransaction from './AddTransaction'
 
 class Dashboard extends Component {
 	componentDidMount() {
@@ -29,6 +30,7 @@ class Dashboard extends Component {
 				<div>
 					<main className="dashboard">
 						<TopSection />
+						<AddTransaction />
 					</main>
 				</div>
 			)
