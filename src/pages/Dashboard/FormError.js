@@ -7,7 +7,7 @@ const FormError = ({ errors }) => {
 				<p>Amount is required !</p>
 			)}
 			{errors.amount && errors.amount.type === 'pattern' && (
-				<p>Please enter a positive amount number !</p>
+				<p>Please enter a valid amount number !</p>
 			)}
 			{errors.price && errors.price.type === 'required' && (
 				<p>Price is required !</p>
