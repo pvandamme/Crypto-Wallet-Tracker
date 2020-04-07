@@ -27,6 +27,7 @@ export default (state = defaultState, action) => {
 				...state,
 				pending: false,
 				success: true,
+				selectedCoin: {},
 				transactions: action.transactions,
 			}
 		case FETCH_TRANSACTIONS_FAILURE:

@@ -13,3 +13,5 @@ export const getSelectedCoin = (state) => {
 	const coin = state.dashboard.selectedCoin
 	return coin ? coin : null
 }
+
+export const getTransactionBegin = (state) => state.dashboard.pending

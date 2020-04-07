@@ -1,0 +1,21 @@
+.top-section {
+	width: 100%;
+	min-height: 10vh;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.holding {
+	margin-top: 4rem;
+}
+
+.holding-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 6rem;
+	align-items: center;
+	grid-row-gap: 2rem;
+	background-color: #0e283a;
+	color: white;
+}

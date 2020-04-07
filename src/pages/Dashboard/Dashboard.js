@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { getAuthUid } from 'state/selectors/authSelectors'
 import { bindActionCreators } from 'redux'
 import { setTransactionsListener } from 'state/actions/dashboardActions'
-import AddTransaction from './AddTransaction'
+import TopSection from './TopSection'
+import Holding from './Holding'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import {
 	getDashboardPending,
@@ -26,7 +27,9 @@ class Dashboard extends Component {
 		} else if (success) {
 			return (
 				<div>
-					<AddTransaction />
+					<main className="dashboard">
+						<TopSection />
+					</main>
 				</div>
 			)
 		}

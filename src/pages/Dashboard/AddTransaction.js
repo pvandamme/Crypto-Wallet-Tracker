@@ -5,8 +5,12 @@ import SelectAsset from './SelectAsset'
 import TransactionDatePicker from './TransactionDatePicker'
 import PriceInput from './PriceInput'
 import FormError from './FormError'
+import { connect } from 'react-redux'
+import { getAuthUid } from 'state/selectors/authSelectors'
+import { firestore } from 'firebaseConfig/firebase'
+import { getTransactionBegin } from 'state/selectors/dashboardSelectors'
 
-const AddTransaction = () => {
+const AddTransaction = ({ uid, pending }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
 	const { setError, register, handleSubmit, errors, setValue } = useForm()
@@ -20,16 +24,20 @@ const AddTransaction = () => {
 		if (!data.asset) {
 			setError('asset', 'required', 'Please select an asset !')
 		} else {
+			firestore.collection('users/' + uid + '/transactions').add({
+				data,
+			})
 			closeModal()
-			console.log(data)
 		}
 	}
 
-	console.log(errors)
-
 	return (
-		<div>
-			<button onClick={() => setIsOpen(true)}>Open Modal</button>
+		<div className="add-transaction">
+			<button
+				className="add-transaction-button"
+				onClick={() => setIsOpen(true)}>
+				Add transaction
+			</button>
 			<Modal
 				isOpen={isOpen}
 				className="dashboard__modal"
@@ -65,4 +73,11 @@ const AddTransaction = () => {
 	)
 }
 
-export default AddTransaction
+const mapStateToProps = (state) => {
+	return {
+		uid: getAuthUid(state),
+		pending: getTransactionBegin(state),
+	}
+}
+
+export default connect(mapStateToProps)(AddTransaction)

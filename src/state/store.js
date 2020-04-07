@@ -10,7 +10,7 @@ const configureStore = () => {
 		rootReducer,
 		composeEnhancer(applyMiddleware(thunk))
 	)
-	store.dispatch(verifyAuth())
+	//store.dispatch(verifyAuth())
 	return store
 }
 
