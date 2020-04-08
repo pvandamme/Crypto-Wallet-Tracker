@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getDashboardData } from 'state/selectors/dashboardSelectors'
 
-const TopSection = ({ data }) => {
+const DashboardTopSection = ({ data }) => {
 	const { totalInvested, value, roi, profit } = data
 
 	let color = ''
@@ -13,7 +13,7 @@ const TopSection = ({ data }) => {
 	}
 
 	return (
-		<div className="top-section">
+		<div className="dashboard-top-section">
 			<div className="card">
 				<p className="card-title">Invested</p>
 				<p className="card-value">$ {totalInvested}</p>
@@ -42,4 +42,4 @@ const mapStateToPros = (state) => {
 	}
 }
 
-export default connect(mapStateToPros)(TopSection)
+export default connect(mapStateToPros)(DashboardTopSection)

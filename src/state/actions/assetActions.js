@@ -3,14 +3,14 @@ import {
 	FETCH_ASSET_BEGIN,
 	FETCH_ASSET_FAILURE,
 	FETCH_ASSET_SUCCESS,
-	UPDATE_TIMEFRAME
+	UPDATE_TIMEFRAME,
 } from '../actionTypes'
 
 // Action creators
 
 export const fetchAssetBegin = () => {
 	return {
-		type: FETCH_ASSET_BEGIN
+		type: FETCH_ASSET_BEGIN,
 	}
 }
 
@@ -19,21 +19,21 @@ export const fetchAssetSuccess = (assetData, charts) => {
 		type: FETCH_ASSET_SUCCESS,
 		payload: {
 			assetData,
-			charts
-		}
+			charts,
+		},
 	}
 }
 
 export const fetchAssetFailure = () => {
 	return {
-		type: FETCH_ASSET_FAILURE
+		type: FETCH_ASSET_FAILURE,
 	}
 }
 
 export const updateTimeFrame = (timeFrame) => {
 	return {
 		type: UPDATE_TIMEFRAME,
-		payload: timeFrame
+		payload: timeFrame,
 	}
 }
 
@@ -47,7 +47,7 @@ export const fetchAsset = (asset) => {
 		dispatch(updateTimeFrame('daily'))
 		try {
 			const fetchAsset = CoinGeckoClient.coins.fetch(asset, {
-				localization: false
+				localization: false,
 			})
 			const fetchWeekly = fetchChart(CoinGeckoClient, asset, 7)
 			const fetchMonthly = fetchChart(CoinGeckoClient, asset, 30)
@@ -59,7 +59,7 @@ export const fetchAsset = (asset) => {
 				fetchWeekly,
 				fetchMonthly,
 				fetchDaily,
-				fetchYearly
+				fetchYearly,
 			])
 
 			data.map((elem) => {
@@ -71,7 +71,7 @@ export const fetchAsset = (asset) => {
 					weeklyChart: data[1].data,
 					monthlyChart: data[2].data,
 					dailyChart: data[3].data,
-					yearlyChart: data[4].data
+					yearlyChart: data[4].data,
 				})
 			)
 		} catch (e) {
@@ -82,8 +82,8 @@ export const fetchAsset = (asset) => {
 
 // Helper functions
 
-const fetchChart = (client, asset, days) => {
+export const fetchChart = (client, asset, days) => {
 	return client.coins.fetchMarketChart(asset, {
-		days
+		days,
 	})
 }

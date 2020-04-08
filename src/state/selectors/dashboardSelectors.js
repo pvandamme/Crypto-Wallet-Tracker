@@ -1,6 +1,8 @@
-import { cutNumber, formatNumber, roundNumber } from 'helpers/helpers'
+import { formatNumber } from 'helpers/helpers'
 
 export const getDashboardTransactions = (state) => state.dashboard.transactions
+
+export const getTransactionBegin = (state) => state.dashboard.pending
 
 export const getDashboardPending = (state) =>
 	state.dashboard.pending || state.market.pending
@@ -16,40 +18,12 @@ export const getSelectedCoin = (state) => {
 	return coin ? coin : null
 }
 
-export const getTransactionBegin = (state) => state.dashboard.pending
-
-const getTotalInvested = ({ transactions }) => {
-	let total = 0
-
-	transactions.forEach((elem) => {
-		total += elem.data.amount * elem.data.price
-	})
-
-	return total
-}
-
-const getCoinPrice = (coin, topCoins) => {
-	return topCoins.find((elem) => elem.id === coin.data.asset).current_price
-}
-
-const getPortfolioValue = (transactions, topCoins) => {
-	let total = 0
-
-	transactions.forEach((transaction) => {
-		const match = getCoinPrice(transaction, topCoins)
-		total += match * transaction.data.amount
-	})
-
-	return total
-}
+export const getLineChart = (state) => state.dashboard.lineChart
 
 export const getChartData = ({ dashboard, market }) => {
 	const { transactions } = dashboard
-	if (transactions) {
-	}
 	let labels = []
 	let data = []
-	console.log(labels)
 	transactions.forEach((transaction) => {
 		labels.push(
 			transaction.data.asset.charAt(0).toUpperCase() +
@@ -86,12 +60,39 @@ export const getDashboardData = (state) => {
 		dashboard.transactions,
 		state.market.marketData.topCoins
 	).toFixed(2)
-	const profit = (value - totalInvested).toFixed(2)
+	const profit = formatNumber((value - totalInvested).toFixed(2))
 	const roi = (((value - totalInvested) / totalInvested) * 100).toFixed(2)
 	return {
-		totalInvested,
-		value,
-		profit,
+		totalInvested: formatNumber(totalInvested),
+		value: formatNumber(value),
+		profit: formatNumber(profit),
 		roi: roi === 'NaN' ? 0 : roi,
 	}
+}
+
+/* Helper functions */
+
+const getTotalInvested = ({ transactions }) => {
+	let total = 0
+
+	transactions.forEach((elem) => {
+		total += elem.data.amount * elem.data.price
+	})
+
+	return total
+}
+
+const getCoinPrice = (coin, topCoins) => {
+	return topCoins.find((elem) => elem.id === coin.data.asset).current_price
+}
+
+const getPortfolioValue = (transactions, topCoins) => {
+	let total = 0
+
+	transactions.forEach((transaction) => {
+		const match = getCoinPrice(transaction, topCoins)
+		total += match * transaction.data.amount
+	})
+
+	return total
 }
