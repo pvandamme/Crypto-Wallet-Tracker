@@ -123,7 +123,6 @@ const createLineChart = (transactions, dispatch) => {
 				prices: data[i].data.prices,
 			}
 		})
-
 		const lineChart = convertChartData(cleanData)
 		resolve(lineChart)
 	})
@@ -140,6 +139,6 @@ const convertChartData = (data) => {
 		})
 	})
 	return charts.map((elem, i) => {
-		return data.length ? [data[0].prices[i][0], elem] : [0, elem]
+		return data.length && i < 720 ? [data[0].prices[i][0], elem] : [0, elem]
 	})
 }

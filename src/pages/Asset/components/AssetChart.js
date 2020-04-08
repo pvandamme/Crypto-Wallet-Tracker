@@ -18,32 +18,32 @@ const AssetChart = ({ chart }) => {
 			{
 				label: 'Price',
 				data,
-				backgroundColor: 'rgba(61, 91, 241, 0.3)',
+				backgroundColor: 'rgba(61, 91, 241, 0.5)',
 				pointRadius: 0,
-				lineTension: 0
-			}
-		]
+				lineTension: 0,
+			},
+		],
 	}
 	const chartOptions = {
 		maintainAspectRatio: false,
 		tooltips: {
 			mode: 'index',
-			intersect: false
+			intersect: false,
 		},
 		scales: {
 			xAxes: [
 				{
 					gridLines: {
-						color: 'rgba(0, 0, 0, 0)'
-					}
-				}
+						color: 'rgba(0, 0, 0, 0)',
+					},
+				},
 			],
 			yAxes: [
 				{
-					gridLines: {}
-				}
-			]
-		}
+					gridLines: {},
+				},
+			],
+		},
 	}
 	return (
 		<div className="asset__chart">
@@ -54,7 +54,7 @@ const AssetChart = ({ chart }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		chart: getAssetChart(state)
+		chart: getAssetChart(state),
 	}
 }
 

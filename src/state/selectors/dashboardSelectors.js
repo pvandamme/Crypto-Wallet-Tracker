@@ -21,7 +21,8 @@ export const getSelectedCoin = (state) => {
 export const getLineChart = (state) => state.dashboard.lineChart
 
 export const getChartData = ({ dashboard, market }) => {
-	const { transactions } = dashboard
+	let { transactions } = dashboard
+	transactions = combineTransaction(transactions)
 	let labels = []
 	let data = []
 	transactions.forEach((transaction) => {
@@ -95,4 +96,22 @@ const getPortfolioValue = (transactions, topCoins) => {
 	})
 
 	return total
+}
+
+const combineTransaction = (transactions) => {
+	transactions.forEach((transaction) => {
+		let count = 0
+		transactions.forEach((elem, secondIndex) => {
+			if (elem.data.asset === transaction.data.asset) {
+				count++
+				if (count > 1) {
+					transaction.data.amount =
+						parseInt(transaction.data.amount) +
+						parseInt(elem.data.amount)
+					transactions.splice(secondIndex, 1)
+				}
+			}
+		})
+	})
+	return transactions
 }

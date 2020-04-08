@@ -18,7 +18,7 @@ const HoldLineChart = ({ chart }) => {
 			{
 				label: 'Price',
 				data,
-				backgroundColor: 'rgba(61, 91, 241, 0.3)',
+				backgroundColor: 'rgba(61, 91, 241, 0.5)',
 				pointRadius: 0,
 				lineTension: 0,
 			},
@@ -46,7 +46,8 @@ const HoldLineChart = ({ chart }) => {
 		},
 	}
 	return (
-		<div className="asset__chart">
+		<div className="hold-chart line-chart">
+			<h3>Portfolio chart</h3>
 			<Line data={chartData} options={chartOptions} />
 		</div>
 	)

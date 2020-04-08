@@ -1,37 +1,14 @@
 import React from 'react'
-import { Doughnut } from 'react-chartjs-2'
-import { connect } from 'react-redux'
-import { getChartData } from 'state/selectors/dashboardSelectors'
+import HoldDoughnutChart from './HoldDoughnutChart'
+import HoldLineChart from './HoldLineChart'
 
-const chartOptions = {
-	maintainAspectRatio: false,
-}
-
-const HoldChart = ({ data }) => {
-	console.log(data)
-	const chartData = {
-		labels: data.labels.length ? data.labels : ['No transaction'],
-		datasets: [
-			{
-				label: 'Percentage %',
-				data: data.data.length ? data.data : [1],
-				backgroundColor: data.backgroundColor.length
-					? data.backgroundColor
-					: ['#0e283a'],
-			},
-		],
-	}
+const HoldChart = () => {
 	return (
-		<div className="hold-chart">
-			<Doughnut data={chartData} options={chartOptions} />
+		<div className="hold-charts">
+			<HoldDoughnutChart />
+			<HoldLineChart />
 		</div>
 	)
 }
 
-const mapStateToPros = (state) => {
-	return {
-		data: getChartData(state),
-	}
-}
-
-export default connect(mapStateToPros)(HoldChart)
+export default HoldChart

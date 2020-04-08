@@ -12,7 +12,6 @@ import {
 } from 'state/selectors/dashboardSelectors'
 import AddTransaction from './AddTransaction'
 import HoldChart from './HoldChart'
-import HoldLineChart from './HoldLineChart'
 
 class Dashboard extends Component {
 	componentDidMount() {
@@ -33,7 +32,6 @@ class Dashboard extends Component {
 						<DashboardTopSection />
 						<AddTransaction />
 						<HoldChart />
-						<HoldLineChart />
 					</main>
 				</div>
 			)
