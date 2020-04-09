@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Line } from 'react-chartjs-2'
 import { cutChartNumber } from 'helpers/helpers'
-import { getLineChart } from 'state/selectors/dashboardSelectors'
+import {
+	getLineChart,
+	getChartPending,
+} from 'state/selectors/dashboardSelectors'
+import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 
-const HoldLineChart = ({ chart }) => {
+const HoldLineChart = ({ chart, pending }) => {
 	const labels = chart.map((elem) => {
 		const date = new Date(elem[0]).toUTCString()
 		return date.slice(0, 12) + date.slice(17, 22)
@@ -48,7 +52,11 @@ const HoldLineChart = ({ chart }) => {
 	return (
 		<div className="hold-chart line-chart">
 			<h3>Portfolio chart</h3>
-			<Line data={chartData} options={chartOptions} />
+			{pending ? (
+				<LoadingSpinner style={45} />
+			) : (
+				<Line options={chartOptions} data={chartData} />
+			)}
 		</div>
 	)
 }
@@ -56,6 +64,7 @@ const HoldLineChart = ({ chart }) => {
 const mapStateToProps = (state) => {
 	return {
 		chart: getLineChart(state),
+		pending: getChartPending(state),
 	}
 }
 

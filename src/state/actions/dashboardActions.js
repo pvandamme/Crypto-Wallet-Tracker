@@ -82,7 +82,6 @@ export const setTransactionsListener = (uid) => {
 						transactions,
 						dispatch
 					)
-					console.log(lineChart)
 					dispatch(fetchChartSuccess(lineChart))
 					dispatch(fetchTransactionsSuccess(transactions))
 				},

@@ -8,9 +8,8 @@ import FormError from './FormError'
 import { connect } from 'react-redux'
 import { getAuthUid } from 'state/selectors/authSelectors'
 import { firestore } from 'firebaseConfig/firebase'
-import { getTransactionBegin } from 'state/selectors/dashboardSelectors'
 
-const AddTransaction = ({ uid, pending }) => {
+const AddTransaction = ({ uid }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
 	const { setError, register, handleSubmit, errors, setValue } = useForm()
@@ -76,7 +75,6 @@ const AddTransaction = ({ uid, pending }) => {
 const mapStateToProps = (state) => {
 	return {
 		uid: getAuthUid(state),
-		pending: getTransactionBegin(state),
 	}
 }
 
