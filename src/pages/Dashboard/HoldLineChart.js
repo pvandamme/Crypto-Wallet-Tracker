@@ -50,13 +50,15 @@ const HoldLineChart = ({ chart, pending }) => {
 		},
 	}
 	return (
-		<div className="hold-chart line-chart">
+		<div className="hold__cointainer hold__margin">
 			<h3>Portfolio chart</h3>
-			{pending ? (
-				<LoadingSpinner style={45} />
-			) : (
-				<Line options={chartOptions} data={chartData} />
-			)}
+			<div className="hold__line-chart">
+				{pending ? (
+					<LoadingSpinner style={45} />
+				) : (
+					<Line options={chartOptions} data={chartData} />
+				)}
+			</div>
 		</div>
 	)
 }

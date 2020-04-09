@@ -2,7 +2,7 @@ import React from 'react'
 
 export default ({ style }) => {
 	const customStyle = {
-		height: '45vh',
+		height: '90%',
 	}
 	return (
 		<div className="center-loading" style={style ? customStyle : {}}>

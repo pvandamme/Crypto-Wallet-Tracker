@@ -21,9 +21,11 @@ const HoldDoughnutChart = ({ data }) => {
 		],
 	}
 	return (
-		<div className="hold-chart doughnut-chart">
+		<div className="hold__cointainer">
 			<h3>Portfolio distribution</h3>
-			<Doughnut data={chartData} options={chartOptions} />
+			<div className="hold__doughnut-chart">
+				<Doughnut data={chartData} options={chartOptions} />
+			</div>
 		</div>
 	)
 }

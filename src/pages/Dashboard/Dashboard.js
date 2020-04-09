@@ -3,15 +3,17 @@ import { connect } from 'react-redux'
 import { getAuthUid } from 'state/selectors/authSelectors'
 import { bindActionCreators } from 'redux'
 import { setTransactionsListener } from 'state/actions/dashboardActions'
-import DashboardTopSection from './DashboardTopSection'
+import DashboardTopSection from './components/TopSection/DashboardTopSection'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import {
 	getDashboardPending,
 	getDashboardSuccess,
 	getDashboardError,
 } from 'state/selectors/dashboardSelectors'
-import AddTransaction from './AddTransaction'
+import AddTransaction from './components/AddTransactions/AddTransaction'
 import HoldChart from './HoldChart'
+import Hold from './components/Hold/Hold'
+import HoldLineChart from './HoldLineChart'
 
 class Dashboard extends Component {
 	componentDidMount() {
@@ -31,7 +33,8 @@ class Dashboard extends Component {
 					<main className="dashboard">
 						<DashboardTopSection />
 						<AddTransaction />
-						<HoldChart />
+						<Hold />
+						<HoldLineChart />
 					</main>
 				</div>
 			)
