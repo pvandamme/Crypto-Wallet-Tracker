@@ -8,9 +8,11 @@ import {
 	SET_SELECTED_COIN,
 	FETCH_CHART_BEGIN,
 	FETCH_CHART_SUCCESS,
+	UPDATE_COMBINE,
 } from 'state/actionTypes'
 import { fetchMarket } from './marketActions'
 import { fetchChart } from './assetActions'
+import { getCombineTransaction } from 'state/selectors/dashboardSelectors'
 
 /*  Action creators */
 
@@ -78,11 +80,11 @@ export const setTransactionsListener = (uid) => {
 					changes.forEach((change) => {
 						transactions.push(change.doc.data())
 					})
-					const lineChart = await createLineChart(
+					/*const lineChart = await createLineChart(
 						transactions,
 						dispatch
-					)
-					dispatch(fetchChartSuccess(lineChart))
+					)*/
+					//dispatch(fetchChartSuccess(lineChart))
 					dispatch(fetchTransactionsSuccess(transactions))
 				},
 				(error) => {
@@ -103,7 +105,7 @@ const createLineChart = (transactions, dispatch) => {
 		let charts = []
 
 		transactions.forEach((transaction) => {
-			const chart = fetchChart(client, transaction.data.asset, 30)
+			const chart = fetchChart(client, transaction.asset, 30)
 			charts.push(chart)
 		})
 
@@ -115,11 +117,11 @@ const createLineChart = (transactions, dispatch) => {
 
 		const cleanData = transactions.map((elem, i) => {
 			return {
-				asset: elem.data.asset,
-				amount: elem.data.amount,
+				asset: elem.asset,
+				amount: elem.amount,
 				date: elem.data.date,
-				price: elem.data.price,
-				prices: data[i].data.prices,
+				price: elem.price,
+				prices: data[i].prices,
 			}
 		})
 		const lineChart = convertChartData(cleanData)
@@ -128,16 +130,21 @@ const createLineChart = (transactions, dispatch) => {
 }
 
 const convertChartData = (data) => {
-	let charts = new Array(720).fill(0)
-
+	let min = 0
+	data.forEach((elem) => {
+		if (elem.prices.length < min || min === 0) {
+			min = elem.prices.length - 1
+		}
+	})
+	let charts = new Array(min + 1).fill(0)
 	data.forEach((elem) => {
 		elem.prices.forEach((price, i) => {
-			if (price[0] > elem.date || i === 719) {
+			if (price[0] > elem.date) {
 				charts[i] += price[1] * elem.amount - elem.price * elem.amount
 			}
 		})
 	})
 	return charts.map((elem, i) => {
-		return data.length && i < 720 ? [data[0].prices[i][0], elem] : [0, elem]
+		return data.length ? [data[0].prices[i][0], elem] : [0, elem]
 	})
 }

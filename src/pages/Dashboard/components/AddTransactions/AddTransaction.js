@@ -23,9 +23,8 @@ const AddTransaction = ({ uid }) => {
 		if (!data.asset) {
 			setError('asset', 'required', 'Please select an asset !')
 		} else {
-			firestore.collection('users/' + uid + '/transactions').add({
-				data,
-			})
+			data.amount = parseInt(data.amount)
+			firestore.collection('users/' + uid + '/transactions').add(data)
 			closeModal()
 		}
 	}

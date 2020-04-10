@@ -55,3 +55,19 @@
 	font-weight: 500;
 	font-size: 1.5rem;
 }
+
+.hold__list--grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 5rem;
+}
+
+.hold__list-coin {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	p {
+		flex: 1 1 11rem;
+		border: 1px solid blue;
+	}
+}

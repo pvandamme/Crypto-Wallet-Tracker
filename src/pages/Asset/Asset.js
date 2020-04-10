@@ -5,10 +5,12 @@ import { fetchAsset } from 'state/actions/assetActions'
 import {
 	getAssetPending,
 	getAssetError,
-	getAssetSuccess
+	getAssetSuccess,
 } from 'state/selectors/assetSelectors'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
-import AssetPage from './components/AssetPage'
+import AssetTopSection from './components/AssetTopSection'
+import SelectTimeFrame from './components/SelectTimeFrame/SelectTimeFrame'
+import AssetChart from './components/AssetChart'
 
 class Asset extends Component {
 	componentDidMount() {
@@ -16,6 +18,7 @@ class Asset extends Component {
 		fetchAsset(coin)
 	}
 	render() {
+		console.log('cccccccccccccccc')
 		const { error, pending, success } = this.props
 
 		if (pending) {
@@ -23,7 +26,13 @@ class Asset extends Component {
 		} else if (error) {
 			return <p>An error Occur</p> // TODO - Split error component
 		} else if (success) {
-			return <AssetPage />
+			return (
+				<main className="asset">
+					<AssetTopSection />
+					<SelectTimeFrame />
+					<AssetChart />
+				</main>
+			)
 		}
 
 		return null
@@ -40,7 +49,7 @@ const mapStateToProps = (state, ownProps) => {
 		pending: getAssetPending(state),
 		error: getAssetError(state),
 		success: getAssetSuccess(state),
-		coin: match.params.coin
+		coin: match.params.coin,
 	}
 }
 

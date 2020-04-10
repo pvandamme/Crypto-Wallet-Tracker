@@ -1,7 +1,7 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { connect } from 'react-redux'
-import { getChartData } from 'state/selectors/dashboardSelectors'
+import { getDoughnutData } from 'state/selectors/dashboardSelectors'
 
 const chartOptions = {
 	maintainAspectRatio: false,
@@ -32,7 +32,7 @@ const HoldDoughnutChart = ({ data }) => {
 
 const mapStateToPros = (state) => {
 	return {
-		data: getChartData(state),
+		data: getDoughnutData(state),
 	}
 }
 

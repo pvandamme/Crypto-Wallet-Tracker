@@ -20,11 +20,12 @@ const AssetTopSection = ({ asset }) => {
 			</div>
 		</main>
 	)
+	return null
 }
 
 const mapStateToProps = (state) => {
 	return {
-		asset: getAssetData(state)
+		asset: getAssetData(state),
 	}
 }
 

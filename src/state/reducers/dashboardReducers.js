@@ -19,6 +19,7 @@ const defaultState = {
 	unsub: null,
 	selectedCoin: {},
 	lineChart: [],
+	combine: [],
 }
 
 export default (state = defaultState, action) => {

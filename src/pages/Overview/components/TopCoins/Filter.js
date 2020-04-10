@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		filterBy: getFilterBy(state),
 		filter,
-		tag
+		tag,
 	}
 }
 

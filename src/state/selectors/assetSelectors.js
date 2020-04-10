@@ -12,10 +12,7 @@ export const getAssetData = (state) => {
 		name: asset.name,
 		symbol: asset.symbol.toUpperCase(),
 		icon: asset.image.small,
-		priceChange: roundNumber(
-			asset.market_data.price_change_percentage_24h,
-			2
-		),
+		priceChange: roundNumber(asset.market_price_change_percentage_24h, 2),
 		price: cutNumber(asset.market_data.current_price.usd),
 	}
 }

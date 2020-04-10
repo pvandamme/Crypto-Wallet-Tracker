@@ -22,19 +22,23 @@ export const getLineChart = (state) => state.dashboard.lineChart
 
 export const getChartPending = (state) => state.dashboard.chartPending
 
-export const getChartData = ({ dashboard, market }) => {
+export const getCombineTransaction = (state) =>
+	combineTransaction(state.dashboard.transactions)
+
+export const getDoughnutData = ({ dashboard, market }) => {
 	const transactions = combineTransaction(dashboard.transactions)
+	// const transactions = dashboard.transactions
 	let labels = []
 	let data = []
 	transactions.forEach((transaction) => {
 		labels.push(
-			transaction.data.asset.charAt(0).toUpperCase() +
-				transaction.data.asset.slice(1)
+			transaction.asset.charAt(0).toUpperCase() +
+				transaction.asset.slice(1)
 		)
 		data.push(
 			(
 				getCoinPrice(transaction, market.marketData.topCoins) *
-				transaction.data.amount
+				transaction.amount
 			).toFixed(2)
 		)
 	})
@@ -55,12 +59,12 @@ export const getChartData = ({ dashboard, market }) => {
 	}
 }
 
-export const getDashboardData = (state) => {
-	const { dashboard } = state
+export const getDashboardData = ({ dashboard, market }) => {
+	console.log(dashboard)
 	const totalInvested = getTotalInvested(dashboard).toFixed(2)
 	const value = getPortfolioValue(
 		dashboard.transactions,
-		state.market.marketData.topCoins
+		market.marketData.topCoins
 	).toFixed(2)
 	const profit = formatNumber((value - totalInvested).toFixed(2))
 	const roi = (((value - totalInvested) / totalInvested) * 100).toFixed(2)
@@ -72,20 +76,31 @@ export const getDashboardData = (state) => {
 	}
 }
 
+export const getHoldListData = ({ dashboard, market }) => {
+	const combine = combineTransaction(dashboard.transactions)
+	const test = combine.map((elem) => {
+		return {
+			name: elem.asset,
+			value: getCoinPrice(elem, market.marketData.topCoins) * elem.amount,
+		}
+	})
+	return test
+}
+
 /* Helper functions */
 
 const getTotalInvested = ({ transactions }) => {
 	let total = 0
 
 	transactions.forEach((elem) => {
-		total += elem.data.amount * elem.data.price
+		total += elem.amount * elem.price
 	})
 
 	return total
 }
 
 const getCoinPrice = (coin, topCoins) => {
-	return topCoins.find((elem) => elem.id === coin.data.asset).current_price
+	return topCoins.find((elem) => elem.id === coin.asset).current_price
 }
 
 const getPortfolioValue = (transactions, topCoins) => {
@@ -93,27 +108,30 @@ const getPortfolioValue = (transactions, topCoins) => {
 
 	transactions.forEach((transaction) => {
 		const match = getCoinPrice(transaction, topCoins)
-		total += match * transaction.data.amount
+		total += match * transaction.amount
 	})
 
 	return total
 }
 
-const combineTransaction = (dashboardTransactions) => {
-	let transactions = [...dashboardTransactions]
-	transactions.forEach((transaction) => {
-		let count = 0
-		transactions.forEach((elem, secondIndex) => {
-			if (elem.data.asset === transaction.data.asset) {
-				count++
-				if (count > 1) {
-					transaction.data.amount =
-						parseInt(transaction.data.amount) +
-						parseInt(elem.data.amount)
-					transactions.splice(secondIndex, 1)
-				}
+const combineTransaction = (a) => {
+	let transactions = JSON.parse(JSON.stringify(a))
+	let i = 0
+	let y = 0
+
+	while (i < transactions.length) {
+		y = i + 1
+		while (y < transactions.length) {
+			if (transactions[y].asset === transactions[i].asset) {
+				transactions[i].amount += transactions[y].amount
+				transactions.splice(y, 1)
+				y--
 			}
-		})
-	})
+			y++
+		}
+		y = 0
+		i++
+	}
+
 	return transactions
 }
