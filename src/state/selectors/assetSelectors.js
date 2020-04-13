@@ -8,11 +8,15 @@ export const getAssetError = (state) => state.asset.error
 
 export const getAssetData = (state) => {
 	const asset = state.asset.assetData
+	console.log(asset)
 	return {
 		name: asset.name,
 		symbol: asset.symbol.toUpperCase(),
 		icon: asset.image.small,
-		priceChange: roundNumber(asset.market_price_change_percentage_24h, 2),
+		priceChange: roundNumber(
+			asset.market_data.price_change_percentage_24h,
+			2
+		),
 		price: cutNumber(asset.market_data.current_price.usd),
 	}
 }

@@ -1,7 +1,7 @@
-export const formatNumber = (n) => {
+export const formatNumber = (n, split) => {
 	let parts = n.toString().split('.')
 	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-	return parts.join('.')
+	return split ? parts.join('.').split('.', 2)[0] : parts.join('.')
 }
 
 export const roundNumber = (n, round) =>

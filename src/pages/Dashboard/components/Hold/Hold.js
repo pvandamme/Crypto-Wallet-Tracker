@@ -1,7 +1,7 @@
 import React from 'react'
 import HoldDoughnutChart from 'pages/Dashboard/HoldDoughnutChart'
 import Filter from 'pages/Overview/components/TopCoins/Filter'
-import HoldCoin from './HoldCoin'
+import HoldCoins from './HoldCoins'
 
 const Hold = () => {
 	return (
@@ -9,14 +9,27 @@ const Hold = () => {
 			<HoldDoughnutChart />
 			<div className="hold__list">
 				<h3>Holding</h3>
-				<div className="hold__list--grid">
-					<p># Name</p>
-					<p># Value</p>
-					<p># Price</p>
-					<p># Change (24h)</p>
-					<p># ROI </p>
+				<div className="hold__list-coin">
+					<div className="hold__list-elem">
+						<p># Name</p>
+					</div>
+					<div className="hold__list-elem">
+						<p># Amount</p>
+					</div>
+					<div className="hold__list-elem">
+						<p># Price</p>
+					</div>
+					<div className="hold__list-elem">
+						<p># Value</p>
+					</div>
+					<div className="hold__list-elem">
+						<p># Change (24h)</p>
+					</div>
+					<div className="hold__list-elem">
+						<p># ROI </p>
+					</div>
 				</div>
-				<HoldCoin />
+				<HoldCoins />
 			</div>
 		</div>
 	)

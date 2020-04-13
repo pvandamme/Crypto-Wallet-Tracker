@@ -56,18 +56,34 @@
 	font-size: 1.5rem;
 }
 
-.hold__list--grid {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 5rem;
-}
-
 .hold__list-coin {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	p {
-		flex: 1 1 11rem;
-		border: 1px solid blue;
+	border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+}
+
+.hold__list-hover {
+	&:hover {
+		cursor: pointer;
+		border-bottom: 2px solid rgba($color: #000000, $alpha: 0.3);
+		border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
+		background-color: rgba($color: #f9f9f9, $alpha: 1);
 	}
+}
+
+.hold__list-elem {
+	padding: 1.5rem;
+	@include flex(row, center, flex-start);
+	flex-wrap: wrap;
+	flex: 1 1 11rem;
+	margin-left: 1rem;
+	img {
+		height: 3rem;
+		padding-right: 0.5rem;
+	}
+}
+
+.scrollable {
+	overflow: scroll;
+	height: 40rem;
 }

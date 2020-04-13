@@ -1,4 +1,4 @@
-import { formatNumber } from 'helpers/helpers'
+import { formatNumber, roundNumber, cutNumber } from 'helpers/helpers'
 
 export const getDashboardTransactions = (state) => state.dashboard.transactions
 
@@ -76,13 +76,24 @@ export const getDashboardData = ({ dashboard, market }) => {
 
 export const getHoldListData = ({ dashboard, market }) => {
 	const combine = combineTransaction(dashboard.transactions)
-	const test = combine.map((elem) => {
+	return combine.map((elem) => {
+		const price = getCoinPrice(elem, market.marketData.topCoins)
+		const coinInvested = getCoinInvested(elem.asset, dashboard.transactions)
+		const roi = (
+			((price * elem.amount - coinInvested) / coinInvested) *
+			100
+		).toFixed(2)
 		return {
-			name: elem.asset,
-			value: getCoinPrice(elem, market.marketData.topCoins) * elem.amount,
+			name: elem.asset.charAt(0).toUpperCase() + elem.asset.slice(1),
+			value: (price * elem.amount).toFixed(2),
+			amount: formatNumber(elem.amount),
+			date: elem.date,
+			price: cutNumber(price),
+			roi,
+			image: getCoinImage(elem, market.marketData.topCoins),
+			priceChange: getCoinChange(elem, market.marketData.topCoins),
 		}
 	})
-	return test
 }
 
 /* Helper functions */
@@ -97,8 +108,29 @@ const getTotalInvested = ({ transactions }) => {
 	return total
 }
 
+const getCoinImage = (transaction, topCoins) => {
+	const coin = topCoins.find((elem) => elem.id === transaction.asset)
+	return coin.image
+}
+
+const getCoinInvested = (name, transactions) => {
+	let total = 0
+	transactions.forEach((transaction) => {
+		if (transaction.asset === name) {
+			total += transaction.price * transaction.amount
+		}
+	})
+	return total
+}
+
 const getCoinPrice = (coin, topCoins) => {
 	return topCoins.find((elem) => elem.id === coin.asset).current_price
+}
+
+const getCoinChange = (coin, topCoins) => {
+	const priceChange = topCoins.find((elem) => elem.id === coin.asset)
+		.price_change_percentage_24h
+	return priceChange.toFixed(2)
 }
 
 const getPortfolioValue = (transactions, topCoins) => {

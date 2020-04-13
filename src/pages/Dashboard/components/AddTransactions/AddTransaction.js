@@ -26,7 +26,8 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 		if (!data.asset) {
 			setError('asset', 'required', 'Please select an asset !')
 		} else {
-			data.amount = parseInt(data.amount)
+			data.amount = parseFloat(data.amount)
+			data.price = parseFloat(data.price)
 			firestore.collection('users/' + uid + '/transactions').add(data)
 			closeModal()
 		}

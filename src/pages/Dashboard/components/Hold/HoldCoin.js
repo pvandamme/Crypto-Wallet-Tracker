@@ -1,23 +1,32 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { getHoldListData } from 'state/selectors/dashboardSelectors'
 
-const HoldCoin = ({ transactions }) => {
+const HoldCoin = ({ transaction }) => {
+	const { amount, name, value, price, priceChange, roi, image } = transaction
 	return (
-		<div className="hold__list-coin">
-			<p># Name</p>
-			<p># Value</p>
-			<p># Price</p>
-			<p># Change (24h)</p>
-			<p># ROI </p>
+		<div className="hold__list-coin hold__list-hover">
+			<div className="hold__list-elem">
+				<img src={image} alt="icon" />
+				<p>{name}</p>
+			</div>
+			<div className="hold__list-elem">
+				<p>{amount}</p>
+			</div>
+			<div className="hold__list-elem">
+				<p>$ {price}</p>
+			</div>
+			<div className="hold__list-elem">
+				<p>$ {value}</p>
+			</div>
+			<div className="hold__list-elem">
+				<p className={priceChange >= 0 ? 'green' : 'red'}>
+					{priceChange} %
+				</p>
+			</div>
+			<div className="hold__list-elem">
+				<p className={roi >= 0 ? 'green' : 'red'}>{roi} %</p>
+			</div>
 		</div>
 	)
 }
 
-const mapStateToProps = (state) => {
-	return {
-		transactions: 'cc',
-	}
-}
-
-export default connect(mapStateToProps)(HoldCoin)
+export default HoldCoin
