@@ -31,7 +31,6 @@ class Dashboard extends Component {
 				<div>
 					<main className="dashboard">
 						<DashboardTopSection />
-						<AddTransaction />
 						<Hold />
 						<HoldLineChart />
 					</main>

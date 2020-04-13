@@ -35,11 +35,7 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 
 	return (
 		<div className="add-transaction">
-			<button
-				className="add-transaction-button"
-				onClick={() => setIsOpen(true)}>
-				Add transaction
-			</button>
+			<button onClick={() => setIsOpen(true)}>Add transaction</button>
 			<Modal
 				isOpen={isOpen}
 				className="dashboard__modal"
