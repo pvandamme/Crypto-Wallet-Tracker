@@ -2,19 +2,23 @@ import CoinGecko from 'coingecko-api'
 import { firestore } from 'firebaseConfig/firebase'
 import {
 	FETCH_TRANSACTIONS_BEGIN,
-	FETCH_TRANSACTIONS_FAILURE,
 	FETCH_TRANSACTIONS_SUCCESS,
 	SET_UNSUB_FUNCTION,
 	SET_SELECTED_COIN,
 	FETCH_CHART_BEGIN,
 	FETCH_CHART_SUCCESS,
-	UPDATE_COMBINE,
+	RESET_SELECTED_COIN,
 } from 'state/actionTypes'
 import { fetchMarket } from './marketActions'
 import { fetchChart } from './assetActions'
-import { getCombineTransaction } from 'state/selectors/dashboardSelectors'
 
 /*  Action creators */
+
+export const resetSelectedCoin = () => {
+	return {
+		type: RESET_SELECTED_COIN,
+	}
+}
 
 export const fetchTransactionsBegin = () => {
 	return {
@@ -80,11 +84,11 @@ export const setTransactionsListener = (uid) => {
 					changes.forEach((change) => {
 						transactions.push(change.doc.data())
 					})
-					/*const lineChart = await createLineChart(
+					const lineChart = await createLineChart(
 						transactions,
 						dispatch
-					)*/
-					//dispatch(fetchChartSuccess(lineChart))
+					)
+					dispatch(fetchChartSuccess(lineChart))
 					dispatch(fetchTransactionsSuccess(transactions))
 				},
 				(error) => {
@@ -119,11 +123,12 @@ const createLineChart = (transactions, dispatch) => {
 			return {
 				asset: elem.asset,
 				amount: elem.amount,
-				date: elem.data.date,
+				date: elem.date,
 				price: elem.price,
-				prices: data[i].prices,
+				prices: data[i].data.prices,
 			}
 		})
+
 		const lineChart = convertChartData(cleanData)
 		resolve(lineChart)
 	})
@@ -131,20 +136,24 @@ const createLineChart = (transactions, dispatch) => {
 
 const convertChartData = (data) => {
 	let min = 0
+
 	data.forEach((elem) => {
 		if (elem.prices.length < min || min === 0) {
-			min = elem.prices.length - 1
+			min = elem.prices.length
 		}
 	})
-	let charts = new Array(min + 1).fill(0)
+
+	let charts = new Array(min).fill(0)
+
 	data.forEach((elem) => {
 		elem.prices.forEach((price, i) => {
 			if (price[0] > elem.date) {
-				charts[i] += price[1] * elem.amount - elem.price * elem.amount
+				charts[i] += price[1] * elem.amount
 			}
 		})
 	})
+
 	return charts.map((elem, i) => {
-		return data.length ? [data[0].prices[i][0], elem] : [0, elem]
+		return data.length && i < min ? [data[0].prices[i][0], elem] : [0, elem]
 	})
 }

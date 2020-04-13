@@ -8,7 +8,7 @@ const PriceInput = ({ selectedCoin, register, name }) => {
 			{name === 'Amount' ? (
 				<p>Add amount :</p>
 			) : (
-				<p>Price per coin ($):</p>
+				<p>Price per coin ($) :</p>
 			)}
 			<input
 				className="dashboard__modal-input"

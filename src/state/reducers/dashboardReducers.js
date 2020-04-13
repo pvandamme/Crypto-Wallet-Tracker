@@ -7,6 +7,7 @@ import {
 	FETCH_CHART_BEGIN,
 	FETCH_CHART_SUCCESS,
 	FETCH_CHART_FAILURE,
+	RESET_SELECTED_COIN,
 } from 'state/actionTypes'
 
 const defaultState = {
@@ -35,7 +36,6 @@ export default (state = defaultState, action) => {
 				...state,
 				pending: false,
 				success: true,
-				selectedCoin: {},
 				transactions: action.transactions,
 			}
 		case FETCH_TRANSACTIONS_FAILURE:
@@ -43,6 +43,11 @@ export default (state = defaultState, action) => {
 				...state,
 				pending: false,
 				error: true,
+			}
+		case RESET_SELECTED_COIN:
+			return {
+				...state,
+				selectedCoin: {},
 			}
 		case SET_UNSUB_FUNCTION:
 			return {

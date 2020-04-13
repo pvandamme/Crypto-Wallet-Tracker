@@ -11,7 +11,6 @@ import {
 	getDashboardError,
 } from 'state/selectors/dashboardSelectors'
 import AddTransaction from './components/AddTransactions/AddTransaction'
-import HoldChart from './HoldChart'
 import Hold from './components/Hold/Hold'
 import HoldLineChart from './HoldLineChart'
 

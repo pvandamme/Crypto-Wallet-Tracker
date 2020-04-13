@@ -27,7 +27,6 @@ export const getCombineTransaction = (state) =>
 
 export const getDoughnutData = ({ dashboard, market }) => {
 	const transactions = combineTransaction(dashboard.transactions)
-	// const transactions = dashboard.transactions
 	let labels = []
 	let data = []
 	transactions.forEach((transaction) => {
@@ -60,7 +59,6 @@ export const getDoughnutData = ({ dashboard, market }) => {
 }
 
 export const getDashboardData = ({ dashboard, market }) => {
-	console.log(dashboard)
 	const totalInvested = getTotalInvested(dashboard).toFixed(2)
 	const value = getPortfolioValue(
 		dashboard.transactions,

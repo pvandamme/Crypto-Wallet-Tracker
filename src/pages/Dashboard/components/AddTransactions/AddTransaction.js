@@ -8,8 +8,10 @@ import FormError from './FormError'
 import { connect } from 'react-redux'
 import { getAuthUid } from 'state/selectors/authSelectors'
 import { firestore } from 'firebaseConfig/firebase'
+import { resetSelectedCoin } from 'state/actions/dashboardActions'
+import { bindActionCreators } from 'redux'
 
-const AddTransaction = ({ uid }) => {
+const AddTransaction = ({ uid, resetSelectedCoin }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
 	const { setError, register, handleSubmit, errors, setValue } = useForm()
@@ -17,6 +19,7 @@ const AddTransaction = ({ uid }) => {
 	const closeModal = () => {
 		setIsOpen(false)
 		setValue('asset', null)
+		resetSelectedCoin()
 	}
 
 	const onSubmit = (data) => {
@@ -77,4 +80,8 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(AddTransaction)
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators({ resetSelectedCoin }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTransaction)

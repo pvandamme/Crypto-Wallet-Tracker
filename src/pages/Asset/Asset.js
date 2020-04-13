@@ -18,7 +18,6 @@ class Asset extends Component {
 		fetchAsset(coin)
 	}
 	render() {
-		console.log('cccccccccccccccc')
 		const { error, pending, success } = this.props
 
 		if (pending) {
