@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const TransactionDatePicker = ({ setValue, register }) => {
-	const [startDate, setStartDate] = useState(new Date())
+const TransactionDatePicker = ({ setValue, register, date }) => {
+	const newDate = date ? new Date(date) : new Date()
+	const [startDate, setStartDate] = useState(newDate)
 	const handleChange = (date) => {
 		setStartDate(date)
 		setValue('date', date.getTime())
@@ -20,6 +21,7 @@ const TransactionDatePicker = ({ setValue, register }) => {
 				selected={startDate}
 				onChange={(date) => handleChange(date)}
 				maxDate={new Date()}
+				dateFormat="dd/MM/yyyy"
 				ref={ref()}
 			/>
 		</label>

@@ -21,11 +21,12 @@ const EditTransaction = ({
 }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
-	const { setError, register, handleSubmit, errors, setValue } = useForm({
+	const { register, handleSubmit, errors, setValue } = useForm({
 		defaultValues: {
-			asset: transaction.name,
+			asset: transaction.name.toLowerCase(),
 			amount: transaction.amount,
 			price: transaction.price,
+			date: transaction.date,
 		},
 	})
 
@@ -41,17 +42,16 @@ const EditTransaction = ({
 	}
 
 	const onSubmit = (data) => {
-		console.log(data)
 		if (!data.asset) {
-			setError('asset', 'required', 'Please select an asset !')
+			setValue('asset', transaction.name.toLowerCase())
 		} else {
 			data.amount = parseFloat(data.amount)
 			data.price = parseFloat(data.price)
-			firestore.collection('users/' + uid + '/transactions').add(data)
+			console.log(data)
+			//firestore.collection('users/' + uid + '/transactions').add(data)
 			closeModal()
 		}
 	}
-
 	return (
 		<div className="edit-transaction">
 			<TransactionsDetails
@@ -72,11 +72,7 @@ const EditTransaction = ({
 					autoComplete="off"
 					onSubmit={handleSubmit(onSubmit)}>
 					<div className="dashboard__modal-data">
-						<SelectAsset
-							setValue={setValue}
-							register={register}
-							edit={true}
-						/>
+						<SelectAsset setValue={setValue} register={register} />
 						<PriceInput
 							name="Amount"
 							register={register}
@@ -88,6 +84,7 @@ const EditTransaction = ({
 						<TransactionDatePicker
 							setValue={setValue}
 							register={register}
+							date={transaction.date}
 						/>
 						<PriceInput
 							name="Price"

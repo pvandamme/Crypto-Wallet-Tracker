@@ -30,6 +30,7 @@ const SelectAsset = ({
 	topCoins,
 	setValue,
 	register,
+	getValues,
 }) => {
 	const customStyle = {
 		control: (styles) => ({
@@ -57,7 +58,7 @@ const SelectAsset = ({
 				options={getOptions(topCoins)}
 				selectedCoin={selectedCoin}
 				styles={customStyle}
-				ref={register({ name: 'asset', required: true })}
+				ref={register({ name: 'asset' })}
 				defaultValue={selectedCoin}
 			/>
 		</label>
