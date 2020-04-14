@@ -11,11 +11,28 @@ import { firestore } from 'firebaseConfig/firebase'
 import { resetSelectedCoin } from 'state/actions/dashboardActions'
 import { bindActionCreators } from 'redux'
 import HoldCoin from './HoldCoin'
+import { saveSelectedCoin } from 'state/actions/dashboardActions'
 
-const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
+const EditTransaction = ({
+	uid,
+	resetSelectedCoin,
+	transaction,
+	saveSelectedCoin,
+}) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
-	const { setError, register, handleSubmit, errors, setValue } = useForm()
+	const { setError, register, handleSubmit, errors, setValue } = useForm({
+		defaultValues: {
+			asset: transaction.name,
+			amount: transaction.amount,
+			price: transaction.price,
+		},
+	})
+
+	const handleClick = (name) => {
+		saveSelectedCoin(name.toLowerCase())
+		setIsOpen(true)
+	}
 
 	const closeModal = () => {
 		setIsOpen(false)
@@ -24,6 +41,7 @@ const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
 	}
 
 	const onSubmit = (data) => {
+		console.log(data)
 		if (!data.asset) {
 			setError('asset', 'required', 'Please select an asset !')
 		} else {
@@ -36,7 +54,7 @@ const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
 
 	return (
 		<div className="edit-transaction">
-			<HoldCoin transaction={transaction} setIsOpen={setIsOpen} />
+			<HoldCoin transaction={transaction} handleClick={handleClick} />
 			<Modal
 				isOpen={isOpen}
 				className="dashboard__modal"
@@ -51,8 +69,16 @@ const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
 					autoComplete="off"
 					onSubmit={handleSubmit(onSubmit)}>
 					<div className="dashboard__modal-data">
-						<SelectAsset setValue={setValue} register={register} />
-						<PriceInput name="Amount" register={register} />
+						<SelectAsset
+							setValue={setValue}
+							register={register}
+							edit={true}
+						/>
+						<PriceInput
+							name="Amount"
+							register={register}
+							amount={transaction.amount}
+						/>
 					</div>
 
 					<div className="dashboard__modal-data">
@@ -60,7 +86,11 @@ const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
 							setValue={setValue}
 							register={register}
 						/>
-						<PriceInput name="Price" register={register} />
+						<PriceInput
+							name="Price"
+							register={register}
+							price={transaction.price}
+						/>
 					</div>
 
 					<button className="add-button" type="submit">
@@ -79,7 +109,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ resetSelectedCoin }, dispatch)
+	return bindActionCreators({ resetSelectedCoin, saveSelectedCoin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditTransaction)

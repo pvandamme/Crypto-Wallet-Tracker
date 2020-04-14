@@ -15,11 +15,11 @@ const getOptions = (topCoins) => {
 	})
 }
 
-const SingleValue = ({ children, ...props }) => {
+const SingleValue = ({ ...props }) => {
 	return (
 		<components.SingleValue {...props}>
 			<img src={props.selectProps.selectedCoin.image} className="icon" />
-			{children}
+			{props.selectProps.selectedCoin.name}
 		</components.SingleValue>
 	)
 }
@@ -58,6 +58,7 @@ const SelectAsset = ({
 				selectedCoin={selectedCoin}
 				styles={customStyle}
 				ref={register({ name: 'asset', required: true })}
+				defaultValue={selectedCoin}
 			/>
 		</label>
 	)
