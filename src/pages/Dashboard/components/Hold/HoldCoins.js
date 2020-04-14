@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getHoldListData } from 'state/selectors/dashboardSelectors'
-import HoldCoin from './HoldCoin'
+import EditTransaction from './EditTransaction'
 
 const HoldCoins = ({ transactions }) => {
 	const ret = transactions.map((transaction) => {
-		return <HoldCoin transaction={transaction} key={transaction.name} />
+		return (
+			<EditTransaction transaction={transaction} key={transaction.name} />
+		)
 	})
 	return <div className="scrollable">{ret}</div>
 }

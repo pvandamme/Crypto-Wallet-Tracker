@@ -10,8 +10,9 @@ import { getAuthUid } from 'state/selectors/authSelectors'
 import { firestore } from 'firebaseConfig/firebase'
 import { resetSelectedCoin } from 'state/actions/dashboardActions'
 import { bindActionCreators } from 'redux'
+import HoldCoin from './HoldCoin'
 
-const AddTransaction = ({ uid, resetSelectedCoin }) => {
+const EditTransaction = ({ uid, resetSelectedCoin, transaction }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
 	const { setError, register, handleSubmit, errors, setValue } = useForm()
@@ -34,14 +35,14 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 	}
 
 	return (
-		<div className="add-transaction">
-			<button onClick={() => setIsOpen(true)}>Add transaction</button>
+		<div className="edit-transaction">
+			<HoldCoin transaction={transaction} setIsOpen={setIsOpen} />
 			<Modal
 				isOpen={isOpen}
 				className="dashboard__modal"
 				onRequestClose={() => closeModal()}
 				contentLabel="Add transaction">
-				<h4>Add Transaction</h4>
+				<h4>Edit Transaction</h4>
 
 				<FormError errors={errors} />
 
@@ -63,7 +64,7 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 					</div>
 
 					<button className="add-button" type="submit">
-						Add Transaction
+						Edit transaction
 					</button>
 				</form>
 			</Modal>
@@ -81,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ resetSelectedCoin }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTransaction)
+export default connect(mapStateToProps, mapDispatchToProps)(EditTransaction)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HoldCoin = ({ transaction }) => {
+const HoldCoin = ({ transaction, setIsOpen }) => {
 	const {
 		date,
 		amount,
@@ -11,9 +11,10 @@ const HoldCoin = ({ transaction }) => {
 		roi,
 		image,
 	} = transaction
-	console.log(new Date(date))
 	return (
-		<div className="hold__list-coin hold__list-hover">
+		<div
+			className="hold__list-coin hold__list-hover"
+			onClick={() => setIsOpen(true)}>
 			<div className="hold__list-elem">
 				<img src={image} alt="icon" />
 				<p>{name}</p>
