@@ -48,6 +48,7 @@ export const getTransactions = (state, name) => {
 			roi,
 			image: getCoinImage(transaction, market.marketData.topCoins),
 			priceChange: getCoinChange(transaction, market.marketData.topCoins),
+			id: transaction.id,
 		}
 	})
 }

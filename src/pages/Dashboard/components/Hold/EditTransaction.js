@@ -47,8 +47,10 @@ const EditTransaction = ({
 		} else {
 			data.amount = parseFloat(data.amount)
 			data.price = parseFloat(data.price)
-			console.log(data)
-			//firestore.collection('users/' + uid + '/transactions').add(data)
+			firestore
+				.collection('users/' + uid + '/transactions')
+				.doc(transaction.id)
+				.set(data)
 			closeModal()
 		}
 	}
