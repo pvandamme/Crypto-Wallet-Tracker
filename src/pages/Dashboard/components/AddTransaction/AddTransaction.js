@@ -11,7 +11,7 @@ import { firestore } from 'firebaseConfig/firebase'
 import { resetSelectedCoin } from 'state/actions/dashboardActions'
 import { bindActionCreators } from 'redux'
 
-const AddTransaction = ({ uid, resetSelectedCoin }) => {
+const AddTransaction = ({ uid, resetSelectedCoin, title }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
 	const { setError, register, handleSubmit, errors, setValue } = useForm()
@@ -41,7 +41,7 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 				className="dashboard__modal"
 				onRequestClose={() => closeModal()}
 				contentLabel="Add transaction">
-				<h4>Add transaction</h4>
+				<h4>{title}</h4>
 
 				<FormError errors={errors} />
 
@@ -63,7 +63,7 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 					</div>
 
 					<button className="add-button" type="submit">
-						Add transaction
+						{title}
 					</button>
 				</form>
 			</Modal>

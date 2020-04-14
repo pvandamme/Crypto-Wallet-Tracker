@@ -1,7 +1,17 @@
 import React from 'react'
 
 const HoldCoin = ({ transaction }) => {
-	const { amount, name, value, price, priceChange, roi, image } = transaction
+	const {
+		date,
+		amount,
+		name,
+		value,
+		price,
+		priceChange,
+		roi,
+		image,
+	} = transaction
+	console.log(new Date(date))
 	return (
 		<div className="hold__list-coin hold__list-hover">
 			<div className="hold__list-elem">

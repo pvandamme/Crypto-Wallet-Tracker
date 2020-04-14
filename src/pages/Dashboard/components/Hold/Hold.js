@@ -1,8 +1,7 @@
 import React from 'react'
 import HoldDoughnutChart from 'pages/Dashboard/HoldDoughnutChart'
-import Filter from 'pages/Overview/components/TopCoins/Filter'
 import HoldCoins from './HoldCoins'
-import AddTransaction from '../AddTransactions/AddTransaction'
+import AddTransaction from '../AddTransaction/AddTransaction'
 
 const Hold = () => {
 	return (

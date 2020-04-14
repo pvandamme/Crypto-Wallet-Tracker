@@ -16,7 +16,8 @@ const PriceInput = ({ selectedCoin, register, name }) => {
 				name={name.toLowerCase()}
 				ref={register({
 					required: true,
-					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+					pattern: /^(?![0.]+$)\d+(\.\d{1,2})?$/,
+					min: 1,
 				})}
 				defaultValue={
 					selectedCoin && name === 'Price'
