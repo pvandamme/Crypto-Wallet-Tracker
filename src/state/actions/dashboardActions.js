@@ -82,7 +82,9 @@ export const setTransactionsListener = (uid) => {
 					let transactions = getState().dashboard.transactions
 					const changes = snapshot.docChanges()
 					changes.forEach((change) => {
-						transactions.push(change.doc.data())
+						let data = change.doc.data()
+						data.id = change.doc.id
+						transactions.push(data)
 					})
 					const lineChart = await createLineChart(
 						transactions,
