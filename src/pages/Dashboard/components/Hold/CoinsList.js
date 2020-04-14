@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getHoldListData } from 'state/selectors/dashboardSelectors'
-import EditTransaction from './EditTransaction'
+import ComposedTransaction from './ComposedTransaction'
 
-const HoldCoins = ({ transactions }) => {
+const CoinsList = ({ transactions }) => {
 	const ret = transactions.map((transaction) => {
 		return (
-			<EditTransaction transaction={transaction} key={transaction.name} />
+			<ComposedTransaction
+				transaction={transaction}
+				key={transaction.name}
+			/>
 		)
 	})
 	return <div className="scrollable">{ret}</div>
@@ -18,4 +21,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(HoldCoins)
+export default connect(mapStateToProps)(CoinsList)

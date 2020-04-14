@@ -10,8 +10,8 @@ import { getAuthUid } from 'state/selectors/authSelectors'
 import { firestore } from 'firebaseConfig/firebase'
 import { resetSelectedCoin } from 'state/actions/dashboardActions'
 import { bindActionCreators } from 'redux'
-import HoldCoin from './HoldCoin'
 import { saveSelectedCoin } from 'state/actions/dashboardActions'
+import TransactionsDetails from './TransactionsDetails'
 
 const EditTransaction = ({
 	uid,
@@ -54,7 +54,10 @@ const EditTransaction = ({
 
 	return (
 		<div className="edit-transaction">
-			<HoldCoin transaction={transaction} handleClick={handleClick} />
+			<TransactionsDetails
+				transaction={transaction}
+				handleClick={handleClick}
+			/>
 			<Modal
 				isOpen={isOpen}
 				className="dashboard__modal"

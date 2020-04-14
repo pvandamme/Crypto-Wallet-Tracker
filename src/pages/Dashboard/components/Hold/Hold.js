@@ -1,6 +1,6 @@
 import React from 'react'
 import HoldDoughnutChart from 'pages/Dashboard/HoldDoughnutChart'
-import HoldCoins from './HoldCoins'
+import CoinsList from './CoinsList'
 import AddTransaction from '../AddTransaction/AddTransaction'
 
 const Hold = () => {
@@ -29,10 +29,10 @@ const Hold = () => {
 						<p># Change (24h)</p>
 					</div>
 					<div className="hold__list-elem">
-						<p># ROI </p>
+						<p># ROI (%)</p>
 					</div>
 				</div>
-				<HoldCoins />
+				<CoinsList />
 			</div>
 		</div>
 	)

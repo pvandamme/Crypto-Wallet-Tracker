@@ -21,6 +21,7 @@ const defaultState = {
 	selectedCoin: {},
 	lineChart: [],
 	combine: [],
+	details: '',
 }
 
 export default (state = defaultState, action) => {
@@ -73,7 +74,6 @@ export default (state = defaultState, action) => {
 				...state,
 				error: true,
 			}
-
 		default:
 			return state
 	}

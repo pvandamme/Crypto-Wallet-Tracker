@@ -25,6 +25,33 @@ export const getChartPending = (state) => state.dashboard.chartPending
 export const getCombineTransaction = (state) =>
 	combineTransaction(state.dashboard.transactions)
 
+export const getTransactions = (state, name) => {
+	const { market } = state
+	const transactions = state.dashboard.transactions.filter(
+		(transaction) => transaction.asset === name.toLowerCase()
+	)
+	return transactions.map((transaction) => {
+		const price = getCoinPrice(transaction, market.marketData.topCoins)
+		const coinInvested = transaction.price * transaction.amount
+		const roi = (
+			((price * transaction.amount - coinInvested) / coinInvested) *
+			100
+		).toFixed(2)
+		return {
+			name:
+				transaction.asset.charAt(0).toUpperCase() +
+				transaction.asset.slice(1),
+			value: (price * transaction.amount).toFixed(2),
+			amount: formatNumber(transaction.amount),
+			date: transaction.date,
+			price: cutNumber(price),
+			roi,
+			image: getCoinImage(transaction, market.marketData.topCoins),
+			priceChange: getCoinChange(transaction, market.marketData.topCoins),
+		}
+	})
+}
+
 export const getDoughnutData = ({ dashboard, market }) => {
 	const transactions = combineTransaction(dashboard.transactions)
 	let labels = []
@@ -72,6 +99,27 @@ export const getDashboardData = ({ dashboard, market }) => {
 		profit: formatNumber(profit),
 		roi: roi === 'NaN' ? 0 : roi,
 	}
+}
+
+export const getTransactionData = (transactions, market) => {
+	return transactions.map((elem) => {
+		const price = getCoinPrice(elem, market.marketData.topCoins)
+		const coinInvested = getCoinInvested(elem.asset, dashboard.transactions)
+		const roi = (
+			((price * elem.amount - coinInvested) / coinInvested) *
+			100
+		).toFixed(2)
+		return {
+			name: elem.asset.charAt(0).toUpperCase() + elem.asset.slice(1),
+			value: (price * elem.amount).toFixed(2),
+			amount: formatNumber(elem.amount),
+			date: elem.date,
+			price: cutNumber(price),
+			roi,
+			image: getCoinImage(elem, market.marketData.topCoins),
+			priceChange: getCoinChange(elem, market.marketData.topCoins),
+		}
+	})
 }
 
 export const getHoldListData = ({ dashboard, market }) => {
