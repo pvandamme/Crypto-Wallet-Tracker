@@ -54,11 +54,20 @@ const EditTransaction = ({
 			closeModal()
 		}
 	}
+
+	const deleteTransaction = () => {
+		firestore
+			.collection('users/' + uid + '/transactions')
+			.doc(transaction.id)
+			.delete()
+	}
+
 	return (
 		<div className="edit-transaction">
 			<TransactionsDetails
 				transaction={transaction}
 				handleClick={handleClick}
+				deleteTransaction={deleteTransaction}
 			/>
 			<Modal
 				isOpen={isOpen}

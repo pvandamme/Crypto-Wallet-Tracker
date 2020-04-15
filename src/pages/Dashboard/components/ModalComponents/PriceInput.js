@@ -27,11 +27,10 @@ const PriceInput = ({ selectedCoin, register, name, amount, price }) => {
 				className="dashboard__modal-input"
 				placeholder={name}
 				name={name.toLowerCase()}
-				ref={register({
-					required: true,
-					pattern: /^(?![0.]+$)\d+(\.\d{1,2})?$/,
-					min: 1,
-				})}
+				type="number"
+				step="any"
+				min="0.00000001"
+				ref={register()}
 				defaultValue={getDefaultValue()}
 			/>
 		</label>

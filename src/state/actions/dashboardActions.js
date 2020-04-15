@@ -93,15 +93,20 @@ export const setTransactionsListener = (uid) => {
 									? data
 									: transaction
 							)
+						} else if (change.type === 'removed') {
+							transactions = transactions.filter(
+								(transaction) =>
+									transaction.id !== change.doc.id
+							)
 						}
 					})
+					dispatch(fetchTransactionsSuccess(transactions))
 					const lineChart = await createLineChart(
 						transactions,
 						dispatch
 					)
 					console.log(transactions)
 					dispatch(fetchChartSuccess(lineChart))
-					dispatch(fetchTransactionsSuccess(transactions))
 				},
 				(error) => {
 					console.log(error)

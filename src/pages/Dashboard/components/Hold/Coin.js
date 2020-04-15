@@ -30,7 +30,7 @@ const Coin = ({ transaction, setIsOpen, isOpen }) => {
 				<p># Value</p>
 			</div>
 			<div className="details-elem">
-				<p># ROI (%)</p>
+				<p># ROI</p>
 			</div>
 			<div className="details-elem"></div>
 		</div>

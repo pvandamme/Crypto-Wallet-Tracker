@@ -8,7 +8,11 @@ const convertDate = (inputFormat) => {
 	return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
 }
 
-const TransactionsDetails = ({ transaction, handleClick }) => {
+const TransactionsDetails = ({
+	transaction,
+	handleClick,
+	deleteTransaction,
+}) => {
 	const { date, value, amount, roi } = transaction
 	return (
 		<div
@@ -27,7 +31,16 @@ const TransactionsDetails = ({ transaction, handleClick }) => {
 			<div className="details-elem">
 				<p className={roi >= 0 ? 'green' : 'red'}>{roi} %</p>
 			</div>
-			<div className="details-elem"></div>
+			<div className="details-elem">
+				<button
+					className="delete-button"
+					onClick={(e) => {
+						deleteTransaction()
+						e.stopPropagation()
+					}}>
+					Delete
+				</button>
+			</div>
 		</div>
 	)
 }

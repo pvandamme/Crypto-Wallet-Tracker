@@ -29,7 +29,7 @@ const Hold = () => {
 						<p># Change (24h)</p>
 					</div>
 					<div className="hold__list-elem">
-						<p># ROI (%)</p>
+						<p># ROI</p>
 					</div>
 				</div>
 				<CoinsList />
