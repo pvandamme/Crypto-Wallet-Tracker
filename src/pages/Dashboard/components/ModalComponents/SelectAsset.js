@@ -47,6 +47,7 @@ const SelectAsset = ({
 		saveSelectedCoin(e.value)
 	}
 
+	console.log(selectedCoin)
 	return (
 		<label className="modal-label">
 			<p>Select Asset :</p>

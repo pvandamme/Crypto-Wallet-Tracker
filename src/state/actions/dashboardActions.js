@@ -83,7 +83,6 @@ export const setTransactionsListener = (uid) => {
 					const changes = snapshot.docChanges()
 					changes.forEach((change) => {
 						let data = change.doc.data()
-						console.log(data)
 						data.id = change.doc.id
 						if (change.type === 'added') {
 							transactions.push(data)

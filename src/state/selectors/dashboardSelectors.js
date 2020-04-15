@@ -15,7 +15,7 @@ export const getDashboardError = (state) =>
 
 export const getSelectedCoin = (state) => {
 	const coin = state.dashboard.selectedCoin
-	return coin ? coin : null
+	return coin.name ? coin : false
 }
 
 export const getLineChart = (state) => state.dashboard.lineChart
