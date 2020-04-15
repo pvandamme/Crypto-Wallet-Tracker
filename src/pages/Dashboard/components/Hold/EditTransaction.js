@@ -21,7 +21,7 @@ const EditTransaction = ({
 }) => {
 	Modal.setAppElement('#root')
 	const [isOpen, setIsOpen] = useState(false)
-	const { register, handleSubmit, errors, setValue } = useForm({
+	const { register, handleSubmit, errors, setValue, setError } = useForm({
 		defaultValues: {
 			asset: transaction.name.toLowerCase(),
 			amount: transaction.amount,
@@ -41,7 +41,8 @@ const EditTransaction = ({
 	}
 
 	const onSubmit = (data) => {
-		if (!data.asset) {
+		if (!data.amount) {
+			setError('amount', 'required', 'Amount is required !')
 		} else {
 			data.amount = parseFloat(data.amount)
 			data.price = parseFloat(data.price)

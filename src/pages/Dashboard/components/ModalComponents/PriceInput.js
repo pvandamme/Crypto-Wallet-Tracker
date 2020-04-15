@@ -47,9 +47,9 @@ const PriceInput = ({
 				type="number"
 				step="any"
 				min="0.00000001"
+				required={true}
 				ref={register({
 					name: name.toLowerCase(),
-					required: true,
 					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
 				})}
 				defaultValue={getDefaultValue()}

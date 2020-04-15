@@ -47,7 +47,6 @@ const SelectAsset = ({
 		saveSelectedCoin(e.value)
 	}
 
-	console.log(selectedCoin)
 	return (
 		<label className="modal-label">
 			<p>Select Asset :</p>
@@ -65,7 +64,7 @@ const SelectAsset = ({
 	)
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
 	return {
 		topCoins: getTopCoins(state),
 		selectedCoin: getSelectedCoin(state),

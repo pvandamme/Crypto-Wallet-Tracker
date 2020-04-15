@@ -25,6 +25,8 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 	const onSubmit = (data) => {
 		if (!data.asset) {
 			setError('asset', 'required', 'Please select an asset !')
+		} else if (!data.amount) {
+			setError('amount', 'required', 'Amount is required !')
 		} else {
 			data.amount = parseFloat(data.amount)
 			data.price = parseFloat(data.price)

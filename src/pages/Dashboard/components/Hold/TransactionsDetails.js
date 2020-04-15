@@ -18,7 +18,10 @@ const TransactionsDetails = ({
 		<div
 			className="hover-details  hold__list-details"
 			onClick={() => handleClick(transaction.name)}>
-			<div className="details-elem"></div>
+			<div className="details-elem details-edit">
+				<i class="fas fa-edit fa-2x"></i>
+				<p>Edit</p>
+			</div>
 			<div className="details-elem">
 				<p>{convertDate(date)}</p>
 			</div>
