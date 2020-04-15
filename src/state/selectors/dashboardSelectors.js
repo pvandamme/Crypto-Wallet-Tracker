@@ -44,7 +44,7 @@ export const getTransactions = (state, name) => {
 			value: (price * transaction.amount).toFixed(2),
 			amount: formatNumber(transaction.amount),
 			date: transaction.date,
-			price: cutNumber(price),
+			price: cutNumber(transaction.price),
 			roi,
 			image: getCoinImage(transaction, market.marketData.topCoins),
 			priceChange: getCoinChange(transaction, market.marketData.topCoins),

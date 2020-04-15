@@ -14,6 +14,7 @@ const TransactionsDetails = ({
 	deleteTransaction,
 }) => {
 	const { date, value, amount, roi } = transaction
+	console.log('Details Render')
 	return (
 		<div
 			className="hover-details  hold__list-details"

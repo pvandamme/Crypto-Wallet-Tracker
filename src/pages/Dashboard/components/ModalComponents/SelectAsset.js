@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Select, { components } from 'react-select'
 import { connect } from 'react-redux'
 import { getTopCoins } from 'state/selectors/marketSelectors'
@@ -26,11 +26,10 @@ const SingleValue = ({ ...props }) => {
 
 const SelectAsset = ({
 	saveSelectedCoin,
-	selectedCoin,
 	topCoins,
 	setValue,
 	register,
-	getValues,
+	selectedCoin,
 }) => {
 	const customStyle = {
 		control: (styles) => ({
@@ -65,7 +64,7 @@ const SelectAsset = ({
 	)
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
 	return {
 		topCoins: getTopCoins(state),
 		selectedCoin: getSelectedCoin(state),

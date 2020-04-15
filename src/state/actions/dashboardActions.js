@@ -82,8 +82,8 @@ export const setTransactionsListener = (uid) => {
 					let transactions = getState().dashboard.transactions
 					const changes = snapshot.docChanges()
 					changes.forEach((change) => {
-						console.log(change.type)
 						let data = change.doc.data()
+						console.log(data)
 						data.id = change.doc.id
 						if (change.type === 'added') {
 							transactions.push(data)
@@ -105,7 +105,6 @@ export const setTransactionsListener = (uid) => {
 						transactions,
 						dispatch
 					)
-					console.log(transactions)
 					dispatch(fetchChartSuccess(lineChart))
 				},
 				(error) => {
@@ -173,4 +172,8 @@ const convertChartData = (data) => {
 	return charts.map((elem, i) => {
 		return data.length && i < min ? [data[0].prices[i][0], elem] : [0, elem]
 	})
+}
+
+const sortTransaction = (transactions) => {
+	return transactions.sort((a, b) => (a.date > b.date ? 1 : -1))
 }

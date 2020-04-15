@@ -31,19 +31,19 @@ const EditTransaction = ({
 	})
 
 	const handleClick = (name) => {
+		console.log('Open modal')
 		saveSelectedCoin(name.toLowerCase())
 		setIsOpen(true)
 	}
 
 	const closeModal = () => {
 		setIsOpen(false)
-		setValue('asset', null)
 		resetSelectedCoin()
 	}
 
 	const onSubmit = (data) => {
 		if (!data.asset) {
-			setValue('asset', transaction.name.toLowerCase())
+			console.log('asset vide')
 		} else {
 			data.amount = parseFloat(data.amount)
 			data.price = parseFloat(data.price)
@@ -61,6 +61,8 @@ const EditTransaction = ({
 			.doc(transaction.id)
 			.delete()
 	}
+
+	console.log('Edit render', transaction)
 
 	return (
 		<div className="edit-transaction">
@@ -88,6 +90,8 @@ const EditTransaction = ({
 							name="Amount"
 							register={register}
 							amount={transaction.amount}
+							setValue={setValue}
+							edit={true}
 						/>
 					</div>
 
@@ -101,6 +105,8 @@ const EditTransaction = ({
 							name="Price"
 							register={register}
 							price={transaction.price}
+							setValue={setValue}
+							edit={true}
 						/>
 					</div>
 

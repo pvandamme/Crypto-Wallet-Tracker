@@ -4,6 +4,7 @@ import { getTransactions } from 'state/selectors/dashboardSelectors'
 import EditTransaction from './EditTransaction'
 
 const TransactionsList = ({ transactions }) => {
+	console.log('TransactionList render')
 	const ret = transactions.map((transaction, i) => (
 		<EditTransaction key={i} transaction={transaction} />
 	))

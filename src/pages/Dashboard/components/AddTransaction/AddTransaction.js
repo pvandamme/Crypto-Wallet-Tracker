@@ -51,7 +51,11 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 					onSubmit={handleSubmit(onSubmit)}>
 					<div className="dashboard__modal-data">
 						<SelectAsset setValue={setValue} register={register} />
-						<PriceInput name="Amount" register={register} />
+						<PriceInput
+							name="Amount"
+							register={register}
+							setValue={setValue}
+						/>
 					</div>
 
 					<div className="dashboard__modal-data">
@@ -59,7 +63,11 @@ const AddTransaction = ({ uid, resetSelectedCoin }) => {
 							setValue={setValue}
 							register={register}
 						/>
-						<PriceInput name="Price" register={register} />
+						<PriceInput
+							name="Price"
+							register={register}
+							setValue={setValue}
+						/>
 					</div>
 
 					<button className="add-button" type="submit">

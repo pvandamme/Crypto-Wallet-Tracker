@@ -2,7 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getSelectedCoin } from 'state/selectors/dashboardSelectors'
 
-const PriceInput = ({ selectedCoin, register, name, amount, price }) => {
+const PriceInput = ({
+	selectedCoin,
+	register,
+	name,
+	amount,
+	price,
+	setValue,
+	edit,
+}) => {
 	const getDefaultValue = () => {
 		if (name === 'Price') {
 			if (price) {
@@ -16,6 +24,15 @@ const PriceInput = ({ selectedCoin, register, name, amount, price }) => {
 			return null
 		}
 	}
+
+	if (!edit) {
+		setValue('price', selectedCoin.current_price)
+	}
+
+	const handleChange = (e) => {
+		setValue(name.toLowerCase(), e.target.value)
+	}
+
 	return (
 		<label className="modal-label">
 			{name === 'Amount' ? (
@@ -26,11 +43,15 @@ const PriceInput = ({ selectedCoin, register, name, amount, price }) => {
 			<input
 				className="dashboard__modal-input"
 				placeholder={name}
-				name={name.toLowerCase()}
+				onChange={(e) => handleChange(e)}
 				type="number"
 				step="any"
 				min="0.00000001"
-				ref={register()}
+				ref={register({
+					name: name.toLowerCase(),
+					required: true,
+					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+				})}
 				defaultValue={getDefaultValue()}
 			/>
 		</label>
