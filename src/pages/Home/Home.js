@@ -7,7 +7,7 @@ export default class Home extends Component {
 			<section className="hero">
 				<div className="hero-text">
 					<h2>Buy cryptocurrencies.</h2>
-					<h2>Connect your exchange.</h2>
+					<h2>Add your Transactions.</h2>
 					<h2>Track your results.</h2>
 					<Link to="/register">
 						<button>TRY NOW</button>
