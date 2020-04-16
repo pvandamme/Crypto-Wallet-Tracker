@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Line } from 'react-chartjs-2'
 import { cutChartNumber } from 'helpers/helpers'
@@ -9,12 +9,16 @@ import {
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 
 const HoldLineChart = ({ chart, pending }) => {
+	const [focus, setFocus] = useState('profit')
+
 	const labels = chart.map((elem) => {
 		const date = new Date(elem[0]).toUTCString()
 		return date.slice(0, 12) + date.slice(17, 22)
 	})
 
-	const data = chart.map((elem) => cutChartNumber(elem[1]))
+	const data = chart.map((elem) =>
+		cutChartNumber(elem[1][focus === 'profit' ? 0 : 1])
+	)
 
 	const chartData = {
 		labels: labels,
@@ -34,6 +38,9 @@ const HoldLineChart = ({ chart, pending }) => {
 			mode: 'index',
 			intersect: false,
 		},
+		animation: {
+			easing: 'easeOutExpo',
+		},
 		scales: {
 			xAxes: [
 				{
@@ -52,6 +59,20 @@ const HoldLineChart = ({ chart, pending }) => {
 	return (
 		<div className="hold__cointainer hold__margin">
 			<h3>Portfolio chart</h3>
+			<button
+				className={
+					focus === 'profit' ? 'line-button__focus' : 'line-button'
+				}
+				onClick={() => setFocus('profit')}>
+				Profit
+			</button>
+			<button
+				className={
+					focus === 'value' ? 'line-button__focus' : 'line-button'
+				}
+				onClick={() => setFocus('value')}>
+				Value
+			</button>
 			<div className="hold__line-chart">
 				{pending ? (
 					<LoadingSpinner style={45} />

@@ -158,12 +158,19 @@ const convertChartData = (data) => {
 		}
 	})
 
-	let charts = new Array(min).fill(0)
+	let charts = new Array(min)
+
+	for (let i = 0; i < charts.length; i++) {
+		charts[i] = new Array(2)
+		charts[i].fill(0)
+	}
 
 	data.forEach((elem) => {
 		elem.prices.forEach((price, i) => {
 			if (price[0] > elem.date || i === min - 1) {
-				charts[i] += price[1] * elem.amount - elem.price * elem.amount
+				charts[i][0] +=
+					price[1] * elem.amount - elem.price * elem.amount
+				charts[i][1] += price[1] * elem.amount
 			}
 		})
 	})

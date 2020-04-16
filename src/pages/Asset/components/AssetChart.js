@@ -30,6 +30,9 @@ const AssetChart = ({ chart }) => {
 			mode: 'index',
 			intersect: false,
 		},
+		animation: {
+			easing: 'easeOutExpo',
+		},
 		scales: {
 			xAxes: [
 				{
