@@ -8,6 +8,7 @@ import {
 	FETCH_CHART_BEGIN,
 	FETCH_CHART_SUCCESS,
 	RESET_SELECTED_COIN,
+	RESET_DASHBOARD,
 } from 'state/actionTypes'
 import { fetchMarket } from './marketActions'
 import { fetchChart } from './assetActions'
@@ -60,6 +61,12 @@ const fetchChartSuccess = (lineChart) => {
 	}
 }
 
+export const resetDashboard = () => {
+	return {
+		type: RESET_DASHBOARD,
+	}
+}
+
 /* Thunk */
 
 export const saveSelectedCoin = (coin) => {
@@ -79,7 +86,7 @@ export const setTransactionsListener = (uid) => {
 			.collection('users/' + uid + '/transactions')
 			.onSnapshot(
 				async (snapshot) => {
-					let transactions = getState().dashboard.transactions
+					let transactions = [...getState().dashboard.transactions]
 					const changes = snapshot.docChanges()
 					changes.forEach((change) => {
 						let data = change.doc.data()

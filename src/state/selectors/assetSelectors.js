@@ -8,7 +8,6 @@ export const getAssetError = (state) => state.asset.error
 
 export const getAssetData = (state) => {
 	const asset = state.asset.assetData
-	console.log(asset)
 	return {
 		name: asset.name,
 		symbol: asset.symbol.toUpperCase(),

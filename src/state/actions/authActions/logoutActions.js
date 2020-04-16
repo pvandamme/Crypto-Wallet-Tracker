@@ -1,5 +1,6 @@
 import { auth } from 'firebaseConfig/firebase'
 import { FETCH_LOGOUT_BEGIN, FETCH_LOGOUT_SUCCESS } from '../../actionTypes'
+import { resetDashboard } from '../dashboardActions'
 
 // Action creators
 
@@ -24,6 +25,7 @@ export const logoutUser = () => {
 		auth.signOut()
 			.then(() => {
 				dispatch(fetchLogoutSuccess())
+				dispatch(resetDashboard())
 			})
 			.catch((error) => {
 				console.log(error)

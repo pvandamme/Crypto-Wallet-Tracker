@@ -8,9 +8,10 @@ import {
 	getIsAuthenticated,
 	getLoginBegin,
 	getLoginError,
+	getAuthUid,
 } from 'state/selectors/authSelectors'
 
-const Register = ({ auth, loginError, loginBegin, loginUser }) => {
+const Register = ({ uid, auth, loginError, loginBegin, loginUser }) => {
 	const { register, handleSubmit, errors } = useForm()
 	const onSubmit = (data) => loginUser(data.email, data.password)
 
@@ -75,6 +76,7 @@ const mapStateToProps = (state) => {
 		loginBegin: getLoginBegin(state),
 		loginError: getLoginError(state),
 		auth: getIsAuthenticated(state),
+		uid: getAuthUid(state),
 	}
 }
 

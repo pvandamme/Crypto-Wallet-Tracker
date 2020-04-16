@@ -8,7 +8,7 @@ import {
 	FETCH_REGISTER_SUCCESS,
 	FETCH_REGISTER_FAILURE,
 	FETCH_VERIFY_BEGIN,
-	FETCH_VERIFY_SUCCESS
+	FETCH_VERIFY_SUCCESS,
 } from '../actionTypes'
 
 const defaultState = {
@@ -19,7 +19,7 @@ const defaultState = {
 	loginOutBegin: false,
 	verifyBegin: false,
 	isAuthenticated: false,
-	user: {}
+	user: {},
 }
 
 export default (state = defaultState, action) => {
@@ -28,64 +28,64 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				registerBegin: true,
-				registerError: false
+				registerError: false,
 			}
 		case FETCH_REGISTER_SUCCESS:
 			return {
 				...state,
 				registerBegin: false,
 				isAuthenticated: true,
-				user: action.user
+				user: action.user,
 			}
 		case FETCH_REGISTER_FAILURE:
 			return {
 				...state,
 				registerBegin: false,
 				isAuthenticated: false,
-				registerError: action.error
+				registerError: action.error,
 			}
 		case FETCH_LOGIN_BEGIN:
 			return {
 				...state,
 				loginBegin: true,
-				loginError: false
+				loginError: false,
 			}
 		case FETCH_LOGIN_SUCCESS:
 			return {
 				...state,
 				loginBegin: false,
 				isAuthenticated: true,
-				user: action.user
+				user: action.user,
 			}
 		case FETCH_LOGIN_FAILURE:
 			return {
 				...state,
 				loginBegin: false,
 				isAuthenticated: false,
-				loginError: action.error
+				loginError: action.error,
 			}
 		case FETCH_LOGOUT_BEGIN:
 			return {
 				...state,
 				loginOutBegin: true,
-				logoutError: false
+				logoutError: false,
 			}
 		case FETCH_LOGOUT_SUCCESS:
 			return {
 				...state,
 				loginOutBegin: false,
 				isAuthenticated: false,
-				user: {}
+				user: {},
 			}
 		case FETCH_VERIFY_BEGIN:
 			return {
 				...state,
-				verifyBegin: true
+				verifyBegin: true,
 			}
 		case FETCH_VERIFY_SUCCESS:
 			return {
 				...state,
-				verifyBegin: false
+				verifyBegin: false,
 			}
 		default:
 			return state

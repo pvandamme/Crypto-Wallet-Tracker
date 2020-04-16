@@ -8,6 +8,7 @@ import {
 	FETCH_CHART_SUCCESS,
 	FETCH_CHART_FAILURE,
 	RESET_SELECTED_COIN,
+	RESET_DASHBOARD,
 } from 'state/actionTypes'
 
 const defaultState = {
@@ -16,8 +17,8 @@ const defaultState = {
 	success: false,
 	chartPending: false,
 	chartSuccess: false,
-	transactions: [],
 	unsub: null,
+	transactions: [],
 	selectedCoin: {},
 	lineChart: [],
 	combine: [],
@@ -30,6 +31,7 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				pending: true,
+				success: false,
 				error: false,
 			}
 		case FETCH_TRANSACTIONS_SUCCESS:
@@ -73,6 +75,10 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				error: true,
+			}
+		case RESET_DASHBOARD:
+			return {
+				...defaultState,
 			}
 		default:
 			return state
