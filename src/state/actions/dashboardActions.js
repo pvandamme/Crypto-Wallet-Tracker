@@ -174,7 +174,7 @@ const convertChartData = (data) => {
 
 	data.forEach((elem) => {
 		elem.prices.forEach((price, i) => {
-			if (price[0] > elem.date || i === min - 1) {
+			if (price[0] > elem.date && i < min) {
 				charts[i][0] +=
 					price[1] * elem.amount - elem.price * elem.amount
 				charts[i][1] += price[1] * elem.amount
