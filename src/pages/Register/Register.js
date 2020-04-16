@@ -16,7 +16,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 		registerUser(data.firstName, data.lastName, data.email, data.password)
 
 	if (auth) {
-		return <Redirect to="/" />
+		return <Redirect to="/dashboard" />
 	} else {
 		return (
 			<form

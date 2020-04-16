@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { getVerifyStatus } from 'state/selectors/authSelectors'
 import LoadingSpinner from 'pages/Shared/LoadingSpinner'
 import Dashboard from 'pages/Dashboard/Dashboard'
-import ProtectedRoutes from './ProtectedRoutes'
+import ProtectedRoute from './ProtectedRoute'
 
 const AppRouter = ({ verify }) => {
 	if (!verify) {
@@ -25,7 +25,10 @@ const AppRouter = ({ verify }) => {
 						<Route path="/login" component={Login} />
 						<Route path="/register" component={Register} />
 						<Route path="/asset/:coin" component={Asset} />
-						<Route path="/dashboard" component={Dashboard} />
+						<ProtectedRoute
+							path="/dashboard"
+							component={Dashboard}
+						/>
 						<Route component={NotFoundPage} />
 					</Switch>
 				</div>

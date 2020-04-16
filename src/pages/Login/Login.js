@@ -15,7 +15,7 @@ const Register = ({ auth, loginError, loginBegin, loginUser }) => {
 	const onSubmit = (data) => loginUser(data.email, data.password)
 
 	if (auth) {
-		return <Redirect to="/" />
+		return <Redirect to="/dashboard" />
 	} else {
 		return (
 			<form
