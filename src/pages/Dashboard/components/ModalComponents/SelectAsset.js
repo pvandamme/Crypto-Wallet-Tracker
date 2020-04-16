@@ -16,10 +16,18 @@ const getOptions = (topCoins) => {
 }
 
 const SingleValue = ({ ...props }) => {
+	const name = props.selectProps.selectedCoin.name
 	return (
 		<components.SingleValue {...props}>
-			<img src={props.selectProps.selectedCoin.image} className="icon" />
-			{props.selectProps.selectedCoin.name}
+			<img
+				src={
+					name === 'Hxro'
+						? 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Poop_Emoji_Icon.png'
+						: props.selectProps.selectedCoin.image
+				}
+				className="icon"
+			/>
+			{name === 'Hxro' ? 'Shitcoin' : name}
 		</components.SingleValue>
 	)
 }
