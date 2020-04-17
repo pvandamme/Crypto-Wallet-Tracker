@@ -7,7 +7,7 @@ module.exports = (env) => {
 	return {
 		entry: './src/index.js',
 		output: {
-			path: path.resolve('./public'),
+			path: path.resolve('./public/dist'),
 			filename: 'bundle.js',
 		},
 		module: {
@@ -71,6 +71,7 @@ module.exports = (env) => {
 					'X-Requested-With, content-type, Authorization',
 			},
 			contentBase: path.resolve('./public'),
+			publicPath: 'dist',
 			historyApiFallback: true,
 		},
 	}
