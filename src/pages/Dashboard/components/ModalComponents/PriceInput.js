@@ -25,6 +25,8 @@ const PriceInput = ({
 		}
 	}
 
+	name = name === 'Amount' ? 'Quantity' : name
+
 	if (!edit) {
 		setValue('price', selectedCoin.current_price)
 	}
@@ -35,8 +37,8 @@ const PriceInput = ({
 
 	return (
 		<label className="modal-label">
-			{name === 'Amount' ? (
-				<p>Add amount :</p>
+			{name === 'Quantity' ? (
+				<p>Add quantity :</p>
 			) : (
 				<p>Price per coin ($) :</p>
 			)}
