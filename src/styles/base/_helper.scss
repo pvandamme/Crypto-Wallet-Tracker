@@ -17,3 +17,15 @@
 		@content;
 	}
 }
+
+@mixin bp-dashboard {
+	@media screen and (max-width: 1320px) {
+		@content;
+	}
+}
+
+@mixin bp-dashboard-small {
+	@media screen and (max-width: 340px) {
+		@content;
+	}
+}

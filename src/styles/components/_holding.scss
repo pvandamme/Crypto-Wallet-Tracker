@@ -1,15 +1,10 @@
-.dashboard-top-section {
-	width: 100%;
-	min-height: 10vh;
-	margin-top: 2rem;
-	display: flex;
-	justify-content: space-between;
-}
-
 .hold {
 	margin-top: 5rem;
 	display: flex;
 	justify-content: space-between;
+	@include bp-dashboard {
+		flex-direction: column-reverse;
+	}
 }
 
 .hold__cointainer {
@@ -25,6 +20,10 @@
 	position: relative;
 	height: 40rem;
 	width: 40rem;
+	@include bp-dashboard {
+		margin: auto;
+		padding-bottom: 1rem;
+	}
 }
 
 .hold__line-chart {
@@ -42,6 +41,10 @@
 		margin-bottom: 2rem;
 		display: inline-block;
 		margin-top: 1rem;
+	}
+	@include bp-dashboard {
+		margin-left: 0;
+		margin-bottom: 2rem;
 	}
 }
 
@@ -75,7 +78,7 @@
 
 .hold__list-elem {
 	padding: 1.5rem;
-	@include flex(row, center, flex-start);
+	@include flex(row, center, center);
 	flex-wrap: wrap;
 	flex: 1 1 11rem;
 	margin-left: 1rem;
@@ -112,7 +115,7 @@
 
 .details-elem {
 	padding: 1.5rem;
-	@include flex(row, center, flex-start);
+	@include flex(row, center, center);
 	flex-wrap: wrap;
 	flex: 1 1 11rem;
 	margin-left: 1rem;

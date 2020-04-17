@@ -1,3 +1,11 @@
+.dashboard-top-section {
+	width: 100%;
+	min-height: 10vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
 .dashboard__modal {
 	width: 50rem;
 	margin: auto;
