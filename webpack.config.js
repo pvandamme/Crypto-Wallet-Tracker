@@ -6,10 +6,9 @@ module.exports = (env) => {
 
 	return {
 		entry: './src/index.js',
-		//	entry: './playground/test.js',
 		output: {
 			path: path.resolve('./public'),
-			filename: 'bundle.js'
+			filename: 'bundle.js',
 		},
 		module: {
 			rules: [
@@ -24,11 +23,11 @@ module.exports = (env) => {
 									'@babel/preset-env',
 									{
 										targets: {
-											node: '10'
-										}
-									}
+											node: '10',
+										},
+									},
 								],
-								'@babel/preset-react'
+								'@babel/preset-react',
 							],
 							plugins: [
 								'@babel/plugin-proposal-object-rest-spread',
@@ -36,43 +35,43 @@ module.exports = (env) => {
 								[
 									'module-resolver',
 									{
-										root: ['./src']
-									}
-								]
-							]
-						}
-					}
+										root: ['./src'],
+									},
+								],
+							],
+						},
+					},
 				},
 				{
 					test: /\.s?css$/,
 					use: [
 						MiniCssExtractPlugin.loader,
 						'css-loader',
-						'sass-loader'
-					]
+						'sass-loader',
+					],
 				},
 				{
 					test: /\.(png|jpg|gif|svg)$/,
-					loader: 'url-loader'
-				}
-			]
+					loader: 'url-loader',
+				},
+			],
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
-				filename: 'styles.css'
-			})
+				filename: 'styles.css',
+			}),
 		],
-		devtool: 'eval-cheap-source-map',
+		devtool: prod ? 'source-map' : 'eval-cheap-source-map',
 		devServer: {
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Methods':
 					'GET, POST, PUT, DELETE, PATCH, OPTIONS',
 				'Access-Control-Allow-Headers':
-					'X-Requested-With, content-type, Authorization'
+					'X-Requested-With, content-type, Authorization',
 			},
 			contentBase: path.resolve('./public'),
-			historyApiFallback: true
-		}
+			historyApiFallback: true,
+		},
 	}
 }
