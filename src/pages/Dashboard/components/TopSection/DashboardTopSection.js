@@ -6,10 +6,13 @@ const DashboardTopSection = ({ data }) => {
 	const { totalInvested, value, roi, profit } = data
 
 	let color = ''
+	let sign = ''
 	if (roi > 0) {
 		color = 'green'
+		sign = '+'
 	} else if (roi < 0) {
 		color = 'red-card'
+		sign = '-'
 	}
 
 	return (
@@ -29,7 +32,7 @@ const DashboardTopSection = ({ data }) => {
 			<div className="card">
 				<p className="card-title">ROI</p>
 				<p className={'card-value ' + color}>
-					{roi >= 0 ? '+' : '-'} {roi >= 0 ? roi : roi * -1}%
+					{sign} {roi >= 0 ? roi : roi * -1}%
 				</p>
 			</div>
 		</div>
