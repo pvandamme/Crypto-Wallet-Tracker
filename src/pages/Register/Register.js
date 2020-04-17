@@ -89,7 +89,7 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 							'The passwords do not match',
 					})}
 				/>
-				{errors.confirm_password && <p>The passwords do not match</p>}
+				{errors.confirm_password && <p>Passwords do not match.</p>}
 				{registerError ? <p>{registerError}</p> : ''}
 				<button
 					type="submit"
