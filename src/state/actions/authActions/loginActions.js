@@ -21,7 +21,6 @@ export const fetchLoginSuccess = (user) => {
 }
 
 const fetchLoginFailure = (error) => {
-	console.log(error)
 	return {
 		type: FETCH_LOGIN_FAILURE,
 		error: error.message,

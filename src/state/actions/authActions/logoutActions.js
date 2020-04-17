@@ -27,8 +27,6 @@ export const logoutUser = () => {
 				dispatch(fetchLogoutSuccess())
 				dispatch(resetDashboard())
 			})
-			.catch((error) => {
-				console.log(error)
-			})
+			.catch((error) => {})
 	}
 }

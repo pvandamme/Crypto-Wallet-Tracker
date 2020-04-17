@@ -114,7 +114,6 @@ export const setTransactionsListener = (uid) => {
 					dispatch(fetchChartSuccess(lineChart))
 				},
 				(error) => {
-					console.log(error)
 					fetchTransactionsFailure()
 				}
 			)

@@ -21,7 +21,6 @@ const fetchRegisterSuccess = (user) => {
 }
 
 const fetchRegisterFailure = (error) => {
-	console.log(error)
 	return {
 		type: FETCH_REGISTER_FAILURE,
 		error: error.message,
