@@ -11,7 +11,13 @@ import {
 } from 'state/selectors/authSelectors'
 
 const Register = ({ registerUser, registerBegin, registerError, auth }) => {
-	const { register, handleSubmit, errors, watch } = useForm()
+	const {
+		register,
+		handleSubmit,
+		errors,
+		watch,
+		triggerValidation,
+	} = useForm()
 	const onSubmit = (data) =>
 		registerUser(data.username, data.email, data.password)
 
@@ -50,6 +56,9 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					<p>Please enter a valid email !</p>
 				)}
 				<input
+					onChange={() => {
+						triggerValidation('password')
+					}}
 					type="password"
 					placeholder="Password"
 					name="password"
@@ -68,6 +77,9 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 					</p>
 				)}
 				<input
+					onChange={() => {
+						triggerValidation('confirm_password')
+					}}
 					type="password"
 					placeholder="Confirm Password"
 					name="confirm_password"

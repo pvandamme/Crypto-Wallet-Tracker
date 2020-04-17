@@ -71,7 +71,7 @@ module.exports = (env) => {
 					'X-Requested-With, content-type, Authorization',
 			},
 			contentBase: path.resolve('./public'),
-			publicPath: 'dist',
+			publicPath: '/dist/',
 			historyApiFallback: true,
 		},
 	}

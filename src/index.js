@@ -7,10 +7,10 @@ import './styles/styles.scss'
 
 const store = configureStore()
 
-store.subscribe(() => {
+/*store.subscribe(() => {
 	const state = store.getState()
 	console.log(state)
-})
+})*/
 
 const Index = () => {
 	return (

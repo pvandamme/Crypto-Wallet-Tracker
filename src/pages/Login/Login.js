@@ -11,7 +11,7 @@ import {
 	getAuthUid,
 } from 'state/selectors/authSelectors'
 
-const Register = ({ uid, auth, loginError, loginBegin, loginUser }) => {
+const Login = ({ auth, loginError, loginBegin, loginUser }) => {
 	const { register, handleSubmit, errors } = useForm()
 	const onSubmit = (data) => loginUser(data.email, data.password)
 
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
