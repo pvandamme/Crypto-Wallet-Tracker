@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,9 +11,12 @@ import {
 } from 'state/selectors/authSelectors'
 
 const Register = ({ registerUser, registerBegin, registerError, auth }) => {
-	const { register, handleSubmit, errors } = useForm()
+	const { register, handleSubmit, errors, watch } = useForm()
 	const onSubmit = (data) =>
-		registerUser(data.firstName, data.lastName, data.email, data.password)
+		registerUser(data.username, data.email, data.password)
+
+	const password = useRef({})
+	password.current = watch('password', '')
 
 	if (auth) {
 		return <Redirect to="/dashboard" />
@@ -26,18 +29,11 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 				<h3 className="">Sign Up</h3>
 				<input
 					type="text"
-					placeholder="First name"
-					name="firstName"
+					placeholder="Username"
+					name="username"
 					ref={register({ required: true, maxLength: 80 })}
 				/>
-				{errors.firstName && <p>First name is required !</p>}
-				<input
-					type="text"
-					placeholder="Last name"
-					name="lastName"
-					ref={register({ required: true, maxLength: 80 })}
-				/>
-				{errors.lastName && <p>Last Name is required !</p>}
+				{errors.username && <p>Username is required !</p>}
 				<input
 					type="text"
 					placeholder="Email"
@@ -71,6 +67,17 @@ const Register = ({ registerUser, registerBegin, registerError, auth }) => {
 						number and an uppercase letter !
 					</p>
 				)}
+				<input
+					type="password"
+					placeholder="Confirm Password"
+					name="confirm_password"
+					ref={register({
+						validate: (value) =>
+							value === password.current ||
+							'The passwords do not match',
+					})}
+				/>
+				{errors.confirm_password && <p>The passwords do not match</p>}
 				{registerError ? <p>{registerError}</p> : ''}
 				<button
 					type="submit"

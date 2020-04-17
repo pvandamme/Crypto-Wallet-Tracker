@@ -30,14 +30,13 @@ const fetchRegisterFailure = (error) => {
 
 // Thunk
 
-export const registerUser = (firstName, lastName, email, password) => {
+export const registerUser = (username, email, password) => {
 	return (dispatch) => {
 		dispatch(fetchRegisterBegin())
 		auth.createUserWithEmailAndPassword(email, password)
 			.then(({ user }) => {
 				firestore.collection('users').doc(user.uid).set({
-					firstName,
-					lastName,
+					username,
 				})
 				dispatch(fetchRegisterSuccess(user))
 			})
