@@ -15,9 +15,6 @@ const Header = ({ auth }) => {
 							<h1>Crypto Tracker</h1>
 						</NavLink>
 					</li>
-					<li>
-						<NavLink to="/overview">Overview</NavLink>
-					</li>
 				</ul>
 				{auth ? <AuthHead /> : <NoAuthHead />}
 			</nav>
@@ -27,7 +24,7 @@ const Header = ({ auth }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		auth: getIsAuthenticated(state)
+		auth: getIsAuthenticated(state),
 	}
 }
 

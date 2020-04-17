@@ -7,8 +7,11 @@
 	color: white;
 	padding-left: 1.5rem;
 	padding-top: 1rem;
-	margin: auto;
 	margin-top: 2rem;
+	@include bp-small {
+		margin: auto;
+		margin-top: 2rem;
+	}
 }
 
 .card-title {

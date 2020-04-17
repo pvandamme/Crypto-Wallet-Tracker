@@ -25,8 +25,27 @@
 	min-height: 10vh;
 	margin: auto;
 	justify-content: space-between;
+	@include bp-dashboard-small {
+		flex-direction: column;
+		padding-top: 1rem;
+	}
 }
 
-.main-head__nav li:last-child {
+.main-head__right {
+	display: flex;
+	justify-content: space-between;
+	flex-grow: 1;
+	margin-left: 3rem;
+	@include bp-dashboard-small {
+		justify-content: space-around;
+		width: 90%;
+	}
+}
+
+.right-wrapper {
+	display: flex;
+}
+
+.right-wrapper li:last-child {
 	margin-left: 3rem;
 }

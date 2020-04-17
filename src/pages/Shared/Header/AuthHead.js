@@ -8,11 +8,16 @@ const Logout = ({ logoutUser }) => {
 	return (
 		<ul className="main-head__right">
 			<li>
-				<NavLink to="/dashboard">Dashboard</NavLink>
+				<NavLink to="/overview">Overview</NavLink>
 			</li>
-			<li>
-				<a onClick={() => logoutUser()}>Logout</a>
-			</li>
+			<div className="right-wrapper">
+				<li>
+					<NavLink to="/dashboard">Dashboard</NavLink>
+				</li>
+				<li>
+					<a onClick={() => logoutUser()}>Logout</a>
+				</li>
+			</div>
 		</ul>
 	)
 }
