@@ -79,6 +79,9 @@
 	height: 4rem;
 	width: 100%;
 	padding: 2px 8px;
+	&:focus {
+		border: 1.5px solid $blue;
+	}
 }
 
 .add-button {
