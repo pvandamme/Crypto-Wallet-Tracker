@@ -25,7 +25,7 @@ const PriceInput = ({
 		}
 	}
 
-	name = name === 'Amount' ? 'Quantity' : name
+	const newName = name === 'Amount' ? 'Quantity' : name
 
 	if (!edit) {
 		setValue('price', selectedCoin.current_price)
@@ -37,14 +37,14 @@ const PriceInput = ({
 
 	return (
 		<label className="modal-label">
-			{name === 'Quantity' ? (
+			{newName === 'Quantity' ? (
 				<p>Add quantity :</p>
 			) : (
 				<p>Price per coin ($) :</p>
 			)}
 			<input
 				className="dashboard__modal-input"
-				placeholder={name}
+				placeholder={newName}
 				onChange={(e) => handleChange(e)}
 				type="number"
 				step="any"
