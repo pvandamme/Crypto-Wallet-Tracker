@@ -32,6 +32,8 @@ const fetchLoginFailure = (error) => {
 export const loginUser = (email, password) => {
 	return (dispatch) => {
 		dispatch(fetchLoginBegin())
-		auth.signInWithEmailAndPassword(email, password)
+		auth.signInWithEmailAndPassword(email, password).catch((e) => {
+			dispatch(fetchLoginFailure(e))
+		})
 	}
 }

@@ -5,7 +5,8 @@ import { verifyAuth } from './actions/authActions/verifyActions'
 import { auth } from 'firebaseConfig/firebase'
 import { fetchLoginSuccess } from './actions/authActions/loginActions'
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancer = compose
 
 const configureStore = () => {
 	const store = createStore(
