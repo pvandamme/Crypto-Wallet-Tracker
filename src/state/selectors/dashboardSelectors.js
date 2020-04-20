@@ -141,21 +141,14 @@ const getCoinImage = (transaction, topCoins) => {
 	return coin.image
 }
 
-const getCombineRoi = (name, transactions, price) => {
+const getCoinInvested = (name, transactions) => {
 	let total = 0
-	let match = 0
 	transactions.forEach((transaction) => {
 		if (transaction.asset === name) {
-			const coinInvested = transaction.price * transaction.amount
-			const roi = (
-				((price * transaction.amount - coinInvested) / coinInvested) *
-				100
-			).toFixed(2)
-			total += parseFloat(roi)
-			match++
+			total += transaction.price * transaction.amount
 		}
 	})
-	return total / match
+	return total
 }
 
 const getCoinPrice = (coin, topCoins) => {
