@@ -102,35 +102,14 @@ export const getDashboardData = ({ dashboard, market }) => {
 	}
 }
 
-export const getTransactionData = (transactions, market) => {
-	return transactions.map((elem) => {
-		const price = getCoinPrice(elem, market.marketData.topCoins)
-		const coinInvested = getCoinInvested(elem.asset, dashboard.transactions)
-		const roi = (
-			((price * elem.amount - coinInvested) / coinInvested) *
-			100
-		).toFixed(2)
-		return {
-			name: elem.asset.charAt(0).toUpperCase() + elem.asset.slice(1),
-			value: (price * elem.amount).toFixed(2),
-			amount: formatNumber(elem.amount),
-			date: elem.date,
-			price: cutNumber(price),
-			roi,
-			image: getCoinImage(elem, market.marketData.topCoins),
-			priceChange: getCoinChange(elem, market.marketData.topCoins),
-		}
-	})
-}
-
 export const getHoldListData = ({ dashboard, market }) => {
 	const combine = combineTransaction(dashboard.transactions)
 	return combine.map((elem) => {
 		const price = getCoinPrice(elem, market.marketData.topCoins)
-		const coinInvested = getCoinInvested(elem.asset, dashboard.transactions)
-		const roi = (
-			((price * elem.amount - coinInvested) / coinInvested) *
-			100
+		const roi = getCombineRoi(
+			elem.asset,
+			dashboard.transactions,
+			price
 		).toFixed(2)
 		return {
 			name: elem.asset.charAt(0).toUpperCase() + elem.asset.slice(1),
@@ -162,14 +141,21 @@ const getCoinImage = (transaction, topCoins) => {
 	return coin.image
 }
 
-const getCoinInvested = (name, transactions) => {
+const getCombineRoi = (name, transactions, price) => {
 	let total = 0
+	let match = 0
 	transactions.forEach((transaction) => {
 		if (transaction.asset === name) {
-			total += transaction.price * transaction.amount
+			const coinInvested = transaction.price * transaction.amount
+			const roi = (
+				((price * transaction.amount - coinInvested) / coinInvested) *
+				100
+			).toFixed(2)
+			total += parseFloat(roi)
+			match++
 		}
 	})
-	return total
+	return total / match
 }
 
 const getCoinPrice = (coin, topCoins) => {
