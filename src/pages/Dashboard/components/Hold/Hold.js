@@ -17,7 +17,7 @@ const Hold = () => {
 						<p># Name</p>
 					</div>
 					<div className="hold__list-elem">
-						<p># Amount</p>
+						<p># Quantity</p>
 					</div>
 					<div className="hold__list-elem">
 						<p># Price</p>

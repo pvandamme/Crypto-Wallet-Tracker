@@ -24,7 +24,7 @@ const Coin = ({ transaction, setIsOpen, isOpen }) => {
 				<p># Date</p>
 			</div>
 			<div className="details-elem">
-				<p># Amount</p>
+				<p># Quantity</p>
 			</div>
 			<div className="details-elem">
 				<p># Value</p>
