@@ -10,6 +10,7 @@ const TopSectionFilters = ({ updateInputFilter, value }) => {
 			<label htmlFor="search">Search : </label>
 			<input
 				value={value}
+				autocomplete="off"
 				onChange={(e) => updateInputFilter(e)}
 				type="text"
 				id="search"
@@ -26,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
 	return {
-		value: getInputFilter(state)
+		value: getInputFilter(state),
 	}
 }
 
