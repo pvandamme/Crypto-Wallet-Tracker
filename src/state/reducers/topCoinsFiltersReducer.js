@@ -3,7 +3,8 @@ import {
 	UPDATE_ASC,
 	UPDATE_PAGINATION,
 	UPDATE_DISPLAY,
-	UPDATE_INPUT_FILTER
+	UPDATE_INPUT_FILTER,
+	RESET_FILTER,
 } from '../actionTypes'
 
 const defaultState = {
@@ -11,7 +12,7 @@ const defaultState = {
 	asc: false,
 	pagination: 0,
 	display: { value: 10, label: 10 },
-	inputFilter: ''
+	inputFilter: '',
 }
 
 export default (state = defaultState, action) => {
@@ -21,7 +22,7 @@ export default (state = defaultState, action) => {
 				...state,
 				asc: false,
 				filterBy: action.payload,
-				pagination: 0
+				pagination: 0,
 			}
 		case UPDATE_ASC:
 			return { ...state, asc: action.payload }
@@ -31,6 +32,8 @@ export default (state = defaultState, action) => {
 			return { ...state, display: action.payload, pagination: 0 }
 		case UPDATE_INPUT_FILTER:
 			return { ...state, inputFilter: action.payload, pagination: 0 }
+		case RESET_FILTER:
+			return defaultState
 		default:
 			return state
 	}

@@ -11,6 +11,7 @@ export const UPDATE_ASC = 'UPDATE_ASC'
 export const UPDATE_PAGINATION = 'UPDATE_PAGINATION'
 export const UPDATE_DISPLAY = 'UPDATE_DISPLAY'
 export const UPDATE_INPUT_FILTER = 'UPDATE_INPUT_FILTER'
+export const RESET_FILTER = 'RESET_FILTER'
 
 /* Asset types */
 

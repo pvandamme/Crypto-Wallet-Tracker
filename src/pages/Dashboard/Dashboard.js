@@ -11,12 +11,14 @@ import {
 	getDashboardError,
 } from 'state/selectors/dashboardSelectors'
 import Hold from './components/Hold/Hold'
+import { resetFilter } from 'state/actions/topCoinsFiltersActions'
 import HoldLineChart from './HoldLineChart'
 
 class Dashboard extends Component {
 	componentDidMount() {
 		const { uid, setTransactionsListener, success } = this.props
 		if (!success) setTransactionsListener(uid)
+		this.props.resetFilter()
 	}
 	render() {
 		const { pending, error, success } = this.props
@@ -51,7 +53,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ setTransactionsListener }, dispatch)
+	return bindActionCreators(
+		{ setTransactionsListener, resetFilter },
+		dispatch
+	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

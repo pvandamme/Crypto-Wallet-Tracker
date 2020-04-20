@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GlobalMarket from './components/TopSection/GlobalMarket'
 import TopCoinsList from './components/TopCoins/TopCoinsList'
 import TopSection from './components/TopSection/TopSection'
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import FetchTopCoins from './components/FetchTopCoins/FetchTopCoins'
 import { getMarketSuccess } from 'state/selectors/marketSelectors'
 
-const Overview = ({ success }) => {
+const Overview = ({ success, resetFilter }) => {
 	return success ? (
 		<main>
 			<GlobalMarket />
