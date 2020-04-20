@@ -106,10 +106,10 @@ export const getHoldListData = ({ dashboard, market }) => {
 	const combine = combineTransaction(dashboard.transactions)
 	return combine.map((elem) => {
 		const price = getCoinPrice(elem, market.marketData.topCoins)
-		const roi = getCombineRoi(
-			elem.asset,
-			dashboard.transactions,
-			price
+		const coinInvested = getCoinInvested(elem.asset, dashboard.transactions)
+		const roi = (
+			((price * elem.amount - coinInvested) / coinInvested) *
+			100
 		).toFixed(2)
 		return {
 			name: elem.asset.charAt(0).toUpperCase() + elem.asset.slice(1),
