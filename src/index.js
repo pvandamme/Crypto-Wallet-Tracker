@@ -7,10 +7,12 @@ import './styles/styles.scss'
 
 const store = configureStore()
 
-/*store.subscribe(() => {
-	const state = store.getState()
-	console.log(state)
-})*/
+if (process.env.NODE_ENV === 'development') {
+	store.subscribe(() => {
+		const state = store.getState()
+		console.log(state)
+	})
+}
 
 const Index = () => {
 	return (
