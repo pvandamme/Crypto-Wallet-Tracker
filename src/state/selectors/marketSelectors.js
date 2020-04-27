@@ -12,10 +12,10 @@ export const getMarketError = (state) => state.market.error
 export const getGlobal = (state) => {
 	const data = state.market.marketData.globalData
 	return {
-		totalMarketCap: formatNumber(data.total_market_cap.usd),
-		totalVolume: formatNumber(data.total_volume.usd),
+		totalMarketCap: formatNumber(parseInt(data.total_market_cap.usd)),
+		totalVolume: formatNumber(parseInt(data.total_volume.usd)),
 		btcDominance: roundNumber(data.market_cap_percentage.btc, 1),
-		cryptocurrencies: data.active_cryptocurrencies,
+		cryptocurrencies: data.active_cryptocurrencies
 	}
 }
 
@@ -45,7 +45,7 @@ const formatTopCoins = (coins) => {
 		mkCap: coin.market_cap,
 		icon: coin.image,
 		price: cutNumber(coin.current_price),
-		priceChange: coin.price_change_percentage_24h, // TODO - round etc
+		priceChange: coin.price_change_percentage_24h // TODO - round etc
 	}))
 }
 
@@ -60,8 +60,7 @@ const applyFilterBy = (sorted, state) => {
 			case 'price':
 				return a.current_price > b.current_price ? 1 : -1
 			case 'change':
-				return a.price_change_percentage_24h >
-					b.price_change_percentage_24h
+				return a.price_change_percentage_24h > b.price_change_percentage_24h
 					? 1
 					: -1
 			default:
@@ -71,8 +70,5 @@ const applyFilterBy = (sorted, state) => {
 }
 
 const sliceTopCoin = (top, { display, pagination }) => {
-	return top.slice(
-		pagination * display.value,
-		display.value * (pagination + 1)
-	)
+	return top.slice(pagination * display.value, display.value * (pagination + 1))
 }
